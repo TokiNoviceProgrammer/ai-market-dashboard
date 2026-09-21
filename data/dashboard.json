@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-21T16:00:03+09:00",
-  "generator": "update-data.py (mock provider)",
+  "generatedAt": "2026-09-21T17:31:00+09:00",
+  "generator": "update-data.py (Alpha Vantage, FRED, SEC EDGAR)",
   "notice": {
-    "ja": "初期データはサンプルです。update-data.py で実データに置き換えられます。",
-    "en": "This initial payload is sample data. Replace it via update-data.py.",
-    "ko": "초기 데이터는 샘플입니다. update-data.py로 실데이터로 교체됩니다."
+    "ja": "市場データは日次更新です。取得に失敗した項目は前回の正常値を表示します。",
+    "en": "Market data is refreshed daily. Items that fail to update retain their last verified value.",
+    "ko": "시장 데이터는 매일 갱신됩니다. 가져오기에 실패한 항목은 마지막 정상 값을 유지합니다."
   },
   "items": [
     {
@@ -213,12 +213,12 @@
         "ticker": "NVDA",
         "exchange": "NASDAQ",
         "currency": "USD",
-        "price": 172.7653,
-        "previousClose": 171.908,
-        "change": 0.8573,
-        "changePercent": 0.5,
+        "price": 222.27,
+        "previousClose": 219.34,
+        "change": 2.93,
+        "changePercent": 1.34,
         "marketCap": "4.45T",
-        "asOf": "2026-09-21T16:00:03.746220+09:00"
+        "asOf": "2026-09-21T17:30:51.083039+09:00"
       },
       "summary": {
         "ja": [
@@ -261,12 +261,30 @@
       },
       "irDocuments": [
         {
-          "date": "2026-08-27",
-          "url": "https://investor.nvidia.com/",
+          "date": "2026-09-03",
+          "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000078/nvda-20260902.htm",
           "title": {
-            "ja": "2027年度 第2四半期 決算発表",
-            "en": "Q2 FY2027 Earnings Release",
-            "ko": "2027 회계연도 2분기 실적 발표"
+            "ja": "SEC 8-K filing (2026-09-03)",
+            "en": "SEC 8-K filing (2026-09-03)",
+            "ko": "SEC 8-K filing (2026-09-03)"
+          }
+        },
+        {
+          "date": "2026-08-26",
+          "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000075/nvda-20260726.htm",
+          "title": {
+            "ja": "SEC 10-Q filing (2026-08-26)",
+            "en": "SEC 10-Q filing (2026-08-26)",
+            "ko": "SEC 10-Q filing (2026-08-26)"
+          }
+        },
+        {
+          "date": "2026-08-26",
+          "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000073/nvda-20260826.htm",
+          "title": {
+            "ja": "SEC 8-K filing (2026-08-26)",
+            "en": "SEC 8-K filing (2026-08-26)",
+            "ko": "SEC 8-K filing (2026-08-26)"
           }
         }
       ],
@@ -295,12 +313,12 @@
         "ticker": "TSM",
         "exchange": "NYSE",
         "currency": "USD",
-        "price": 268.5823,
-        "previousClose": 264.0358,
-        "change": 4.5465,
-        "changePercent": 1.72,
+        "price": 434.67,
+        "previousClose": 430.26,
+        "change": 4.41,
+        "changePercent": 1.02,
         "marketCap": "1.39T",
-        "asOf": "2026-09-21T16:00:03.746220+09:00"
+        "asOf": "2026-09-21T17:30:52.206103+09:00"
       },
       "summary": {
         "ja": [
@@ -344,11 +362,29 @@
       "irDocuments": [
         {
           "date": "2026-09-10",
-          "url": "https://investor.tsmc.com/",
+          "url": "https://www.sec.gov/Archives/edgar/data/1046179/000104617926000658/tsm-revenue20260910.htm",
           "title": {
-            "ja": "2026年8月 月次売上レポート",
-            "en": "August 2026 Monthly Revenue Report",
-            "ko": "2026년 8월 월간 매출 리포트"
+            "ja": "SEC 6-K filing (2026-09-10)",
+            "en": "SEC 6-K filing (2026-09-10)",
+            "ko": "SEC 6-K filing (2026-09-10)"
+          }
+        },
+        {
+          "date": "2026-09-01",
+          "url": "https://www.sec.gov/Archives/edgar/data/1046179/000104617926000552/tsm-dividendadjustmentx202.htm",
+          "title": {
+            "ja": "SEC 6-K filing (2026-09-01)",
+            "en": "SEC 6-K filing (2026-09-01)",
+            "ko": "SEC 6-K filing (2026-09-01)"
+          }
+        },
+        {
+          "date": "2026-08-25",
+          "url": "https://www.sec.gov/Archives/edgar/data/1046179/000104617926000545/tsm-monthend6kx20260825.htm",
+          "title": {
+            "ja": "SEC 6-K filing (2026-08-25)",
+            "en": "SEC 6-K filing (2026-08-25)",
+            "ko": "SEC 6-K filing (2026-08-25)"
           }
         }
       ],
@@ -377,12 +413,12 @@
         "ticker": "CRM",
         "exchange": "NYSE",
         "currency": "USD",
-        "price": 252.7262,
-        "previousClose": 249.0131,
-        "change": 3.7131,
-        "changePercent": 1.49,
+        "price": 237.92,
+        "previousClose": 242.85,
+        "change": -4.93,
+        "changePercent": -2.03,
         "marketCap": "231B",
-        "asOf": "2026-09-21T16:00:03.746220+09:00"
+        "asOf": "2026-09-21T17:30:53.333574+09:00"
       },
       "summary": {
         "ja": [
@@ -425,12 +461,30 @@
       },
       "irDocuments": [
         {
-          "date": "2026-09-03",
-          "url": "https://investor.salesforce.com/",
+          "date": "2026-09-17",
+          "url": "https://www.sec.gov/Archives/edgar/data/1108524/000110852426000210/crm-20260916.htm",
           "title": {
-            "ja": "2027年度 第2四半期 決算説明資料",
-            "en": "Q2 FY2027 Earnings Presentation",
-            "ko": "2027 회계연도 2분기 실적 설명 자료"
+            "ja": "SEC 8-K filing (2026-09-17)",
+            "en": "SEC 8-K filing (2026-09-17)",
+            "ko": "SEC 8-K filing (2026-09-17)"
+          }
+        },
+        {
+          "date": "2026-09-04",
+          "url": "https://www.sec.gov/Archives/edgar/data/1108524/000110852426000197/crm-20260902.htm",
+          "title": {
+            "ja": "SEC 8-K filing (2026-09-04)",
+            "en": "SEC 8-K filing (2026-09-04)",
+            "ko": "SEC 8-K filing (2026-09-04)"
+          }
+        },
+        {
+          "date": "2026-08-27",
+          "url": "https://www.sec.gov/Archives/edgar/data/1108524/000110852426000190/crm-20260731.htm",
+          "title": {
+            "ja": "SEC 10-Q filing (2026-08-27)",
+            "en": "SEC 10-Q filing (2026-08-27)",
+            "ko": "SEC 10-Q filing (2026-08-27)"
           }
         }
       ],
@@ -623,12 +677,12 @@
         "ticker": "INTC",
         "exchange": "NASDAQ",
         "currency": "USD",
-        "price": 37.2623,
-        "previousClose": 37.2138,
-        "change": 0.0485,
-        "changePercent": 0.13,
+        "price": 108.6,
+        "previousClose": 108.8,
+        "change": -0.2,
+        "changePercent": -0.18,
         "marketCap": "168B",
-        "asOf": "2026-09-21T16:00:03.746220+09:00"
+        "asOf": "2026-09-21T17:30:56.707071+09:00"
       },
       "summary": {
         "ja": [
@@ -671,12 +725,30 @@
       },
       "irDocuments": [
         {
-          "date": "2026-07-24",
-          "url": "https://www.intc.com/investor-relations",
+          "date": "2026-08-12",
+          "url": "https://www.sec.gov/Archives/edgar/data/50863/000119312526346806/d117670d8k.htm",
           "title": {
-            "ja": "2026年 第2四半期 決算発表",
-            "en": "Q2 2026 Earnings Release",
-            "ko": "2026년 2분기 실적 발표"
+            "ja": "SEC 8-K filing (2026-08-12)",
+            "en": "SEC 8-K filing (2026-08-12)",
+            "ko": "SEC 8-K filing (2026-08-12)"
+          }
+        },
+        {
+          "date": "2026-07-24",
+          "url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000157/intc-20260627.htm",
+          "title": {
+            "ja": "SEC 10-Q filing (2026-07-24)",
+            "en": "SEC 10-Q filing (2026-07-24)",
+            "ko": "SEC 10-Q filing (2026-07-24)"
+          }
+        },
+        {
+          "date": "2026-07-23",
+          "url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000155/intc-20260723.htm",
+          "title": {
+            "ja": "SEC 8-K filing (2026-07-23)",
+            "en": "SEC 8-K filing (2026-07-23)",
+            "ko": "SEC 8-K filing (2026-07-23)"
           }
         }
       ],
@@ -704,12 +776,12 @@
       },
       "metric": {
         "symbol": "USD/JPY",
-        "value": 144.0681,
-        "previousClose": 147.0223,
-        "change": -2.9542,
-        "changePercent": -2.01,
+        "value": 156.86,
+        "previousClose": 155.96,
+        "change": 0.9,
+        "changePercent": 0.58,
         "unit": "JPY",
-        "asOf": "2026-09-21T16:00:03.746220+09:00"
+        "asOf": "2026-09-21T17:30:57.887353+09:00"
       },
       "summary": {
         "ja": [
@@ -836,12 +908,12 @@
       },
       "metric": {
         "symbol": "US10Y",
-        "value": 3.9245,
-        "previousClose": 3.9898,
-        "change": -0.0653,
-        "changePercent": -1.64,
+        "value": 4.94,
+        "previousClose": 5.01,
+        "change": -0.07,
+        "changePercent": -1.4,
         "unit": "%",
-        "asOf": "2026-09-21T16:00:03.746220+09:00"
+        "asOf": "2026-09-17T09:00:00+09:00"
       },
       "summary": {
         "ja": [
