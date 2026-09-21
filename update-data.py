@@ -318,9 +318,7 @@ class AlphaVantageProvider:
                     # ``GLOBAL_QUOTE`` は国際銘柄で価格フィールドを返さないことがある。
                     # 日次時系列は Alpha Vantage がグローバル株式向けに文書化している API。
                     response = self._get("TIME_SERIES_DAILY", symbol=symbol, outputsize="compact")
-                    observations = sorted(
-                        response["Time Series (Daily)"].items(), reverse=True
-                    )
+                    observations = sorted(response["Time Series (Daily)"].items(), reverse=True)
                     if len(observations) < MIN_OBSERVATIONS:
                         raise RuntimeError(
                             f"Alpha Vantage returned fewer than two daily observations for {symbol}"
