@@ -12,7 +12,7 @@
     "data": "data/dashboard.json"
   },
   "links": {
-    "repository": "https://github.com/YOUR_NAME/ai-market-dashboard"
+    "repository": "https://github.com/TokiNoviceProgrammer/ai-market-dashboard"
   },
   "dataSources": [
     { "name": "Yahoo Finance", "url": "https://finance.yahoo.com/" },

@@ -12,6 +12,7 @@ node_modules/
 .idea/
 .DS_Store
 Thumbs.db
+.env
 
 # ログ・一時ファイル
 *.log
