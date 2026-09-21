@@ -76,8 +76,11 @@ npx --yes serve .                     # Node が入っていれば
 # 依存を導入（初回のみ。ロックファイルを凍結したまま導入する）
 uv sync --frozen --extra dev
 
-# データを更新（既定はモックプロバイダ = ネットワーク不要）
+# 実データを更新（GitHub Actions では Secrets を利用）
 uv run --frozen update-data.py
+
+# モックデータで UI のみ確認する
+uv run --frozen update-data.py --provider mock
 
 # 書き込まずに結果だけ見る
 uv run --frozen update-data.py --dry-run
@@ -93,17 +96,22 @@ uv run --frozen update-data.py --seed 42
 
 | プロバイダ | 内容 | ネットワーク | 既定 |
 |---|---|---|---|
-| `mock` | 既存の値に ±3% の疑似変動を加える | 不要 | ✅ |
-| `yahoo` | Yahoo Finance のチャート API から取得 | 必要 | — |
+| `alpha_vantage` | 株価・為替を文書化済み API から日次取得 | `ALPHA_VANTAGE_API_KEY` | ✅ |
+| `mock` | 既存の値に ±3% の疑似変動を加える | 不要 | UI テスト用 |
 
-`yahoo` は**雛形として同梱してあるだけで、既定では無効**です。有効化するには:
+実データ更新では、米10年債利回りを FRED、米国企業の開示資料を SEC EDGAR からも取得します。
+GitHub の **Settings → Secrets and variables → Actions** に、次の値を登録してください。
 
-1. `pyproject.toml` の `dependencies` の `httpx` のコメントを外す
-2. `uv lock` を実行してロックファイルを更新
-3. `uv run --frozen update-data.py --provider yahoo` を実行
+| Secret | 用途 |
+|---|---|
+| `ALPHA_VANTAGE_API_KEY` | Alpha Vantage の価格・為替 API |
+| `FRED_API_KEY` | FRED の米国10年債利回り API |
+| `MALE_ADDRESS` | SEC EDGAR に送る識別用 User-Agent の連絡先 |
 
-> ⚠️ 外部 API を利用する際は、その提供元の利用規約を必ず確認してください。
-> 商用利用や高頻度アクセスには別途ライセンスが必要な場合があります。
+API キーと連絡先はリポジトリに保存せず、Actions 実行時だけ環境変数として渡されます。
+取得に失敗した項目は前回の正常値を維持します。日次更新は平日 17:30 JST に実行されます。
+
+> ⚠️ Alpha Vantage の無料枠は日次更新向けです。リアルタイムの株価を表示する用途には、別途データライセンスが必要です。
 
 独自のデータ源を追加する手順は [`ARCHITECTURE.md` §5.8](./ARCHITECTURE.md#58-実データ取得に切り替える) を参照してください。
 

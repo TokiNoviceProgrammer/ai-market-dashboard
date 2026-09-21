@@ -41,10 +41,14 @@ import logging
 import os
 import random
 import sys
+import time
 from collections.abc import Iterable
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Protocol
+from urllib.error import HTTPError, URLError
+from urllib.parse import urlencode
+from urllib.request import Request, urlopen
 
 # --------------------------------------------------------------------------- #
 # 定数
@@ -218,77 +222,222 @@ class MockProvider:
         return results
 
 
-class YahooFinanceProvider:
-    """Yahoo Finance のチャート API から株価を取得するプロバイダ。
+class JsonHttpClient:
+    """JSON API への最小限の HTTP クライアント。"""
 
-    .. warning::
-       これは **差し込み口の雛形** です。既定では有効化されていません。
-       利用前に対象 API の利用規約を必ず確認してください。商用利用や
-       高頻度アクセスには別途ライセンスが必要な場合があります。
-
-    有効化の手順:
-        1. ``pyproject.toml`` の ``[project] dependencies`` に ``httpx`` を追加。
-        2. ``uv lock`` を実行してロックファイルを更新。
-        3. ``uv run update-data.py --provider yahoo`` を実行。
-
-    Attributes:
-        name: プロバイダ名（``"yahoo"``）。
-    """
-
-    name = "yahoo"
-
-    #: 1 シンボルあたりのリクエストタイムアウト（秒）
-    TIMEOUT_SECONDS = 10.0
-
-    #: 連続リクエスト間の待機時間（秒）。レート制限への配慮。
-    REQUEST_INTERVAL_SECONDS = 0.5
-
-    def fetch_quotes(self, symbols: Iterable[str]) -> dict[str, QuoteUpdate]:
-        """Yahoo Finance から最新クオートを取得する。
+    def __init__(self, *, user_agent: str, timeout_seconds: float = 15.0) -> None:
+        """クライアントを初期化する。
 
         Args:
-            symbols: 取得対象のシンボル一覧（例: ``["NVDA", "6506.T"]``）。
+            user_agent: 取得元へ送る識別子。
+            timeout_seconds: 各リクエストのタイムアウト秒数。
+        """
+        self._timeout_seconds = timeout_seconds
+        self._user_agent = user_agent
+
+    def get(self, url: str, *, query: dict[str, str] | None = None) -> dict[str, Any]:
+        """JSON を取得して辞書として返す。
+
+        Args:
+            url: リクエスト先 URL。
+            query: URL エンコードするクエリパラメーター。
 
         Returns:
-            シンボルをキー、:class:`QuoteUpdate` を値とする辞書。
-            取得に失敗したシンボルは結果に含まれない。
+            JSON レスポンス。
 
         Raises:
-            RuntimeError: 依存パッケージ ``httpx`` が未インストールの場合。
+            RuntimeError: HTTP または JSON 取得に失敗した場合。
         """
+        target = f"{url}?{urlencode(query)}" if query else url
+        request = Request(
+            target,
+            headers={"Accept": "application/json", "User-Agent": self._user_agent},
+        )
         try:
-            import httpx  # 遅延 import（既定プロバイダでは不要なため）
-        except ImportError as exc:  # pragma: no cover - 依存未追加時のガイド
-            raise RuntimeError(
-                "YahooFinanceProvider requires 'httpx'. "
-                "Add it to pyproject.toml dependencies and run `uv lock`."
-            ) from exc
+            # 許可済みの固定 API エンドポイントだけを呼び出す。
+            with urlopen(request, timeout=self._timeout_seconds) as response:  # noqa: S310
+                return json.loads(response.read().decode("utf-8"))
+        except (HTTPError, URLError, TimeoutError, json.JSONDecodeError) as exc:
+            raise RuntimeError(f"Request failed for {url}: {exc}") from exc
 
-        import time
 
+class AlphaVantageProvider:
+    """文書化された Alpha Vantage API から日次の価格と為替を取得する。"""
+
+    name = "alpha_vantage"
+    REQUEST_INTERVAL_SECONDS = 1.0
+
+    def __init__(self, api_key: str) -> None:
+        """プロバイダを初期化する。
+
+        Args:
+            api_key: ``ALPHA_VANTAGE_API_KEY`` の値。
+        """
+        self._api_key = api_key
+        self._client = JsonHttpClient(user_agent="AI Market Dashboard data updater")
+
+    def _get(self, function: str, **parameters: str) -> dict[str, Any]:
+        """Alpha Vantage API を呼び出し、エラー応答を検出する。"""
+        response = self._client.get(
+            "https://www.alphavantage.co/query",
+            query={"function": function, "apikey": self._api_key, **parameters},
+        )
+        if "Error Message" in response or "Information" in response or "Note" in response:
+            message = (
+                response.get("Error Message") or response.get("Information") or response.get("Note")
+            )
+            raise RuntimeError(f"Alpha Vantage returned an error: {message}")
+        return response
+
+    def fetch_quotes(self, symbols: Iterable[str]) -> dict[str, QuoteUpdate]:
+        """日次終値ベースの株価と USD/JPY を取得する。"""
         results: dict[str, QuoteUpdate] = {}
-        endpoint = "https://query1.finance.yahoo.com/v8/finance/chart/{symbol}"
-
-        with httpx.Client(timeout=self.TIMEOUT_SECONDS, follow_redirects=True) as client:
-            for symbol in symbols:
-                try:
-                    response = client.get(endpoint.format(symbol=symbol))
-                    response.raise_for_status()
-                    meta = response.json()["chart"]["result"][0]["meta"]
-                    results[symbol] = QuoteUpdate(
-                        symbol=symbol,
-                        price=float(meta["regularMarketPrice"]),
-                        previous_close=float(meta["chartPreviousClose"]),
-                        as_of=dt.datetime.fromtimestamp(
-                            int(meta["regularMarketTime"]), tz=dt.UTC
-                        ).astimezone(JST),
-                    )
-                except Exception:  # 1 銘柄の失敗で全体を止めない
-                    logger.warning("Failed to fetch quote for %s", symbol, exc_info=True)
-                time.sleep(self.REQUEST_INTERVAL_SECONDS)
-
-        logger.info("YahooFinanceProvider: fetched %d/%d quotes", len(results), len(list(symbols)))
+        for symbol in symbols:
+            if symbol == "US10Y":
+                continue
+            try:
+                if symbol == "USD/JPY":
+                    response = self._get("FX_DAILY", from_symbol="USD", to_symbol="JPY")
+                    observations = list(response["Time Series FX (Daily)"].values())
+                    if len(observations) < 2:
+                        raise RuntimeError(
+                            "Alpha Vantage returned fewer than two USD/JPY observations"
+                        )
+                    price = float(observations[0]["4. close"])
+                    previous_close = float(observations[1]["4. close"])
+                else:
+                    response = self._get("GLOBAL_QUOTE", symbol=symbol)
+                    quote = response["Global Quote"]
+                    price = float(quote["05. price"])
+                    previous_close = float(quote["08. previous close"])
+                results[symbol] = QuoteUpdate(
+                    symbol=symbol,
+                    price=price,
+                    previous_close=previous_close,
+                    as_of=dt.datetime.now(JST),
+                )
+            except (KeyError, TypeError, ValueError, RuntimeError) as exc:
+                logger.warning("Alpha Vantage update failed for %s: %s", symbol, exc)
+            time.sleep(self.REQUEST_INTERVAL_SECONDS)
+        logger.info("Alpha Vantage: fetched %d quotes", len(results))
         return results
+
+
+def require_secret(name: str) -> str:
+    """必須の GitHub Actions Secret を環境変数から取得する。
+
+    Args:
+        name: 環境変数名。
+
+    Returns:
+        空白を除去した秘密値。
+
+    Raises:
+        RuntimeError: 値が未設定の場合。
+    """
+    value = os.environ.get(name, "").strip()
+    if not value:
+        raise RuntimeError(f"Required environment variable {name} is not configured")
+    return value
+
+
+def fetch_fred_updates() -> dict[str, QuoteUpdate]:
+    """FRED から米国10年国債利回りを取得する。
+
+    Returns:
+        ``US10Y`` をキーとする最新値と直前観測値。
+
+    Raises:
+        RuntimeError: FRED の応答に利用可能な観測値がない場合。
+    """
+    client = JsonHttpClient(user_agent="AI Market Dashboard data updater")
+    response = client.get(
+        "https://api.stlouisfed.org/fred/series/observations",
+        query={
+            "series_id": "DGS10",
+            "api_key": require_secret("FRED_API_KEY"),
+            "file_type": "json",
+            "sort_order": "desc",
+            "limit": "10",
+        },
+    )
+    observations = [
+        item for item in response.get("observations", []) if item.get("value") not in (None, ".")
+    ]
+    if len(observations) < 2:
+        raise RuntimeError("FRED returned fewer than two usable DGS10 observations")
+    latest, previous = observations[:2]
+    observed_at = dt.datetime.combine(
+        dt.date.fromisoformat(latest["date"]), dt.time(), tzinfo=dt.UTC
+    )
+    return {
+        "US10Y": QuoteUpdate(
+            symbol="US10Y",
+            price=float(latest["value"]),
+            previous_close=float(previous["value"]),
+            as_of=observed_at.astimezone(JST),
+        )
+    }
+
+
+def refresh_sec_filings(items: list[dict[str, Any]]) -> int:
+    """米国上場企業の最新 EDGAR 提出書類をカードへ反映する。
+
+    Args:
+        items: 更新対象のカード一覧。
+
+    Returns:
+        ``irDocuments`` を更新したカード数。
+    """
+    contact = require_secret("MALE_ADDRESS")
+    client = JsonHttpClient(user_agent=f"AI Market Dashboard {contact}")
+    ticker_rows = client.get("https://www.sec.gov/files/company_tickers_exchange.json").get(
+        "data", []
+    )
+    ticker_to_cik = {
+        str(row[2]).upper(): int(row[0])
+        for row in ticker_rows
+        if isinstance(row, list) and len(row) >= 3 and str(row[0]).isdigit()
+    }
+    supported_forms = {"10-K", "10-Q", "8-K", "20-F", "6-K"}
+    updated = 0
+
+    for item in items:
+        ticker = str((item.get("quote") or {}).get("ticker", "")).upper()
+        cik = ticker_to_cik.get(ticker)
+        if cik is None:
+            continue
+        try:
+            time.sleep(0.2)
+            submissions = client.get(f"https://data.sec.gov/submissions/CIK{cik:010d}.json")
+            recent = submissions.get("filings", {}).get("recent", {})
+            documents: list[dict[str, Any]] = []
+            for index, form in enumerate(recent.get("form", [])):
+                if form not in supported_forms:
+                    continue
+                accession = recent["accessionNumber"][index].replace("-", "")
+                primary_document = recent["primaryDocument"][index]
+                filing_date = recent["filingDate"][index]
+                url = (
+                    f"https://www.sec.gov/Archives/edgar/data/{cik}/{accession}/{primary_document}"
+                )
+                title = f"SEC {form} filing ({filing_date})"
+                documents.append(
+                    {
+                        "date": filing_date,
+                        "url": url,
+                        "title": {locale: title for locale in REQUIRED_LOCALES},
+                    }
+                )
+                if len(documents) == 3:
+                    break
+            if documents:
+                item["irDocuments"] = documents
+                updated += 1
+        except (KeyError, TypeError, RuntimeError) as exc:
+            logger.warning("SEC EDGAR update failed for %s: %s", ticker, exc)
+    logger.info("SEC EDGAR: updated filings for %d cards", updated)
+    return updated
 
 
 # --------------------------------------------------------------------------- #
@@ -467,10 +616,28 @@ def build_payload(existing: dict[str, Any], provider: Provider) -> tuple[dict[st
     quotes = provider.fetch_quotes(symbols.keys())
     updated = apply_quotes(items, quotes)
 
+    if isinstance(provider, AlphaVantageProvider):
+        fred_updates = fetch_fred_updates()
+        updated += apply_quotes(items, fred_updates)
+        refresh_sec_filings(items)
+
     payload = dict(existing)
     payload["schemaVersion"] = SCHEMA_VERSION
     payload["generatedAt"] = dt.datetime.now(JST).isoformat(timespec="seconds")
-    payload["generator"] = f"update-data.py ({provider.name} provider)"
+    payload["generator"] = (
+        "update-data.py (Alpha Vantage, FRED, SEC EDGAR)"
+        if isinstance(provider, AlphaVantageProvider)
+        else f"update-data.py ({provider.name} provider)"
+    )
+    if isinstance(provider, AlphaVantageProvider):
+        payload["notice"] = {
+            "ja": "市場データは日次更新です。取得に失敗した項目は前回の正常値を表示します。",
+            "en": (
+                "Market data is refreshed daily. Items that fail to update retain their "
+                "last verified value."
+            ),
+            "ko": "시장 데이터는 매일 갱신됩니다. 가져오기에 실패한 항목은 마지막 정상 값을 유지합니다.",
+        }
     payload["items"] = items
     return payload, updated
 
@@ -479,7 +646,7 @@ def build_provider(name: str, base_quotes: dict[str, dict[str, Any]], seed: int 
     """名前からプロバイダのインスタンスを生成する。
 
     Args:
-        name: プロバイダ名（``"mock"`` または ``"yahoo"``）。
+        name: プロバイダ名（``"mock"`` または ``"alpha_vantage"``）。
         base_quotes: モックプロバイダの基準値に使う既存クオート。
         seed: モックプロバイダの乱数シード。
 
@@ -491,9 +658,9 @@ def build_provider(name: str, base_quotes: dict[str, dict[str, Any]], seed: int 
     """
     if name == "mock":
         return MockProvider(base_quotes, seed=seed)
-    if name == "yahoo":
-        return YahooFinanceProvider()
-    raise ValueError(f"Unknown provider: {name!r}. Available: mock, yahoo")
+    if name == "alpha_vantage":
+        return AlphaVantageProvider(require_secret("ALPHA_VANTAGE_API_KEY"))
+    raise ValueError(f"Unknown provider: {name!r}. Available: mock, alpha_vantage")
 
 
 # --------------------------------------------------------------------------- #
@@ -516,8 +683,8 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     )
     parser.add_argument(
         "--provider",
-        default=os.environ.get("DASHBOARD_PROVIDER", "mock"),
-        help="使用するデータプロバイダ (mock | yahoo)。既定: mock",
+        default=os.environ.get("DASHBOARD_PROVIDER", "alpha_vantage"),
+        help="使用するデータプロバイダ (alpha_vantage | mock)。既定: alpha_vantage",
     )
     parser.add_argument(
         "--dry-run",

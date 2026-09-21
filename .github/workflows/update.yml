@@ -1,5 +1,5 @@
 # =============================================================================
-# 毎日 07:00 (JST) にダッシュボードデータを更新し、GitHub Pages へ公開する。
+# 平日 17:30 (JST) にダッシュボードデータを更新し、GitHub Pages へ公開する。
 # =============================================================================
 #
 # 【サプライチェーン対策】このワークフローが守っている 4 原則:
@@ -33,18 +33,18 @@ name: Update dashboard data
 
 on:
   schedule:
-    # cron は UTC 指定。22:00 UTC = 翌日 07:00 JST。
-    - cron: "0 22 * * *"
+    # cron は UTC 指定。08:30 UTC = 17:30 JST（平日）。
+    - cron: "30 8 * * 1-5"
   workflow_dispatch:
     inputs:
       provider:
         description: "使用するデータプロバイダ"
         required: false
-        default: "mock"
+        default: "alpha_vantage"
         type: choice
         options:
+          - alpha_vantage
           - mock
-          - yahoo
   push:
     branches: [main]
     paths:
@@ -122,9 +122,10 @@ jobs:
 
       - name: Update data
         env:
-          DASHBOARD_PROVIDER: ${{ inputs.provider || 'mock' }}
-          # 外部 API を使うプロバイダを追加した場合はここに Secrets を渡す。
-          # 例: DASHBOARD_API_KEY: ${{ secrets.DASHBOARD_API_KEY }}
+          DASHBOARD_PROVIDER: ${{ inputs.provider || 'alpha_vantage' }}
+          ALPHA_VANTAGE_API_KEY: ${{ secrets.ALPHA_VANTAGE_API_KEY }}
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+          MALE_ADDRESS: ${{ secrets.MALE_ADDRESS }}
         run: uv run --frozen update-data.py --provider "${DASHBOARD_PROVIDER}"
 
       - name: Commit if changed

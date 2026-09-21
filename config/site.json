@@ -15,8 +15,9 @@
     "repository": "https://github.com/TokiNoviceProgrammer/ai-market-dashboard"
   },
   "dataSources": [
-    { "name": "Yahoo Finance", "url": "https://finance.yahoo.com/" },
-    { "name": "TDnet / EDINET", "url": "https://www.release.tdnet.info/" },
-    { "name": "各社IRページ", "url": "" }
+    { "name": "Alpha Vantage", "url": "https://www.alphavantage.co/documentation/" },
+    { "name": "FRED", "url": "https://fred.stlouisfed.org/docs/api/terms_of_use.html" },
+    { "name": "SEC EDGAR", "url": "https://www.sec.gov/search-filings/edgar-application-programming-interfaces" },
+    { "name": "EDINET", "url": "https://disclosure2dl.edinet-fsa.go.jp/guide/static/disclosure/WEEK0060.html" }
   ]
 }
