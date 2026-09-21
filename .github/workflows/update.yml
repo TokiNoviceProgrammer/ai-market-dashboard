@@ -153,6 +153,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     permissions:
+      contents: read # actions/checkout によるリポジトリ内容の取得に必要
       pages: write # Pages へのデプロイに必要
       id-token: write # OIDC によるデプロイ認証に必要
 
