@@ -315,10 +315,18 @@ class AlphaVantageProvider:
                     price = float(observations[0]["4. close"])
                     previous_close = float(observations[1]["4. close"])
                 else:
-                    response = self._get("GLOBAL_QUOTE", symbol=symbol)
-                    quote = response["Global Quote"]
-                    price = float(quote["05. price"])
-                    previous_close = float(quote["08. previous close"])
+                    # ``GLOBAL_QUOTE`` は国際銘柄で価格フィールドを返さないことがある。
+                    # 日次時系列は Alpha Vantage がグローバル株式向けに文書化している API。
+                    response = self._get("TIME_SERIES_DAILY", symbol=symbol, outputsize="compact")
+                    observations = sorted(
+                        response["Time Series (Daily)"].items(), reverse=True
+                    )
+                    if len(observations) < MIN_OBSERVATIONS:
+                        raise RuntimeError(
+                            f"Alpha Vantage returned fewer than two daily observations for {symbol}"
+                        )
+                    price = float(observations[0][1]["4. close"])
+                    previous_close = float(observations[1][1]["4. close"])
                 results[symbol] = QuoteUpdate(
                     symbol=symbol,
                     price=price,
