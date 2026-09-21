@@ -119,8 +119,19 @@
       "fields": ["quote", "summary", "highlights", "detail", "irDocuments", "tags", "source"]
     },
     {
-      "id": "equity-japan",
+      "id": "equity-quantum",
       "order": 70,
+      "enabled": true,
+      "icon": "atom",
+      "accent": "violet",
+      "cardType": "equity",
+      "label": {"ja": "量子コンピューター", "en": "Quantum Computing", "ko": "양자 컴퓨팅"},
+      "description": {"ja": "量子コンピューティング関連の米国上場銘柄", "en": "US-listed quantum-computing companies", "ko": "양자 컴퓨팅 관련 미국 상장 종목"},
+      "fields": ["quote", "summary", "highlights", "detail", "irDocuments", "tags", "source"]
+    },
+    {
+      "id": "equity-japan",
+      "order": 80,
       "enabled": true,
       "icon": "building-2",
       "accent": "sky",

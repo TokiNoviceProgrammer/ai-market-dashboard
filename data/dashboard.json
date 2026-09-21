@@ -758,6 +758,83 @@
       }
     },
     {
+      "id": "eq-now", "categoryId": "equity-saas", "order": 20, "sentiment": "neutral", "impact": "medium",
+      "tags": ["SaaS", "US"], "title": {"ja": "ServiceNow", "en": "ServiceNow", "ko": "ServiceNow"},
+      "quote": {"ticker": "NOW", "exchange": "NYSE", "currency": "USD", "price": 0, "previousClose": 0, "change": 0, "changePercent": 0, "asOf": ""},
+      "summary": {"ja": ["米国SaaS候補銘柄。日次価格を自動更新します。"], "en": ["US SaaS candidate; daily price is updated automatically."], "ko": ["미국 SaaS 후보 종목이며 일일 가격을 자동 갱신합니다."]},
+      "source": {"name": "Alpha Vantage", "url": "https://www.alphavantage.co/documentation/"}
+    },
+    {
+      "id": "eq-pltr", "categoryId": "equity-saas", "order": 30, "sentiment": "neutral", "impact": "medium",
+      "tags": ["AI", "SaaS", "US"], "title": {"ja": "Palantir", "en": "Palantir", "ko": "Palantir"},
+      "quote": {"ticker": "PLTR", "exchange": "NASDAQ", "currency": "USD", "price": 0, "previousClose": 0, "change": 0, "changePercent": 0, "asOf": ""},
+      "summary": {"ja": ["米国SaaS候補銘柄。日次価格を自動更新します。"], "en": ["US SaaS candidate; daily price is updated automatically."], "ko": ["미국 SaaS 후보 종목이며 일일 가격을 자동 갱신합니다."]},
+      "source": {"name": "Alpha Vantage", "url": "https://www.alphavantage.co/documentation/"}
+    },
+    {
+      "id": "eq-amd", "categoryId": "equity-semiconductor", "order": 30, "sentiment": "neutral", "impact": "medium",
+      "tags": ["Semiconductor", "AI", "US"], "title": {"ja": "AMD", "en": "AMD", "ko": "AMD"},
+      "quote": {"ticker": "AMD", "exchange": "NASDAQ", "currency": "USD", "price": 0, "previousClose": 0, "change": 0, "changePercent": 0, "asOf": ""},
+      "summary": {"ja": ["米国半導体候補銘柄。日次価格を自動更新します。"], "en": ["US semiconductor candidate; daily price is updated automatically."], "ko": ["미국 반도체 후보 종목이며 일일 가격을 자동 갱신합니다."]},
+      "source": {"name": "Alpha Vantage", "url": "https://www.alphavantage.co/documentation/"}
+    },
+    {
+      "id": "eq-sym", "categoryId": "equity-robotics", "order": 10, "sentiment": "neutral", "impact": "medium",
+      "tags": ["Robotics", "AI", "US"], "title": {"ja": "Symbotic", "en": "Symbotic", "ko": "Symbotic"},
+      "quote": {"ticker": "SYM", "exchange": "NASDAQ", "currency": "USD", "price": 0, "previousClose": 0, "change": 0, "changePercent": 0, "asOf": ""},
+      "summary": {"ja": ["ロボット候補銘柄。日次価格を自動更新します。"], "en": ["Robotics candidate; daily price is updated automatically."], "ko": ["로보틱스 후보 종목이며 일일 가격을 자동 갱신합니다."]},
+      "source": {"name": "Alpha Vantage", "url": "https://www.alphavantage.co/documentation/"}
+    },
+    {
+      "id": "eq-ter", "categoryId": "equity-robotics", "order": 20, "sentiment": "neutral", "impact": "medium",
+      "tags": ["Robotics", "Semiconductor", "US"], "title": {"ja": "Teradyne", "en": "Teradyne", "ko": "Teradyne"},
+      "quote": {"ticker": "TER", "exchange": "NASDAQ", "currency": "USD", "price": 0, "previousClose": 0, "change": 0, "changePercent": 0, "asOf": ""},
+      "summary": {"ja": ["ロボット候補銘柄。日次価格を自動更新します。"], "en": ["Robotics candidate; daily price is updated automatically."], "ko": ["로보틱스 후보 종목이며 일일 가격을 자동 갱신합니다."]},
+      "source": {"name": "Alpha Vantage", "url": "https://www.alphavantage.co/documentation/"}
+    },
+    {
+      "id": "eq-rok", "categoryId": "equity-robotics", "order": 30, "sentiment": "neutral", "impact": "medium",
+      "tags": ["Robotics", "Industrial", "US"], "title": {"ja": "Rockwell Automation", "en": "Rockwell Automation", "ko": "Rockwell Automation"},
+      "quote": {"ticker": "ROK", "exchange": "NYSE", "currency": "USD", "price": 0, "previousClose": 0, "change": 0, "changePercent": 0, "asOf": ""},
+      "summary": {"ja": ["ロボット候補銘柄。日次価格を自動更新します。"], "en": ["Robotics candidate; daily price is updated automatically."], "ko": ["로보틱스 후보 종목이며 일일 가격을 자동 갱신합니다."]},
+      "source": {"name": "Alpha Vantage", "url": "https://www.alphavantage.co/documentation/"}
+    },
+    {
+      "id": "eq-pypl", "categoryId": "equity-turnaround", "order": 20, "sentiment": "neutral", "impact": "medium",
+      "tags": ["Turnaround", "Fintech", "US"], "title": {"ja": "PayPal", "en": "PayPal", "ko": "PayPal"},
+      "quote": {"ticker": "PYPL", "exchange": "NASDAQ", "currency": "USD", "price": 0, "previousClose": 0, "change": 0, "changePercent": 0, "asOf": ""},
+      "summary": {"ja": ["反転候補銘柄。日次価格を自動更新します。"], "en": ["Turnaround candidate; daily price is updated automatically."], "ko": ["턴어라운드 후보 종목이며 일일 가격을 자동 갱신합니다."]},
+      "source": {"name": "Alpha Vantage", "url": "https://www.alphavantage.co/documentation/"}
+    },
+    {
+      "id": "eq-wbd", "categoryId": "equity-turnaround", "order": 30, "sentiment": "neutral", "impact": "medium",
+      "tags": ["Turnaround", "Media", "US"], "title": {"ja": "Warner Bros. Discovery", "en": "Warner Bros. Discovery", "ko": "Warner Bros. Discovery"},
+      "quote": {"ticker": "WBD", "exchange": "NASDAQ", "currency": "USD", "price": 0, "previousClose": 0, "change": 0, "changePercent": 0, "asOf": ""},
+      "summary": {"ja": ["反転候補銘柄。日次価格を自動更新します。"], "en": ["Turnaround candidate; daily price is updated automatically."], "ko": ["턴어라운드 후보 종목이며 일일 가격을 자동 갱신합니다."]},
+      "source": {"name": "Alpha Vantage", "url": "https://www.alphavantage.co/documentation/"}
+    },
+    {
+      "id": "eq-ionq", "categoryId": "equity-quantum", "order": 10, "sentiment": "neutral", "impact": "high",
+      "tags": ["Quantum", "US"], "title": {"ja": "IonQ", "en": "IonQ", "ko": "IonQ"},
+      "quote": {"ticker": "IONQ", "exchange": "NYSE", "currency": "USD", "price": 0, "previousClose": 0, "change": 0, "changePercent": 0, "asOf": ""},
+      "summary": {"ja": ["量子コンピューター候補銘柄。日次価格を自動更新します。"], "en": ["Quantum-computing candidate; daily price is updated automatically."], "ko": ["양자 컴퓨팅 후보 종목이며 일일 가격을 자동 갱신합니다."]},
+      "source": {"name": "Alpha Vantage", "url": "https://www.alphavantage.co/documentation/"}
+    },
+    {
+      "id": "eq-rgti", "categoryId": "equity-quantum", "order": 20, "sentiment": "neutral", "impact": "high",
+      "tags": ["Quantum", "US"], "title": {"ja": "Rigetti Computing", "en": "Rigetti Computing", "ko": "Rigetti Computing"},
+      "quote": {"ticker": "RGTI", "exchange": "NASDAQ", "currency": "USD", "price": 0, "previousClose": 0, "change": 0, "changePercent": 0, "asOf": ""},
+      "summary": {"ja": ["量子コンピューター候補銘柄。日次価格を自動更新します。"], "en": ["Quantum-computing candidate; daily price is updated automatically."], "ko": ["양자 컴퓨팅 후보 종목이며 일일 가격을 자동 갱신합니다."]},
+      "source": {"name": "Alpha Vantage", "url": "https://www.alphavantage.co/documentation/"}
+    },
+    {
+      "id": "eq-qbts", "categoryId": "equity-quantum", "order": 30, "sentiment": "neutral", "impact": "high",
+      "tags": ["Quantum", "US"], "title": {"ja": "D-Wave Quantum", "en": "D-Wave Quantum", "ko": "D-Wave Quantum"},
+      "quote": {"ticker": "QBTS", "exchange": "NYSE", "currency": "USD", "price": 0, "previousClose": 0, "change": 0, "changePercent": 0, "asOf": ""},
+      "summary": {"ja": ["量子コンピューター候補銘柄。日次価格を自動更新します。"], "en": ["Quantum-computing candidate; daily price is updated automatically."], "ko": ["양자 컴퓨팅 후보 종목이며 일일 가격을 자동 갱신합니다."]},
+      "source": {"name": "Alpha Vantage", "url": "https://www.alphavantage.co/documentation/"}
+    },
+    {
       "id": "macro-usdjpy",
       "categoryId": "macro",
       "order": 10,
