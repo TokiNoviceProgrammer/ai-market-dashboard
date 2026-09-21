@@ -1,0 +1,21 @@
+# Python / uv
+.venv/
+__pycache__/
+*.py[cod]
+.ruff_cache/
+
+# Node（Tailwind をローカルビルドする場合）
+node_modules/
+
+# エディタ・OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# ログ・一時ファイル
+*.log
+*.tmp
+
+# ※ uv.lock は必ずコミットすること（サプライチェーン対策の要）
+# ※ data/dashboard.json も CI がコミットするため無視しないこと

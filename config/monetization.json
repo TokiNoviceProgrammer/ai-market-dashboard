@@ -1,0 +1,81 @@
+{
+  "version": 1,
+  "description": "アフィリエイト・投げ銭（ドネーション）枠の設定。enabled を true にし、url / html を埋めるだけで各スロットが表示されます。html を指定した場合は生の HTML（A8.net のバナータグ等）がそのまま挿入されます — 信頼できる提供元のタグのみを貼ってください。",
+  "donation": {
+    "enabled": true,
+    "provider": "buymeacoffee",
+    "url": "https://www.buymeacoffee.com/suramappagi",
+    "label": {
+      "ja": "コーヒーをおごる",
+      "en": "Buy me a coffee",
+      "ko": "커피 한 잔 사주기"
+    }
+  },
+  "slots": [
+    {
+      "id": "header-banner",
+      "placement": "header",
+      "enabled": false,
+      "format": "banner",
+      "note": "ヘッダー直下の横長バナー枠（推奨 728x90 / モバイル 320x50）。A8.net 等のタグを html に貼り付けてください。",
+      "html": "",
+      "link": {
+        "url": "",
+        "label": { "ja": "", "en": "", "ko": "" },
+        "imageUrl": ""
+      }
+    },
+    {
+      "id": "sidebar-books",
+      "placement": "aside",
+      "enabled": true,
+      "format": "list",
+      "note": "書籍・ツールのアフィリエイトリンク一覧。Amazon アソシエイト等。",
+      "html": "",
+      "items": [
+        {
+          "url": "https://www.amazon.co.jp/dp/PLACEHOLDER?tag=YOUR_AMAZON_TAG",
+          "label": {
+            "ja": "AI投資の教科書（プレースホルダー）",
+            "en": "The AI Investing Handbook (placeholder)",
+            "ko": "AI 투자 교과서 (플레이스홀더)"
+          }
+        },
+        {
+          "url": "https://www.amazon.co.jp/dp/PLACEHOLDER2?tag=YOUR_AMAZON_TAG",
+          "label": {
+            "ja": "半導体産業の全体像（プレースホルダー）",
+            "en": "Inside the Semiconductor Industry (placeholder)",
+            "ko": "반도체 산업의 큰 그림 (플레이스홀더)"
+          }
+        }
+      ]
+    },
+    {
+      "id": "detail-inline",
+      "placement": "cardDetail",
+      "enabled": false,
+      "format": "text",
+      "note": "カード詳細アコーディオン内に差し込まれるテキストリンク枠。表示しすぎると可読性を損なうため既定は無効。",
+      "html": "",
+      "link": {
+        "url": "",
+        "label": { "ja": "", "en": "", "ko": "" },
+        "imageUrl": ""
+      }
+    },
+    {
+      "id": "footer-banner",
+      "placement": "footer",
+      "enabled": false,
+      "format": "banner",
+      "note": "フッターのバナー枠。",
+      "html": "",
+      "link": {
+        "url": "",
+        "label": { "ja": "", "en": "", "ko": "" },
+        "imageUrl": ""
+      }
+    }
+  ]
+}

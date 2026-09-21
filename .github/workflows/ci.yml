@@ -1,0 +1,147 @@
+# =============================================================================
+# Pull Request / push 時の検証ワークフロー。
+# データ更新・デプロイは行わず、静的検査のみを実行する。
+# =============================================================================
+#
+# update.yml と同じサプライチェーン 4 原則を適用している:
+#   1. アクションをコミット SHA で固定
+#   2. uv sync --frozen によるロックファイル凍結
+#   3. UV_NO_BUILD=1 によるビルド済み Wheel 限定
+#   4. UV_EXCLUDE_NEWER による公開後 3 日間の保護
+# =============================================================================
+
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions: {}
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Lint and validate
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        # actions/checkout v7.0.1
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+
+      - name: Compute exclude-newer timestamp (now - 3 days)
+        id: cutoff
+        run: echo "value=$(date -u -d '3 days ago' '+%Y-%m-%dT%H:%M:%SZ')" >> "$GITHUB_OUTPUT"
+
+      - name: Set up uv
+        # astral-sh/setup-uv v10.1.0
+        uses: astral-sh/setup-uv@bec219d24cd3e171d82865faccec33120bb574f4
+        with:
+          version: "0.12.15"
+          enable-cache: true
+          cache-dependency-glob: "uv.lock"
+
+      - name: Install dependencies (frozen lockfile, wheels only)
+        env:
+          UV_FROZEN: "1"
+          UV_NO_BUILD: "1"
+          UV_EXCLUDE_NEWER: ${{ steps.cutoff.outputs.value }}
+          UV_INDEX_STRATEGY: "first-index"
+        run: uv sync --frozen --extra dev
+
+      - name: Verify lockfile is up to date
+        # pyproject.toml と uv.lock の整合性を検査する。
+        # 依存を変更して uv lock を忘れた PR をここで落とす。
+        run: uv lock --check
+
+      - name: Ruff (lint)
+        run: uv run --frozen ruff check update-data.py
+
+      - name: Ruff (format)
+        run: uv run --frozen ruff format --check update-data.py
+
+      - name: Validate JSON files
+        run: |
+          # すべての JSON ファイルが構文的に正しいことを確認する。
+          python -c '
+          import json, pathlib, sys
+          bad = []
+          for path in sorted(pathlib.Path(".").rglob("*.json")):
+              if ".venv" in path.parts or "node_modules" in path.parts:
+                  continue
+              try:
+                  json.loads(path.read_text(encoding="utf-8"))
+                  print(f"OK  {path}")
+              except Exception as exc:
+                  bad.append(f"{path}: {exc}")
+          if bad:
+              print("\n".join(f"NG  {b}" for b in bad), file=sys.stderr)
+              sys.exit(1)
+          '
+
+      - name: Validate dashboard data
+        run: uv run --frozen update-data.py --check
+
+      - name: Verify locale dictionaries have identical key sets
+        # ja / en / ko で UI 文字列のキー構造が一致していることを保証する。
+        # 翻訳漏れによる「キーがそのまま画面に出る」事故を防ぐ。
+        run: |
+          python -c '
+          import json, pathlib, sys
+
+          def flatten(node, prefix=""):
+              keys = set()
+              for key, value in node.items():
+                  path = f"{prefix}{key}"
+                  if isinstance(value, dict):
+                      keys |= flatten(value, f"{path}.")
+                  else:
+                      keys.add(path)
+              return keys
+
+          locales = {}
+          for path in sorted(pathlib.Path("locales").glob("*.json")):
+              locales[path.stem] = flatten(json.loads(path.read_text(encoding="utf-8")))
+
+          reference_name, reference = next(iter(locales.items()))
+          failed = False
+          for name, keys in locales.items():
+              missing = reference - keys
+              extra = keys - reference
+              if missing or extra:
+                  failed = True
+                  print(f"NG  {name}: missing={sorted(missing)} extra={sorted(extra)}", file=sys.stderr)
+              else:
+                  print(f"OK  {name}: {len(keys)} keys")
+          sys.exit(1 if failed else 0)
+          '
+
+      - name: Verify GitHub Actions are pinned to a commit SHA
+        # サプライチェーン対策の自己検査。
+        # タグ参照（uses: owner/repo@v4）が混入した時点で CI を落とす。
+        run: |
+          python -c '
+          import pathlib, re, sys
+
+          # uses: owner/repo@<40桁hex> の形のみを許可する（ローカル ./ 参照は除外）。
+          pinned = re.compile(r"^\s*uses:\s+[\w.-]+/[\w.-]+(?:/[\w.-]+)*@[0-9a-f]{40}\s*(?:#.*)?$")
+          any_uses = re.compile(r"^\s*uses:\s+(?!\./)")
+
+          failed = False
+          for path in sorted(pathlib.Path(".github/workflows").glob("*.yml")):
+              for lineno, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+                  if any_uses.match(line) and not pinned.match(line):
+                      print(f"NG  {path}:{lineno}: not pinned to a 40-char SHA: {line.strip()}", file=sys.stderr)
+                      failed = True
+          print("OK  all actions are pinned to a commit SHA" if not failed else "", end="")
+          sys.exit(1 if failed else 0)
+          '

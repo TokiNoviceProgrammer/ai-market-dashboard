@@ -1,0 +1,186 @@
+# =============================================================================
+# 毎日 07:00 (JST) にダッシュボードデータを更新し、GitHub Pages へ公開する。
+# =============================================================================
+#
+# 【サプライチェーン対策】このワークフローが守っている 4 原則:
+#
+#   1. アクションのコミット SHA 固定
+#      すべての `uses:` を 40 桁のコミット SHA で指定している。タグ（v4 等）は
+#      後から別のコミットへ付け替え可能であり、タグ指定は「将来の任意コード実行」を
+#      許すことと同義。SHA 固定によりこの経路を塞ぐ。
+#      → 更新時は `gh api repos/<owner>/<repo>/git/ref/tags/<tag>` で SHA を確認すること。
+#
+#   2. ロックファイルの凍結固定
+#      `uv sync --frozen` により uv.lock を一切更新せずに導入する。
+#      ロックに記録された SHA256 ハッシュと一致しないアーティファクトは拒否される。
+#
+#   3. ビルド済みバイナリのみ許可
+#      `UV_NO_BUILD=1` により sdist からのビルドを禁止する（pyproject.toml の
+#      no-build = true と同じ意図を CI 側でも二重に強制）。sdist のビルドは
+#      任意コード実行の経路になりうるため。
+#
+#   4. 公開後タイムラグ保護（3 日）
+#      `UV_EXCLUDE_NEWER` に「実行時点の 3 日前」を動的に設定する。
+#      公開直後の不正リリース（アカウント乗っ取り・typosquatting）が
+#      発見・撤回されるまでの猶予期間を確保する。
+#
+# 【権限の最小化】
+#   デフォルトの permissions を read-all 相当に絞り、各ジョブで必要な権限のみ
+#   明示的に付与している。
+# =============================================================================
+
+name: Update dashboard data
+
+on:
+  schedule:
+    # cron は UTC 指定。22:00 UTC = 翌日 07:00 JST。
+    - cron: "0 22 * * *"
+  workflow_dispatch:
+    inputs:
+      provider:
+        description: "使用するデータプロバイダ"
+        required: false
+        default: "mock"
+        type: choice
+        options:
+          - mock
+          - yahoo
+  push:
+    branches: [main]
+    paths:
+      - "index.html"
+      - "js/**"
+      - "locales/**"
+      - "config/**"
+      - "update-data.py"
+      - ".github/workflows/update.yml"
+
+# ワークフロー全体の既定権限は「何も与えない」。各ジョブで必要分だけ付与する。
+permissions: {}
+
+# 同時実行を 1 本に制限する。データファイルへの同時書き込みによる競合を防ぐ。
+concurrency:
+  group: update-dashboard
+  cancel-in-progress: false
+
+jobs:
+  # ---------------------------------------------------------------------------
+  # 1) データ更新: update-data.py を実行し、変更があればコミットする
+  # ---------------------------------------------------------------------------
+  update-data:
+    name: Fetch and commit data
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write # data/dashboard.json のコミットに必要
+
+    outputs:
+      changed: ${{ steps.commit.outputs.changed }}
+
+    steps:
+      - name: Checkout
+        # actions/checkout v7.0.1
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: true
+
+      - name: Compute exclude-newer timestamp (now - 3 days)
+        id: cutoff
+        run: |
+          # 公開後 3 日未満のパッケージを解決対象から除外する。
+          CUTOFF="$(date -u -d '3 days ago' '+%Y-%m-%dT%H:%M:%SZ')"
+          echo "value=${CUTOFF}" >> "$GITHUB_OUTPUT"
+          echo "exclude-newer cutoff: ${CUTOFF}"
+
+      - name: Set up uv
+        # astral-sh/setup-uv v10.1.0
+        uses: astral-sh/setup-uv@bec219d24cd3e171d82865faccec33120bb574f4
+        with:
+          version: "0.12.15" # uv 自体のバージョンも固定する
+          enable-cache: true
+          cache-dependency-glob: "uv.lock"
+
+      - name: Install dependencies (frozen lockfile, wheels only)
+        env:
+          # ロックファイルを一切更新しない。解決の再実行を禁止する。
+          UV_FROZEN: "1"
+          # sdist からのビルドを禁止（ビルド済み Wheel のみ許可）。
+          UV_NO_BUILD: "1"
+          # 公開後 3 日未満のパッケージを除外。
+          UV_EXCLUDE_NEWER: ${{ steps.cutoff.outputs.value }}
+          # 複数インデックス横断による dependency confusion を防ぐ。
+          UV_INDEX_STRATEGY: "first-index"
+        run: |
+          uv sync --frozen --extra dev
+          uv pip list
+
+      - name: Lint
+        run: uv run --frozen ruff check update-data.py
+
+      - name: Validate existing data
+        run: uv run --frozen update-data.py --check
+
+      - name: Update data
+        env:
+          DASHBOARD_PROVIDER: ${{ inputs.provider || 'mock' }}
+          # 外部 API を使うプロバイダを追加した場合はここに Secrets を渡す。
+          # 例: DASHBOARD_API_KEY: ${{ secrets.DASHBOARD_API_KEY }}
+        run: uv run --frozen update-data.py --provider "${DASHBOARD_PROVIDER}"
+
+      - name: Commit if changed
+        id: commit
+        run: |
+          if git diff --quiet -- data/dashboard.json; then
+            echo "No data changes."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/dashboard.json
+          git commit -m "chore(data): update dashboard data [skip ci]"
+          git push
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+  # ---------------------------------------------------------------------------
+  # 2) GitHub Pages へのデプロイ
+  #    静的サイトなのでビルド不要。リポジトリの内容をそのまま公開する。
+  # ---------------------------------------------------------------------------
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: update-data
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      pages: write # Pages へのデプロイに必要
+      id-token: write # OIDC によるデプロイ認証に必要
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout
+        # actions/checkout v7.0.1
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          # update-data ジョブがコミットした最新の data/dashboard.json を取得する。
+          ref: ${{ github.ref }}
+          persist-credentials: false
+
+      - name: Configure Pages
+        # actions/configure-pages v6.0.0
+        uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d
+
+      - name: Upload artifact
+        # actions/upload-pages-artifact v5.0.0
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9
+        with:
+          # リポジトリのルートをそのまま公開する（静的サイトのためビルド不要）。
+          path: "."
+
+      - name: Deploy
+        id: deployment
+        # actions/deploy-pages v5.0.1
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346

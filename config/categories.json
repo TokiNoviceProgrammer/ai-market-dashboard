@@ -1,0 +1,147 @@
+{
+  "$schema": "./categories.schema.json",
+  "version": 1,
+  "description": "ダッシュボードのカテゴリ定義。ここに要素を追加するだけで、タブ・セクション・カードのレンダリングが自動的に増えます。UIのハードコードは不要です。",
+  "defaultCategoryId": "all",
+  "categories": [
+    {
+      "id": "ai-trends",
+      "order": 10,
+      "enabled": true,
+      "icon": "sparkles",
+      "accent": "violet",
+      "cardType": "news",
+      "label": {
+        "ja": "AIトレンド",
+        "en": "AI Trends",
+        "ko": "AI 트렌드"
+      },
+      "description": {
+        "ja": "最新AIツール・モデル・機能拡張の動向",
+        "en": "Latest AI tools, models and feature releases",
+        "ko": "최신 AI 도구·모델·기능 확장 동향"
+      },
+      "fields": ["summary", "highlights", "detail", "tags", "publishedAt", "source"]
+    },
+    {
+      "id": "equity-saas",
+      "order": 20,
+      "enabled": true,
+      "icon": "cloud",
+      "accent": "sky",
+      "cardType": "equity",
+      "label": {
+        "ja": "SaaS銘柄",
+        "en": "SaaS Equities",
+        "ko": "SaaS 종목"
+      },
+      "description": {
+        "ja": "AI活用が進むSaaS企業の株価とIR",
+        "en": "Share prices and IR for AI-driven SaaS companies",
+        "ko": "AI 활용이 진행되는 SaaS 기업의 주가와 IR"
+      },
+      "fields": ["quote", "summary", "highlights", "detail", "irDocuments", "tags", "source"]
+    },
+    {
+      "id": "equity-semiconductor",
+      "order": 30,
+      "enabled": true,
+      "icon": "cpu",
+      "accent": "amber",
+      "cardType": "equity",
+      "label": {
+        "ja": "半導体",
+        "en": "Semiconductors",
+        "ko": "반도체"
+      },
+      "description": {
+        "ja": "AI需要を牽引する半導体・装置関連",
+        "en": "Semiconductor and equipment names driving AI demand",
+        "ko": "AI 수요를 견인하는 반도체·장비 관련"
+      },
+      "fields": ["quote", "summary", "highlights", "detail", "irDocuments", "tags", "source"]
+    },
+    {
+      "id": "equity-robotics",
+      "order": 40,
+      "enabled": true,
+      "icon": "robot",
+      "accent": "emerald",
+      "cardType": "equity",
+      "label": {
+        "ja": "ロボット / フィジカルAI",
+        "en": "Robotics / Physical AI",
+        "ko": "로봇 / 피지컬 AI"
+      },
+      "description": {
+        "ja": "ヒューマノイド・産業ロボット・フィジカルAI",
+        "en": "Humanoids, industrial robotics and physical AI",
+        "ko": "휴머노이드·산업 로봇·피지컬 AI"
+      },
+      "fields": ["quote", "summary", "highlights", "detail", "irDocuments", "tags", "source"]
+    },
+    {
+      "id": "equity-turnaround",
+      "order": 50,
+      "enabled": true,
+      "icon": "trending-up",
+      "accent": "rose",
+      "cardType": "equity",
+      "label": {
+        "ja": "バリュー上がり銘柄",
+        "en": "Turnaround Plays",
+        "ko": "턴어라운드 종목"
+      },
+      "description": {
+        "ja": "業績・株価の底打ち反転が見込まれる銘柄",
+        "en": "Names where earnings or price appear to be bottoming out",
+        "ko": "실적·주가의 바닥 반전이 기대되는 종목"
+      },
+      "fields": ["quote", "summary", "highlights", "detail", "irDocuments", "tags", "source"]
+    },
+    {
+      "id": "macro",
+      "order": 60,
+      "enabled": true,
+      "icon": "globe",
+      "accent": "slate",
+      "cardType": "macro",
+      "label": {
+        "ja": "マクロ / 国際情勢",
+        "en": "Macro / Geopolitics",
+        "ko": "매크로 / 국제 정세"
+      },
+      "description": {
+        "ja": "為替・金利・政治発言・国際情勢",
+        "en": "FX, rates, political remarks and geopolitics",
+        "ko": "환율·금리·정치 발언·국제 정세"
+      },
+      "fields": ["metric", "summary", "highlights", "detail", "tags", "publishedAt", "source"]
+    }
+  ],
+  "cardTypes": {
+    "news": {
+      "description": "ニュース型カード。要約3行 + 詳細本文を持ちます。",
+      "requiredFields": ["id", "categoryId", "title", "summary"],
+      "optionalFields": ["highlights", "detail", "tags", "publishedAt", "source", "sentiment", "impact"]
+    },
+    "equity": {
+      "description": "株価・IR型カード。quote（最新値・前日比）と irDocuments を持ちます。",
+      "requiredFields": ["id", "categoryId", "title", "summary", "quote"],
+      "optionalFields": ["highlights", "detail", "irDocuments", "tags", "source", "sentiment", "impact"]
+    },
+    "macro": {
+      "description": "マクロ指標型カード。metric（指標値・前日比）を持ちます。",
+      "requiredFields": ["id", "categoryId", "title", "summary"],
+      "optionalFields": ["metric", "highlights", "detail", "tags", "publishedAt", "source", "sentiment", "impact"]
+    }
+  },
+  "accents": {
+    "violet": { "badge": "bg-violet-500/15 text-violet-300 ring-violet-500/30", "bar": "bg-violet-500" },
+    "sky": { "badge": "bg-sky-500/15 text-sky-300 ring-sky-500/30", "bar": "bg-sky-500" },
+    "amber": { "badge": "bg-amber-500/15 text-amber-300 ring-amber-500/30", "bar": "bg-amber-500" },
+    "emerald": { "badge": "bg-emerald-500/15 text-emerald-300 ring-emerald-500/30", "bar": "bg-emerald-500" },
+    "rose": { "badge": "bg-rose-500/15 text-rose-300 ring-rose-500/30", "bar": "bg-rose-500" },
+    "slate": { "badge": "bg-slate-500/15 text-slate-300 ring-slate-500/30", "bar": "bg-slate-500" }
+  }
+}

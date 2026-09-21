@@ -1,0 +1,891 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-21T12:22:14+09:00",
+  "generator": "update-data.py (mock provider)",
+  "notice": {
+    "ja": "初期データはサンプルです。update-data.py で実データに置き換えられます。",
+    "en": "This initial payload is sample data. Replace it via update-data.py.",
+    "ko": "초기 데이터는 샘플입니다. update-data.py로 실데이터로 교체됩니다."
+  },
+  "items": [
+    {
+      "id": "ai-claude-agent-sdk",
+      "categoryId": "ai-trends",
+      "order": 10,
+      "sentiment": "positive",
+      "impact": "high",
+      "publishedAt": "2026-09-20T09:00:00+09:00",
+      "tags": [
+        "Claude",
+        "Anthropic",
+        "Agent",
+        "SDK"
+      ],
+      "title": {
+        "ja": "Claude の長時間エージェント実行が実用域に",
+        "en": "Claude's long-running agents reach production readiness",
+        "ko": "Claude의 장시간 에이전트 실행이 실용 단계로"
+      },
+      "summary": {
+        "ja": [
+          "Claude 系モデルで数時間規模の自律タスク実行が安定してきた。",
+          "コンテキスト圧縮とチェックポイント復帰が標準機能として定着。",
+          "社内ツール連携は MCP 経由が事実上の標準になりつつある。"
+        ],
+        "en": [
+          "Multi-hour autonomous task execution has stabilised on Claude-family models.",
+          "Context compaction and checkpoint resume are now standard features.",
+          "MCP is becoming the de facto standard for internal tool integration."
+        ],
+        "ko": [
+          "Claude 계열 모델에서 수 시간 규모의 자율 작업 실행이 안정화되었다.",
+          "컨텍스트 압축과 체크포인트 복귀가 표준 기능으로 자리잡았다.",
+          "사내 도구 연동은 MCP 경유가 사실상 표준이 되고 있다."
+        ]
+      },
+      "highlights": {
+        "ja": [
+          "コンテキスト 1M トークン級",
+          "MCP によるツール接続",
+          "チェックポイント復帰"
+        ],
+        "en": [
+          "~1M token context",
+          "Tool access via MCP",
+          "Checkpoint resume"
+        ],
+        "ko": [
+          "약 1M 토큰 컨텍스트",
+          "MCP 기반 도구 연결",
+          "체크포인트 복귀"
+        ]
+      },
+      "detail": {
+        "ja": "長時間エージェントの実運用で問題になるのは、モデル性能そのものよりも「途中で落ちた時に再開できるか」「コンテキストが溢れた時に何を捨てるか」という運用面です。直近のリリースでは、会話履歴の自動要約（コンパクション）と、ツール実行結果を外部ストレージに退避するパターンが整理され、数時間単位のタスクでも一貫性を保てるようになりました。\n\nエンジニア視点での注目点は、ツール接続レイヤの標準化です。MCP (Model Context Protocol) により、社内 API・データベース・チケットシステムをモデル側の実装を変えずに接続できるようになり、PoC から本番導入までの距離が縮まっています。投資的には、この層を押さえる開発者ツール企業と、推論需要を受ける半導体・クラウド事業者の双方に波及します。",
+        "en": "In production, the bottleneck for long-running agents is less raw model capability than operational concerns: can it resume after a crash, and what gets dropped when context overflows? Recent releases have consolidated automatic conversation compaction and the pattern of offloading tool results to external storage, so multi-hour tasks now hold together.\n\nFrom an engineering standpoint, the notable shift is standardisation of the tool layer. MCP (Model Context Protocol) lets teams connect internal APIs, databases and ticketing systems without changing model-side implementation, shortening the path from PoC to production. For investors, this ripples out both to developer-tooling vendors who own that layer and to the semiconductor and cloud providers absorbing the inference demand.",
+        "ko": "장시간 에이전트의 실운영에서 병목이 되는 것은 모델 성능 자체보다 '중단 시 재개 가능한가', '컨텍스트가 넘칠 때 무엇을 버릴 것인가'라는 운영 측면입니다. 최근 릴리스에서는 대화 이력의 자동 요약(컴팩션)과 도구 실행 결과를 외부 스토리지로 옮기는 패턴이 정리되어, 수 시간 단위 작업에서도 일관성을 유지할 수 있게 되었습니다.\n\n엔지니어 관점에서 주목할 점은 도구 연결 레이어의 표준화입니다. MCP(Model Context Protocol)를 통해 사내 API·데이터베이스·티켓 시스템을 모델 측 구현 변경 없이 연결할 수 있게 되면서 PoC에서 프로덕션까지의 거리가 좁혀지고 있습니다. 투자 관점에서는 이 레이어를 장악한 개발자 도구 기업과 추론 수요를 받는 반도체·클라우드 사업자 양쪽에 파급됩니다."
+      },
+      "source": {
+        "name": "Anthropic Engineering Blog",
+        "url": "https://www.anthropic.com/engineering"
+      }
+    },
+    {
+      "id": "ai-openai-realtime",
+      "categoryId": "ai-trends",
+      "order": 20,
+      "sentiment": "neutral",
+      "impact": "medium",
+      "publishedAt": "2026-09-19T14:30:00+09:00",
+      "tags": [
+        "OpenAI",
+        "ChatGPT",
+        "Multimodal",
+        "Realtime"
+      ],
+      "title": {
+        "ja": "ChatGPT のリアルタイム音声・映像対応が業務系へ拡大",
+        "en": "ChatGPT's realtime voice and vision expand into enterprise workflows",
+        "ko": "ChatGPT의 실시간 음성·영상 대응이 업무 영역으로 확대"
+      },
+      "summary": {
+        "ja": [
+          "リアルタイム音声・画面共有 API の遅延が実用水準まで低下。",
+          "コールセンターとフィールドサービスでの採用事例が増加。",
+          "音声データの取り扱いを巡る社内規程整備が導入の律速に。"
+        ],
+        "en": [
+          "Latency on realtime voice and screen-share APIs has dropped to usable levels.",
+          "Adoption is growing in call centres and field service.",
+          "Internal policy for handling voice data is now the rate-limiting step."
+        ],
+        "ko": [
+          "실시간 음성·화면 공유 API의 지연이 실용 수준까지 낮아졌다.",
+          "콜센터와 현장 서비스에서의 도입 사례가 증가하고 있다.",
+          "음성 데이터 취급에 관한 사내 규정 정비가 도입의 병목이다."
+        ]
+      },
+      "highlights": {
+        "ja": [
+          "低遅延の音声API",
+          "コールセンター採用",
+          "データ規程が課題"
+        ],
+        "en": [
+          "Low-latency voice API",
+          "Call-centre adoption",
+          "Data policy hurdles"
+        ],
+        "ko": [
+          "저지연 음성 API",
+          "콜센터 도입",
+          "데이터 규정 과제"
+        ]
+      },
+      "detail": {
+        "ja": "リアルタイム系 API の性能改善により、これまで「デモは動くが業務では使えない」とされていた音声インターフェースが実用段階に入りつつあります。特に応答遅延が体感で不自然にならない水準まで下がったことで、コールセンターの一次対応や、現場作業員がハンズフリーで問い合わせる用途での採用が進んでいます。\n\n一方で導入の律速になっているのは技術ではなく、音声データという個人情報性の高いデータをどこに保存し、誰がアクセスでき、どれだけ保持するかという社内規程の整備です。セキュリティ観点では、音声ストリームの暗号化・保持期間・ベンダーのサブプロセッサ一覧の確認が実務上の必須チェック項目になります。",
+        "en": "Performance gains in realtime APIs are moving voice interfaces out of the \"demos fine, unusable at work\" category. In particular, response latency has fallen far enough to stop feeling unnatural, driving adoption in first-line call-centre response and hands-free field queries.\n\nThe rate-limiting factor, however, is not technical but policy: where highly personal voice data is stored, who can access it, and how long it is retained. From a security standpoint, encrypting voice streams, defining retention periods and reviewing the vendor's subprocessor list have become mandatory practical checks.",
+        "ko": "실시간 API의 성능 개선으로 지금까지 '데모는 되지만 업무에는 못 쓴다'고 여겨지던 음성 인터페이스가 실용 단계에 접어들고 있습니다. 특히 응답 지연이 체감상 부자연스럽지 않은 수준까지 낮아지면서 콜센터 1차 대응, 현장 작업자의 핸즈프리 문의 용도에서 도입이 진행되고 있습니다.\n\n한편 도입의 병목이 되는 것은 기술이 아니라, 음성 데이터라는 개인정보성이 높은 데이터를 어디에 저장하고 누가 접근하며 얼마나 보관할지에 관한 사내 규정 정비입니다. 보안 관점에서는 음성 스트림 암호화·보관 기간·벤더의 서브프로세서 목록 확인이 실무상 필수 점검 항목이 됩니다."
+      },
+      "source": {
+        "name": "OpenAI Blog",
+        "url": "https://openai.com/blog"
+      }
+    },
+    {
+      "id": "ai-oss-local-models",
+      "categoryId": "ai-trends",
+      "order": 30,
+      "sentiment": "positive",
+      "impact": "medium",
+      "publishedAt": "2026-09-18T11:00:00+09:00",
+      "tags": [
+        "OSS",
+        "LocalLLM",
+        "Security"
+      ],
+      "title": {
+        "ja": "オープンウェイトモデルのローカル実行が企業のセキュリティ要件を満たし始める",
+        "en": "Open-weight models running locally begin to meet enterprise security bars",
+        "ko": "오픈 웨이트 모델의 로컬 실행이 기업 보안 요건을 충족하기 시작"
+      },
+      "summary": {
+        "ja": [
+          "量子化技術の成熟で、ノートPC上でも実用的な推論速度に到達。",
+          "データを外部送信しない構成が金融・医療分野の要件と合致。",
+          "モデル配布元の検証（署名・ハッシュ）が新たな供給網リスクに。"
+        ],
+        "en": [
+          "Mature quantisation delivers practical inference speeds even on laptops.",
+          "Keeping data on-premise matches finance and healthcare requirements.",
+          "Verifying model provenance (signatures, hashes) is a new supply-chain risk."
+        ],
+        "ko": [
+          "양자화 기술의 성숙으로 노트북에서도 실용적인 추론 속도에 도달했다.",
+          "데이터를 외부로 보내지 않는 구성이 금융·의료 분야 요건과 부합한다.",
+          "모델 배포처 검증(서명·해시)이 새로운 공급망 리스크가 되고 있다."
+        ]
+      },
+      "highlights": {
+        "ja": [
+          "量子化の実用化",
+          "データ外部送信なし",
+          "モデル署名検証が必須"
+        ],
+        "en": [
+          "Practical quantisation",
+          "No data egress",
+          "Model signing required"
+        ],
+        "ko": [
+          "양자화 실용화",
+          "데이터 외부 전송 없음",
+          "모델 서명 검증 필수"
+        ]
+      },
+      "detail": {
+        "ja": "オープンウェイトモデルの実用化は、クラウド API を使えない規制業種にとって大きな意味を持ちます。量子化（4bit/8bit）による省メモリ化が進み、一般的な開発者向けマシンでもコード補完や文書要約レベルのタスクが現実的な速度で動くようになりました。\n\nただしセキュリティ観点では新たな注意点があります。モデルの重みファイルは事実上「実行される可能性のあるバイナリ」であり、pickle 形式のチェックポイントには任意コード実行のリスクが伴います。safetensors 形式の採用、配布元の署名検証、ハッシュの突合を CI に組み込むことが、依存パッケージと同等のサプライチェーン対策として必要です。",
+        "en": "Practical open-weight models matter most for regulated industries that cannot use cloud APIs. Quantisation (4-bit/8-bit) has cut memory footprints enough that code completion and document summarisation run at realistic speeds on ordinary developer machines.\n\nSecurity brings a new caveat, though. Weight files are effectively \"binaries that may be executed\", and pickle-format checkpoints carry arbitrary code execution risk. Adopting safetensors, verifying publisher signatures and checking hashes in CI are now necessary supply-chain controls, on par with those for dependency packages.",
+        "ko": "오픈 웨이트 모델의 실용화는 클라우드 API를 쓸 수 없는 규제 업종에 큰 의미를 갖습니다. 양자화(4bit/8bit)를 통한 메모리 절감이 진행되어 일반적인 개발자용 머신에서도 코드 자동완성이나 문서 요약 수준의 작업이 현실적인 속도로 동작하게 되었습니다.\n\n다만 보안 관점에서는 새로운 주의점이 있습니다. 모델 가중치 파일은 사실상 '실행될 가능성이 있는 바이너리'이며, pickle 형식 체크포인트에는 임의 코드 실행 위험이 따릅니다. safetensors 형식 채택, 배포처 서명 검증, 해시 대조를 CI에 넣는 것이 의존 패키지와 동등한 공급망 대책으로 필요합니다."
+      },
+      "source": {
+        "name": "Hugging Face Blog",
+        "url": "https://huggingface.co/blog"
+      }
+    },
+    {
+      "id": "eq-nvda",
+      "categoryId": "equity-semiconductor",
+      "order": 10,
+      "sentiment": "positive",
+      "impact": "high",
+      "tags": [
+        "GPU",
+        "DataCenter",
+        "US"
+      ],
+      "title": {
+        "ja": "NVIDIA",
+        "en": "NVIDIA",
+        "ko": "NVIDIA"
+      },
+      "quote": {
+        "ticker": "NVDA",
+        "exchange": "NASDAQ",
+        "currency": "USD",
+        "price": 180.5215,
+        "previousClose": 182.45,
+        "change": -1.9285,
+        "changePercent": -1.06,
+        "marketCap": "4.45T",
+        "asOf": "2026-09-21T12:22:14.282386+09:00"
+      },
+      "summary": {
+        "ja": [
+          "データセンター向け売上が市場予想を上回り、株価は続伸。",
+          "次世代アーキテクチャの量産立ち上げが計画通り進行。",
+          "供給制約は緩和傾向だが、電力確保が新たなボトルネック。"
+        ],
+        "en": [
+          "Data-centre revenue beat consensus and the stock extended gains.",
+          "Next-generation architecture ramp is on schedule.",
+          "Supply constraints are easing, but power availability is the new bottleneck."
+        ],
+        "ko": [
+          "데이터센터 매출이 시장 예상을 상회하며 주가가 추가 상승했다.",
+          "차세대 아키텍처 양산 가동이 계획대로 진행 중이다.",
+          "공급 제약은 완화 추세지만 전력 확보가 새로운 병목이다."
+        ]
+      },
+      "highlights": {
+        "ja": [
+          "DC売上が予想超過",
+          "次世代量産が順調",
+          "電力がボトルネック"
+        ],
+        "en": [
+          "DC revenue beat",
+          "Ramp on schedule",
+          "Power is the bottleneck"
+        ],
+        "ko": [
+          "DC 매출 예상 상회",
+          "양산 순조",
+          "전력이 병목"
+        ]
+      },
+      "detail": {
+        "ja": "直近四半期はデータセンター部門が全社売上の大半を占める構造が続いており、推論需要の増加が学習需要の変動を吸収する形になっています。経営陣のコメントでは、供給側の制約は先端パッケージング能力の増強によって緩和方向にあるとされる一方、顧客側のデータセンター電力確保が新たな制約として明示されました。\n\n投資判断上の論点は、(1) 推論需要の持続性、(2) カスタムシリコンとの競合、(3) 地政学リスクによる特定地域向け出荷制限の3点です。特に(3)は業績ガイダンスに直接反映されるため、四半期ごとの regulatory update の確認が欠かせません。",
+        "en": "The data-centre segment continues to account for the bulk of company revenue, with growing inference demand absorbing volatility in training demand. Management noted that supply-side constraints are easing as advanced packaging capacity expands, while explicitly flagging customers' data-centre power procurement as the new binding constraint.\n\nThree questions drive the investment case: (1) durability of inference demand, (2) competition from custom silicon, and (3) shipment restrictions to specific regions from geopolitical risk. The third feeds directly into guidance, so the quarterly regulatory update is essential reading.",
+        "ko": "최근 분기에도 데이터센터 부문이 전사 매출의 대부분을 차지하는 구조가 이어지고 있으며, 추론 수요 증가가 학습 수요의 변동을 흡수하는 형태입니다. 경영진은 공급 측 제약이 선단 패키징 능력 증강으로 완화 방향이라고 밝힌 한편, 고객 측 데이터센터 전력 확보를 새로운 제약으로 명시했습니다.\n\n투자 판단의 쟁점은 (1) 추론 수요의 지속성, (2) 커스텀 실리콘과의 경쟁, (3) 지정학 리스크에 따른 특정 지역 출하 제한 세 가지입니다. 특히 (3)은 실적 가이던스에 직접 반영되므로 분기별 regulatory update 확인이 필수입니다."
+      },
+      "irDocuments": [
+        {
+          "date": "2026-08-27",
+          "url": "https://investor.nvidia.com/",
+          "title": {
+            "ja": "2027年度 第2四半期 決算発表",
+            "en": "Q2 FY2027 Earnings Release",
+            "ko": "2027 회계연도 2분기 실적 발표"
+          }
+        }
+      ],
+      "source": {
+        "name": "NVIDIA Investor Relations",
+        "url": "https://investor.nvidia.com/"
+      }
+    },
+    {
+      "id": "eq-tsmc",
+      "categoryId": "equity-semiconductor",
+      "order": 20,
+      "sentiment": "positive",
+      "impact": "high",
+      "tags": [
+        "Foundry",
+        "Taiwan",
+        "AdvancedPackaging"
+      ],
+      "title": {
+        "ja": "TSMC",
+        "en": "TSMC",
+        "ko": "TSMC"
+      },
+      "quote": {
+        "ticker": "TSM",
+        "exchange": "NYSE",
+        "currency": "USD",
+        "price": 262.6794,
+        "previousClose": 268.3,
+        "change": -5.6206,
+        "changePercent": -2.09,
+        "marketCap": "1.39T",
+        "asOf": "2026-09-21T12:22:14.282386+09:00"
+      },
+      "summary": {
+        "ja": [
+          "月次売上は前年同月比で二桁成長を維持。",
+          "先端パッケージング能力の増強投資を上方修正。",
+          "為替（台湾ドル高）が利益率の逆風として意識される。"
+        ],
+        "en": [
+          "Monthly revenue keeps growing at a double-digit year-on-year pace.",
+          "Capex for advanced packaging capacity was revised upward.",
+          "A stronger Taiwan dollar is seen as a margin headwind."
+        ],
+        "ko": [
+          "월간 매출은 전년 동월 대비 두 자릿수 성장을 유지하고 있다.",
+          "선단 패키징 능력 증강 투자를 상향 조정했다.",
+          "환율(대만 달러 강세)이 이익률의 역풍으로 인식된다."
+        ]
+      },
+      "highlights": {
+        "ja": [
+          "月次売上 二桁成長",
+          "設備投資を上方修正",
+          "台湾ドル高が逆風"
+        ],
+        "en": [
+          "Double-digit monthly growth",
+          "Capex raised",
+          "TWD strength a headwind"
+        ],
+        "ko": [
+          "월매출 두 자릿수 성장",
+          "설비투자 상향",
+          "대만 달러 강세 역풍"
+        ]
+      },
+      "detail": {
+        "ja": "AI 半導体の実質的な生産制約は、ウェハ工程よりも先端パッケージング（CoWoS 等）の能力にあるという構図が続いています。同社は当該能力の増強計画を継続的に上方修正しており、これは川上の装置メーカーにとっての受注先行指標としても機能します。\n\nリスク要因としては、(1) 地政学、(2) 為替、(3) 顧客集中度が挙げられます。特に為替は、売上の大半が米ドル建てである一方コストの相当部分が台湾ドル建てであるため、台湾ドル高が直接的に粗利率を圧迫します。月次売上の発表は毎月10日前後で、四半期決算を待たずに業績トレンドを確認できる点が個人投資家にとって有用です。",
+        "en": "The real production constraint on AI silicon continues to sit in advanced packaging (CoWoS and similar) rather than the wafer process. The company keeps revising its expansion plans upward, which also serves as a leading order indicator for upstream equipment makers.\n\nKey risks are (1) geopolitics, (2) FX and (3) customer concentration. FX matters most directly: with most revenue denominated in US dollars while a substantial share of costs sits in Taiwan dollars, a stronger TWD compresses gross margin. Monthly revenue is published around the 10th of each month, letting retail investors track the trend without waiting for quarterly results.",
+        "ko": "AI 반도체의 실질적인 생산 제약은 웨이퍼 공정보다 선단 패키징(CoWoS 등) 능력에 있다는 구도가 이어지고 있습니다. 동사는 해당 능력의 증강 계획을 지속적으로 상향 조정하고 있으며, 이는 전공정 장비 업체의 수주 선행 지표로도 기능합니다.\n\n리스크 요인으로는 (1) 지정학, (2) 환율, (3) 고객 집중도가 있습니다. 특히 환율은 매출 대부분이 미 달러 기준인 반면 비용의 상당 부분이 대만 달러 기준이므로, 대만 달러 강세가 직접적으로 매출총이익률을 압박합니다. 월간 매출은 매월 10일 전후에 발표되어 분기 실적을 기다리지 않고 실적 추세를 확인할 수 있는 점이 개인 투자자에게 유용합니다."
+      },
+      "irDocuments": [
+        {
+          "date": "2026-09-10",
+          "url": "https://investor.tsmc.com/",
+          "title": {
+            "ja": "2026年8月 月次売上レポート",
+            "en": "August 2026 Monthly Revenue Report",
+            "ko": "2026년 8월 월간 매출 리포트"
+          }
+        }
+      ],
+      "source": {
+        "name": "TSMC Investor Relations",
+        "url": "https://investor.tsmc.com/"
+      }
+    },
+    {
+      "id": "eq-crm",
+      "categoryId": "equity-saas",
+      "order": 10,
+      "sentiment": "neutral",
+      "impact": "medium",
+      "tags": [
+        "SaaS",
+        "CRM",
+        "AIAgent"
+      ],
+      "title": {
+        "ja": "Salesforce",
+        "en": "Salesforce",
+        "ko": "Salesforce"
+      },
+      "quote": {
+        "ticker": "CRM",
+        "exchange": "NYSE",
+        "currency": "USD",
+        "price": 243.2834,
+        "previousClose": 241.1,
+        "change": 2.1834,
+        "changePercent": 0.91,
+        "marketCap": "231B",
+        "asOf": "2026-09-21T12:22:14.282386+09:00"
+      },
+      "summary": {
+        "ja": [
+          "AIエージェント製品の ARR 寄与が開示され、市場は評価を分けた。",
+          "従来のシート課金から従量課金へのモデル移行が進行中。",
+          "移行期は売上認識が読みにくく、ガイダンスが保守的。"
+        ],
+        "en": [
+          "Disclosure of AI agent ARR contribution split market opinion.",
+          "The shift from seat-based to consumption-based pricing is underway.",
+          "Revenue recognition is hard to read mid-transition, so guidance stays conservative."
+        ],
+        "ko": [
+          "AI 에이전트 제품의 ARR 기여가 공개되며 시장 평가가 엇갈렸다.",
+          "기존 좌석 과금에서 종량 과금으로의 모델 전환이 진행 중이다.",
+          "전환기에는 매출 인식이 읽기 어려워 가이던스가 보수적이다."
+        ]
+      },
+      "highlights": {
+        "ja": [
+          "AI ARR を開示",
+          "従量課金へ移行",
+          "ガイダンスは保守的"
+        ],
+        "en": [
+          "AI ARR disclosed",
+          "Move to consumption pricing",
+          "Conservative guidance"
+        ],
+        "ko": [
+          "AI ARR 공개",
+          "종량 과금 전환",
+          "보수적 가이던스"
+        ]
+      },
+      "detail": {
+        "ja": "SaaS 各社に共通する構造変化として、AI 機能の提供に伴う課金モデルの転換があります。従来のシート（ユーザー数）課金は、AI エージェントが人間の作業を代替するほど売上が減るという逆インセンティブを抱えるため、実行回数やトークン消費に応じた従量課金への移行が進んでいます。\n\n投資家にとっての難しさは、この移行期における売上認識の不透明さです。既存契約の更新タイミングによって新モデルへの移行速度が変わるため、四半期単位の ARR 成長率がノイズを含みます。RPO（残存履行義務）や cRPO の推移を合わせて確認することで、実態に近いトレンドを把握できます。",
+        "en": "A structural shift common across SaaS vendors is the change in pricing model that comes with shipping AI features. Seat-based pricing carries a perverse incentive — revenue falls as AI agents replace human work — so vendors are moving to consumption pricing tied to executions or token usage.\n\nThe difficulty for investors is the opacity of revenue recognition during this transition. Migration pace depends on when existing contracts renew, so quarterly ARR growth carries noise. Tracking RPO (remaining performance obligations) and cRPO alongside it gives a truer picture of the trend.",
+        "ko": "SaaS 기업들에 공통된 구조 변화로 AI 기능 제공에 따른 과금 모델 전환이 있습니다. 기존 좌석(사용자 수) 과금은 AI 에이전트가 사람의 작업을 대체할수록 매출이 줄어드는 역인센티브를 안고 있어, 실행 횟수나 토큰 소비에 따른 종량 과금으로의 전환이 진행되고 있습니다.\n\n투자자에게 어려운 점은 이 전환기의 매출 인식 불투명성입니다. 기존 계약의 갱신 시점에 따라 신규 모델로의 전환 속도가 달라지므로 분기 단위 ARR 성장률에 노이즈가 포함됩니다. RPO(잔여 이행 의무)와 cRPO 추이를 함께 확인하면 실태에 가까운 추세를 파악할 수 있습니다."
+      },
+      "irDocuments": [
+        {
+          "date": "2026-09-03",
+          "url": "https://investor.salesforce.com/",
+          "title": {
+            "ja": "2027年度 第2四半期 決算説明資料",
+            "en": "Q2 FY2027 Earnings Presentation",
+            "ko": "2027 회계연도 2분기 실적 설명 자료"
+          }
+        }
+      ],
+      "source": {
+        "name": "Salesforce Investor Relations",
+        "url": "https://investor.salesforce.com/"
+      }
+    },
+    {
+      "id": "eq-4478",
+      "categoryId": "equity-saas",
+      "order": 20,
+      "sentiment": "positive",
+      "impact": "medium",
+      "tags": [
+        "SaaS",
+        "Japan",
+        "Security"
+      ],
+      "title": {
+        "ja": "フリー（freee）",
+        "en": "freee K.K.",
+        "ko": "freee"
+      },
+      "quote": {
+        "ticker": "4478.T",
+        "exchange": "TSE",
+        "currency": "JPY",
+        "price": 2772.0149,
+        "previousClose": 2845.0,
+        "change": -72.9851,
+        "changePercent": -2.57,
+        "marketCap": "1,720億円",
+        "asOf": "2026-09-21T12:22:14.282386+09:00"
+      },
+      "summary": {
+        "ja": [
+          "国内SaaSは電子帳簿保存法・インボイス対応需要が継続。",
+          "ARPU 改善が進み、黒字化の道筋が意識される局面。",
+          "解約率（チャーン）の低位安定が評価の前提条件。"
+        ],
+        "en": [
+          "Japanese SaaS demand from e-bookkeeping and invoice rules continues.",
+          "Improving ARPU puts a path to profitability in focus.",
+          "A low, stable churn rate is the precondition for the re-rating."
+        ],
+        "ko": [
+          "일본 SaaS는 전자장부보존법·인보이스 대응 수요가 이어지고 있다.",
+          "ARPU 개선이 진행되어 흑자 전환 경로가 주목받는 국면이다.",
+          "해지율(처른)의 낮은 안정세가 평가의 전제 조건이다."
+        ]
+      },
+      "highlights": {
+        "ja": [
+          "制度対応needが継続",
+          "ARPU 改善",
+          "チャーン低位安定"
+        ],
+        "en": [
+          "Ongoing compliance demand",
+          "ARPU improving",
+          "Churn low and stable"
+        ],
+        "ko": [
+          "제도 대응 수요 지속",
+          "ARPU 개선",
+          "처른 저위 안정"
+        ]
+      },
+      "detail": {
+        "ja": "国内 SaaS 市場は、法制度対応（電子帳簿保存法、インボイス制度）という外部要因に支えられた導入需要が一巡しつつあります。次の成長ドライバーは、既存顧客への追加モジュール販売による ARPU 向上と、AI による仕訳自動化などの付加価値機能です。\n\n個人投資家が四半期ごとに確認すべき指標は、ARR 成長率、ARPU、チャーンレート（月次解約率）、そして営業利益率の改善幅です。特に国内 SaaS は黒字化前後で株価のバリュエーション基準が PSR から PER へ移行する局面があり、その転換点を見極めることがリターンに直結します。",
+        "en": "In Japan's SaaS market, adoption demand driven by regulatory deadlines (e-bookkeeping rules, the invoice system) is largely working through. The next growth drivers are ARPU uplift from selling additional modules into the installed base, and value-added features such as AI-driven journal-entry automation.\n\nThe metrics retail investors should check each quarter are ARR growth, ARPU, churn rate and the pace of operating-margin improvement. Notably, Japanese SaaS names tend to see their valuation anchor shift from PSR to PER around the point of turning profitable, and identifying that inflection drives returns.",
+        "ko": "일본 SaaS 시장은 법제도 대응(전자장부보존법, 인보이스 제도)이라는 외부 요인에 힘입은 도입 수요가 한 차례 마무리되어 가고 있습니다. 다음 성장 동력은 기존 고객 대상 추가 모듈 판매를 통한 ARPU 향상과, AI를 통한 분개 자동화 같은 부가가치 기능입니다.\n\n개인 투자자가 분기마다 확인해야 할 지표는 ARR 성장률, ARPU, 처른율(월간 해지율), 그리고 영업이익률 개선 폭입니다. 특히 일본 SaaS는 흑자 전환 전후로 주가 밸류에이션 기준이 PSR에서 PER로 이동하는 국면이 있어, 그 전환점을 가려내는 것이 수익률로 직결됩니다."
+      },
+      "irDocuments": [
+        {
+          "date": "2026-08-12",
+          "url": "https://corp.freee.co.jp/ir/",
+          "title": {
+            "ja": "2026年6月期 通期決算説明資料",
+            "en": "FY6/2026 Full-Year Results Presentation",
+            "ko": "2026년 6월기 연간 실적 설명 자료"
+          }
+        }
+      ],
+      "source": {
+        "name": "freee IR",
+        "url": "https://corp.freee.co.jp/ir/"
+      }
+    },
+    {
+      "id": "eq-6506",
+      "categoryId": "equity-robotics",
+      "order": 10,
+      "sentiment": "positive",
+      "impact": "medium",
+      "tags": [
+        "Robotics",
+        "Japan",
+        "FactoryAutomation"
+      ],
+      "title": {
+        "ja": "安川電機",
+        "en": "Yaskawa Electric",
+        "ko": "야스카와 전기"
+      },
+      "quote": {
+        "ticker": "6506.T",
+        "exchange": "TSE",
+        "currency": "JPY",
+        "price": 4334.3114,
+        "previousClose": 4325.0,
+        "change": 9.3114,
+        "changePercent": 0.22,
+        "marketCap": "1.14兆円",
+        "asOf": "2026-09-21T12:22:14.282386+09:00"
+      },
+      "summary": {
+        "ja": [
+          "中国向け産業ロボット受注に底打ちの兆しが出始めた。",
+          "ヒューマノイド向けサーボ・減速機の引き合いが増加。",
+          "設備投資サイクルの回復時期が最大の不確実性。"
+        ],
+        "en": [
+          "Industrial robot orders from China show early signs of bottoming.",
+          "Enquiries for humanoid-bound servos and reducers are rising.",
+          "Timing of the capex cycle recovery is the main uncertainty."
+        ],
+        "ko": [
+          "중국향 산업용 로봇 수주에 바닥 조짐이 나타나기 시작했다.",
+          "휴머노이드용 서보·감속기 문의가 증가하고 있다.",
+          "설비투자 사이클 회복 시기가 최대 불확실성이다."
+        ]
+      },
+      "highlights": {
+        "ja": [
+          "中国受注に底打ち感",
+          "ヒューマノイド需要",
+          "設備投資サイクル次第"
+        ],
+        "en": [
+          "China orders bottoming",
+          "Humanoid demand",
+          "Hinges on capex cycle"
+        ],
+        "ko": [
+          "중국 수주 바닥 조짐",
+          "휴머노이드 수요",
+          "설비투자 사이클에 좌우"
+        ]
+      },
+      "detail": {
+        "ja": "フィジカルAI（実世界で動作するAI）というテーマは、モデル側の進歩が先行し、それを支えるハードウェア側の需要が後から立ち上がる構造です。ヒューマノイドロボットの量産が本格化すれば、関節部分に使われるサーボモータ、精密減速機、力覚センサの需要が構造的に増加します。\n\nただし現時点での業績を支えているのは依然として既存の産業用ロボットであり、中国を中心とした設備投資サイクルに大きく左右されます。したがって短期の株価は「ヒューマノイド期待」というテーマ性と、「足元の受注実績」というファンダメンタルズの綱引きになります。四半期ごとの受注高（特に地域別内訳）が最も重要な確認項目です。",
+        "en": "The physical-AI theme — AI that acts in the real world — has model-side progress running ahead, with hardware demand following later. If humanoid robots reach volume production, demand structurally rises for the servo motors, precision reducers and force sensors used in their joints.\n\nFor now, though, earnings still rest on conventional industrial robots and swing heavily with the capex cycle, particularly in China. Near-term share prices therefore become a tug-of-war between the humanoid narrative and current order fundamentals. Quarterly order intake — especially the regional breakdown — is the single most important item to check.",
+        "ko": "피지컬 AI(현실 세계에서 동작하는 AI)라는 테마는 모델 측 발전이 선행하고 이를 뒷받침하는 하드웨어 수요가 나중에 일어나는 구조입니다. 휴머노이드 로봇의 양산이 본격화되면 관절부에 쓰이는 서보 모터, 정밀 감속기, 힘 센서 수요가 구조적으로 증가합니다.\n\n다만 현시점의 실적을 뒷받침하는 것은 여전히 기존 산업용 로봇이며, 중국을 중심으로 한 설비투자 사이클에 크게 좌우됩니다. 따라서 단기 주가는 '휴머노이드 기대'라는 테마성과 '현재 수주 실적'이라는 펀더멘털의 줄다리기가 됩니다. 분기별 수주액(특히 지역별 내역)이 가장 중요한 확인 항목입니다."
+      },
+      "irDocuments": [
+        {
+          "date": "2026-07-10",
+          "url": "https://www.yaskawa.co.jp/ir",
+          "title": {
+            "ja": "2027年2月期 第1四半期 決算短信",
+            "en": "Q1 FY2/2027 Financial Results",
+            "ko": "2027년 2월기 1분기 결산 단신"
+          }
+        }
+      ],
+      "source": {
+        "name": "安川電機 IR",
+        "url": "https://www.yaskawa.co.jp/ir"
+      }
+    },
+    {
+      "id": "eq-intc",
+      "categoryId": "equity-turnaround",
+      "order": 10,
+      "sentiment": "neutral",
+      "impact": "medium",
+      "tags": [
+        "Turnaround",
+        "Foundry",
+        "US"
+      ],
+      "title": {
+        "ja": "Intel",
+        "en": "Intel",
+        "ko": "Intel"
+      },
+      "quote": {
+        "ticker": "INTC",
+        "exchange": "NASDAQ",
+        "currency": "USD",
+        "price": 38.408,
+        "previousClose": 38.72,
+        "change": -0.312,
+        "changePercent": -0.81,
+        "marketCap": "168B",
+        "asOf": "2026-09-21T12:22:14.282386+09:00"
+      },
+      "summary": {
+        "ja": [
+          "ファウンドリ事業の外部顧客獲得で底打ち観測が強まる。",
+          "政府支援とパートナー出資により資金繰り懸念が後退。",
+          "先端プロセスの歩留まり改善が黒字化の必要条件。"
+        ],
+        "en": [
+          "External foundry customer wins strengthen the bottoming case.",
+          "Government support and partner investment ease funding concerns.",
+          "Yield improvement on leading-edge nodes is the precondition for profitability."
+        ],
+        "ko": [
+          "파운드리 사업의 외부 고객 확보로 바닥 관측이 강해지고 있다.",
+          "정부 지원과 파트너 출자로 자금 우려가 후퇴했다.",
+          "선단 공정의 수율 개선이 흑자 전환의 필요조건이다."
+        ]
+      },
+      "highlights": {
+        "ja": [
+          "外部顧客を獲得",
+          "資金繰り懸念が後退",
+          "歩留まりが焦点"
+        ],
+        "en": [
+          "External customers won",
+          "Funding worries recede",
+          "Yields are the crux"
+        ],
+        "ko": [
+          "외부 고객 확보",
+          "자금 우려 후퇴",
+          "수율이 관건"
+        ]
+      },
+      "detail": {
+        "ja": "ターンアラウンド銘柄の評価では、「悪材料の出尽くし」と「事業の構造的な復活」を区別する必要があります。同社の場合、株価の底打ちは主に前者（資金繰り懸念の後退、政府・パートナーからの資本注入）によるものであり、後者にあたる先端プロセスの歩留まり改善と外部顧客からの大型受注はまだ検証段階です。\n\n確認すべきは、ファウンドリ部門の営業損失の縮小ペースと、公表される外部顧客のテープアウト実績です。ターンアラウンド投資では、期待先行で買われた後に実績が伴わず失望売りとなる展開が典型的であるため、四半期ごとにマイルストーンの達成状況を検証する規律が求められます。",
+        "en": "Valuing a turnaround requires separating \"bad news exhausted\" from \"structural business recovery\". Here, the price bottom rests mainly on the former — receding funding worries, capital injections from government and partners — while the latter, yield improvement on leading-edge nodes and large external orders, is still unproven.\n\nWhat to watch is the pace at which foundry operating losses narrow, and disclosed external customer tape-outs. Turnaround investing classically runs ahead on expectations and then sells off when results fail to follow, so the discipline of verifying milestone delivery each quarter is essential.",
+        "ko": "턴어라운드 종목 평가에서는 '악재 소진'과 '사업의 구조적 회복'을 구분해야 합니다. 이 회사의 경우 주가 바닥은 주로 전자(자금 우려 후퇴, 정부·파트너의 자본 투입)에 따른 것이며, 후자에 해당하는 선단 공정 수율 개선과 외부 고객의 대형 수주는 아직 검증 단계입니다.\n\n확인해야 할 것은 파운드리 부문 영업손실의 축소 속도와 공표되는 외부 고객의 테이프아웃 실적입니다. 턴어라운드 투자는 기대가 선행해 매수된 뒤 실적이 따라오지 않아 실망 매도로 이어지는 전개가 전형적이므로, 분기마다 마일스톤 달성 상황을 검증하는 규율이 요구됩니다."
+      },
+      "irDocuments": [
+        {
+          "date": "2026-07-24",
+          "url": "https://www.intc.com/investor-relations",
+          "title": {
+            "ja": "2026年 第2四半期 決算発表",
+            "en": "Q2 2026 Earnings Release",
+            "ko": "2026년 2분기 실적 발표"
+          }
+        }
+      ],
+      "source": {
+        "name": "Intel Investor Relations",
+        "url": "https://www.intc.com/investor-relations"
+      }
+    },
+    {
+      "id": "macro-usdjpy",
+      "categoryId": "macro",
+      "order": 10,
+      "sentiment": "neutral",
+      "impact": "high",
+      "publishedAt": "2026-09-20T08:00:00+09:00",
+      "tags": [
+        "FX",
+        "USDJPY",
+        "BOJ"
+      ],
+      "title": {
+        "ja": "ドル円",
+        "en": "USD/JPY",
+        "ko": "달러/엔"
+      },
+      "metric": {
+        "symbol": "USD/JPY",
+        "value": 144.6786,
+        "previousClose": 148.62,
+        "change": -3.9414,
+        "changePercent": -2.65,
+        "unit": "JPY",
+        "asOf": "2026-09-21T12:22:14.282386+09:00"
+      },
+      "summary": {
+        "ja": [
+          "日銀の追加利上げ観測が再燃し、円が小幅に買い戻された。",
+          "米金利低下と相まって金利差縮小の思惑が優勢。",
+          "輸出企業の想定レートとの乖離が業績修正要因に。"
+        ],
+        "en": [
+          "Renewed expectations of further BOJ hikes brought modest yen buying.",
+          "Combined with lower US yields, narrowing rate differentials dominate.",
+          "The gap versus exporters' assumed rates could drive earnings revisions."
+        ],
+        "ko": [
+          "일본은행의 추가 금리 인상 관측이 재점화되며 엔이 소폭 매수됐다.",
+          "미 금리 하락과 맞물려 금리차 축소 기대가 우세하다.",
+          "수출 기업의 가정 환율과의 괴리가 실적 수정 요인이 된다."
+        ]
+      },
+      "highlights": {
+        "ja": [
+          "日銀利上げ観測",
+          "日米金利差の縮小",
+          "想定レート乖離に注意"
+        ],
+        "en": [
+          "BOJ hike expectations",
+          "Narrowing US-JP spread",
+          "Watch assumed-rate gap"
+        ],
+        "ko": [
+          "일본은행 인상 관측",
+          "미일 금리차 축소",
+          "가정 환율 괴리 주의"
+        ]
+      },
+      "detail": {
+        "ja": "為替は個別銘柄の業績に対して二重に影響します。第一に、輸出企業の円換算売上・利益への直接的な影響。第二に、海外投資家から見た日本株の割安度への影響です。\n\n実務上重要なのは、各社が決算説明資料で開示している「想定為替レート」との乖離です。例えば想定レートが145円の企業にとって、実勢150円は上振れ要因、実勢140円は下振れ要因となります。ドル円が想定レートから5円以上乖離した状態が四半期を通じて継続した場合、業績修正の蓋然性が高まるため、保有銘柄の想定レートを一覧化しておくと判断が速くなります。",
+        "en": "FX affects individual names in two ways: directly, through exporters' yen-translated revenue and profit; and indirectly, through how cheap Japanese equities look to overseas investors.\n\nWhat matters in practice is the gap against the \"assumed FX rate\" each company discloses in its results presentation. For a company assuming ¥145, a spot rate of ¥150 is an upside factor and ¥140 a downside one. When USD/JPY stays more than ¥5 away from the assumed rate for a full quarter, the probability of an earnings revision rises — so keeping a list of your holdings' assumed rates speeds up the call.",
+        "ko": "환율은 개별 종목 실적에 이중으로 영향을 미칩니다. 첫째, 수출 기업의 엔화 환산 매출·이익에 대한 직접적 영향. 둘째, 해외 투자자가 보는 일본 주식의 저평가 정도에 대한 영향입니다.\n\n실무상 중요한 것은 각사가 실적 설명 자료에 공개하는 '가정 환율'과의 괴리입니다. 예컨대 가정 환율이 145엔인 기업에게 실세 150엔은 상향 요인, 실세 140엔은 하향 요인이 됩니다. 달러/엔이 가정 환율에서 5엔 이상 벌어진 상태가 분기 내내 이어지면 실적 수정 개연성이 높아지므로, 보유 종목의 가정 환율을 목록화해 두면 판단이 빨라집니다."
+      },
+      "source": {
+        "name": "Bank of Japan",
+        "url": "https://www.boj.or.jp/"
+      }
+    },
+    {
+      "id": "macro-us-tariff",
+      "categoryId": "macro",
+      "order": 20,
+      "sentiment": "negative",
+      "impact": "high",
+      "publishedAt": "2026-09-19T22:15:00+09:00",
+      "tags": [
+        "Tariff",
+        "US",
+        "Geopolitics",
+        "Trump"
+      ],
+      "title": {
+        "ja": "米国の追加関税を巡る発言で市場が神経質な展開",
+        "en": "Remarks on further US tariffs keep markets on edge",
+        "ko": "미국 추가 관세 관련 발언으로 시장이 신경질적 전개"
+      },
+      "summary": {
+        "ja": [
+          "半導体・自動車関連への追加関税に言及する発言が報じられた。",
+          "発言段階と実際の政令発効には時間差があり、過剰反応に注意。",
+          "サプライチェーン再編の長期トレンドは変わらず継続。"
+        ],
+        "en": [
+          "Remarks referencing further tariffs on semiconductors and autos were reported.",
+          "There is a lag between rhetoric and actual enactment — beware overreaction.",
+          "The long-term supply-chain realignment trend continues regardless."
+        ],
+        "ko": [
+          "반도체·자동차 관련 추가 관세를 언급한 발언이 보도되었다.",
+          "발언 단계와 실제 시행 사이에는 시차가 있어 과잉 반응에 주의해야 한다.",
+          "공급망 재편이라는 장기 추세는 변함없이 이어진다."
+        ]
+      },
+      "highlights": {
+        "ja": [
+          "半導体・自動車が対象",
+          "発言と発効に時間差",
+          "供給網再編は継続"
+        ],
+        "en": [
+          "Semis and autos targeted",
+          "Lag between talk and law",
+          "Realignment continues"
+        ],
+        "ko": [
+          "반도체·자동차 대상",
+          "발언과 시행에 시차",
+          "공급망 재편 지속"
+        ]
+      },
+      "detail": {
+        "ja": "政治的発言に対する市場の反応は、(1) 発言の報道、(2) 政令・大統領令の署名、(3) 実際の発効、という3段階で異なります。第1段階での株価変動は往々にして過剰であり、第2段階以降で内容（対象品目・税率・例外規定）が判明した時点で巻き戻されることが少なくありません。\n\n個人投資家として実務的なのは、発言に対して即座にポジションを動かすのではなく、対象品目リストの公表を待って影響度を定量化することです。また、関税は短期的な株価変動要因であると同時に、中長期では製造拠点の地理的分散という構造変化を加速させます。この構造変化から受益する企業（国内回帰に伴う設備投資需要、物流、産業用ロボット等）を別途リストアップしておくと、変動局面を機会として扱えます。",
+        "en": "Markets respond to political remarks in three distinct stages: (1) the remark is reported, (2) an order is signed, (3) it actually takes effect. Price moves at stage one are frequently excessive and often unwind once stage two reveals the specifics — covered goods, rates and exemptions.\n\nThe practical approach for retail investors is not to move positions on the remark itself, but to wait for the published list of covered goods and quantify the impact. Tariffs are also more than a short-term price driver: over the medium term they accelerate the structural geographic dispersion of manufacturing. Keeping a separate list of beneficiaries of that shift — capex demand from reshoring, logistics, industrial robotics — turns volatile episodes into opportunities.",
+        "ko": "정치적 발언에 대한 시장 반응은 (1) 발언 보도, (2) 행정명령 서명, (3) 실제 발효의 세 단계로 다릅니다. 1단계의 주가 변동은 흔히 과도하며, 2단계 이후 내용(대상 품목·세율·예외 규정)이 밝혀지는 시점에 되돌려지는 경우가 적지 않습니다.\n\n개인 투자자로서 실무적인 방법은 발언에 즉각 포지션을 움직이는 것이 아니라, 대상 품목 목록 공표를 기다려 영향도를 정량화하는 것입니다. 또한 관세는 단기 주가 변동 요인인 동시에 중장기적으로는 제조 거점의 지리적 분산이라는 구조 변화를 가속합니다. 이 구조 변화의 수혜 기업(리쇼어링에 따른 설비투자 수요, 물류, 산업용 로봇 등)을 따로 목록화해 두면 변동 국면을 기회로 다룰 수 있습니다."
+      },
+      "source": {
+        "name": "Federal Register",
+        "url": "https://www.federalregister.gov/"
+      }
+    },
+    {
+      "id": "macro-us10y",
+      "categoryId": "macro",
+      "order": 30,
+      "sentiment": "positive",
+      "impact": "medium",
+      "publishedAt": "2026-09-20T07:30:00+09:00",
+      "tags": [
+        "Rates",
+        "US10Y",
+        "FED"
+      ],
+      "title": {
+        "ja": "米10年債利回り",
+        "en": "US 10-Year Treasury Yield",
+        "ko": "미 10년물 국채 금리"
+      },
+      "metric": {
+        "symbol": "US10Y",
+        "value": 3.9217,
+        "previousClose": 3.92,
+        "change": 0.0017,
+        "changePercent": 0.04,
+        "unit": "%",
+        "asOf": "2026-09-21T12:22:14.282386+09:00"
+      },
+      "summary": {
+        "ja": [
+          "雇用統計の減速を受けて長期金利が低下。",
+          "グロース株・高PER銘柄のバリュエーションには追い風。",
+          "景気減速が利益見通しを下押しするリスクとの綱引き。"
+        ],
+        "en": [
+          "Long-term yields fell after softer employment data.",
+          "A tailwind for growth and high-multiple equity valuations.",
+          "Offset by the risk that a slowdown drags down earnings outlooks."
+        ],
+        "ko": [
+          "고용 지표 둔화를 받아 장기 금리가 하락했다.",
+          "성장주·고PER 종목의 밸류에이션에는 순풍이다.",
+          "경기 둔화가 이익 전망을 끌어내릴 위험과의 줄다리기다."
+        ]
+      },
+      "highlights": {
+        "ja": [
+          "雇用の減速",
+          "グロース株に追い風",
+          "利益見通しはリスク"
+        ],
+        "en": [
+          "Softer employment",
+          "Tailwind for growth",
+          "Earnings outlook at risk"
+        ],
+        "ko": [
+          "고용 둔화",
+          "성장주에 순풍",
+          "이익 전망은 리스크"
+        ]
+      },
+      "detail": {
+        "ja": "長期金利の低下は、DCF（割引キャッシュフロー）の観点から将来利益の現在価値を高めるため、利益成長が遠い将来に偏るグロース株ほど恩恵が大きくなります。AI 関連銘柄の多くはこのカテゴリに属します。\n\nただし注意すべきは、金利低下の「理由」です。インフレ鈍化による低下（good news）であれば株価にプラスですが、景気後退懸念による低下（bad news）であれば、割引率の低下メリットを利益見通しの下方修正が打ち消します。したがって、金利水準そのものよりも、同時期の雇用統計・ISM・企業ガイダンスの方向性をセットで確認することが実務的です。",
+        "en": "Falling long-term yields raise the present value of future profits in DCF terms, so growth stocks — whose earnings sit further out — benefit most. Many AI-linked names fall into that category.\n\nThe caveat is the reason for the decline. A drop driven by cooling inflation (good news) is positive for equities; one driven by recession fears (bad news) sees downward earnings revisions cancel out the benefit of a lower discount rate. In practice, then, it is more useful to read the yield level alongside contemporaneous employment data, ISM prints and corporate guidance than on its own.",
+        "ko": "장기 금리 하락은 DCF(할인현금흐름) 관점에서 미래 이익의 현재 가치를 높이므로, 이익 성장이 먼 미래에 치우친 성장주일수록 수혜가 큽니다. AI 관련 종목 다수가 이 범주에 속합니다.\n\n다만 주의할 점은 금리 하락의 '이유'입니다. 인플레이션 둔화에 따른 하락(good news)이라면 주가에 플러스지만, 경기 침체 우려에 따른 하락(bad news)이라면 할인율 하락의 이점을 이익 전망 하향이 상쇄합니다. 따라서 금리 수준 자체보다 같은 시기의 고용 지표·ISM·기업 가이던스의 방향성을 함께 확인하는 것이 실무적입니다."
+      },
+      "source": {
+        "name": "U.S. Department of the Treasury",
+        "url": "https://home.treasury.gov/"
+      }
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "meta": {
+    "locale": "en",
+    "label": "English",
+    "shortLabel": "EN",
+    "htmlLang": "en",
+    "dateFormat": "en-US"
+  },
+  "app": {
+    "title": "AI × Market Dashboard",
+    "subtitle": "AI news, watchlist stocks and macro at a glance",
+    "description": "A condensed briefing on the AI industry, equity markets and macro for retail investors and engineers"
+  },
+  "header": {
+    "languageLabel": "Language",
+    "lastUpdated": "Last updated",
+    "refresh": "Reload",
+    "themeToggle": "Toggle theme",
+    "skipToContent": "Skip to content"
+  },
+  "nav": {
+    "all": "All",
+    "filterLabel": "Filter by category"
+  },
+  "card": {
+    "showDetail": "Show details",
+    "hideDetail": "Hide details",
+    "source": "Source",
+    "openSource": "Open original",
+    "publishedAt": "Published",
+    "changeLabel": "Change",
+    "priceLabel": "Price",
+    "marketCap": "Market cap",
+    "ticker": "Ticker",
+    "tags": "Tags",
+    "noData": "No data available",
+    "highlights": "Highlights"
+  },
+  "status": {
+    "loading": "Loading…",
+    "error": "Failed to load data",
+    "retry": "Retry",
+    "empty": "Nothing to display",
+    "offlineNotice": "You are offline — showing cached data"
+  },
+  "sentiment": {
+    "positive": "Positive",
+    "negative": "Negative",
+    "neutral": "Neutral"
+  },
+  "impact": {
+    "high": "Impact: High",
+    "medium": "Impact: Medium",
+    "low": "Impact: Low"
+  },
+  "support": {
+    "heading": "Support this site",
+    "description": "Your support covers server and data costs.",
+    "coffeeLabel": "Buy Me a Coffee",
+    "affiliateHeading": "Related books & tools",
+    "affiliateNote": "Note: the links below may include affiliate links.",
+    "placeholder": "Ad / affiliate slot"
+  },
+  "footer": {
+    "disclaimer": "This site is for informational purposes only and does not constitute investment advice or solicitation. Make your own investment decisions at your own risk.",
+    "dataSource": "Data sources",
+    "builtWith": "Config-driven / static site",
+    "sourceCode": "Source code",
+    "copyright": "AI × Market Dashboard"
+  }
+}

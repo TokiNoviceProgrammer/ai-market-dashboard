@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "description": "サイト全体の設定。言語一覧・データ取得先・リンクなど。",
+  "locales": ["ja", "en", "ko"],
+  "defaultLocale": "ja",
+  "localeStorageKey": "amd.locale",
+  "themeStorageKey": "amd.theme",
+  "paths": {
+    "locales": "locales/{locale}.json",
+    "categories": "config/categories.json",
+    "monetization": "config/monetization.json",
+    "data": "data/dashboard.json"
+  },
+  "links": {
+    "repository": "https://github.com/YOUR_NAME/ai-market-dashboard"
+  },
+  "dataSources": [
+    { "name": "Yahoo Finance", "url": "https://finance.yahoo.com/" },
+    { "name": "TDnet / EDINET", "url": "https://www.release.tdnet.info/" },
+    { "name": "各社IRページ", "url": "" }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.invalid/ai-market-dashboard/categories.schema.json",
+  "title": "Category configuration",
+  "description": "config/categories.json のスキーマ。エディタ補完と、AI がカテゴリを追加する際の制約定義を兼ねる。",
+  "type": "object",
+  "required": ["version", "categories"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "version": { "type": "integer", "minimum": 1 },
+    "description": { "type": "string" },
+    "defaultCategoryId": {
+      "type": "string",
+      "description": "初期選択カテゴリ。'all' で全件表示。"
+    },
+    "categories": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/category" }
+    },
+    "cardTypes": {
+      "type": "object",
+      "description": "カードタイプごとの仕様（ドキュメント用途。実行時には参照されない）。",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "description": { "type": "string" },
+          "requiredFields": { "type": "array", "items": { "type": "string" } },
+          "optionalFields": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "accents": {
+      "type": "object",
+      "description": "アクセント色キーと Tailwind クラスの対応表。",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["badge", "bar"],
+        "properties": {
+          "badge": { "type": "string" },
+          "bar": { "type": "string" }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "localizedString": {
+      "type": "object",
+      "description": "多言語文字列。ja / en / ko をすべて用意すること。",
+      "required": ["ja", "en", "ko"],
+      "properties": {
+        "ja": { "type": "string" },
+        "en": { "type": "string" },
+        "ko": { "type": "string" }
+      },
+      "additionalProperties": { "type": "string" }
+    },
+    "category": {
+      "type": "object",
+      "required": ["id", "order", "cardType", "label"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+$",
+          "description": "カテゴリ識別子。data/dashboard.json の items[].categoryId と対応する。"
+        },
+        "order": {
+          "type": "integer",
+          "description": "表示順（昇順）。間を空けて採番しておくと後から挿入しやすい。"
+        },
+        "enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "false にするとタブ・セクションごと非表示になる。"
+        },
+        "icon": {
+          "type": "string",
+          "description": "js/icons.js の PATHS に定義済みのアイコン名。"
+        },
+        "accent": {
+          "type": "string",
+          "description": "このファイルの accents に定義したキー。"
+        },
+        "cardType": {
+          "type": "string",
+          "enum": ["news", "equity", "macro"],
+          "description": "カードの描画方式。equity は quote、macro は metric を表示する。"
+        },
+        "label": { "$ref": "#/definitions/localizedString" },
+        "description": { "$ref": "#/definitions/localizedString" },
+        "fields": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "このカテゴリで表示する項目のリスト（ドキュメント用途）。"
+        }
+      }
+    }
+  }
+}

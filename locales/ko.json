@@ -1,0 +1,71 @@
+{
+  "meta": {
+    "locale": "ko",
+    "label": "한국어",
+    "shortLabel": "KO",
+    "htmlLang": "ko",
+    "dateFormat": "ko-KR"
+  },
+  "app": {
+    "title": "AI × 마켓 대시보드",
+    "subtitle": "AI 뉴스·주요 종목·매크로를 한눈에",
+    "description": "개인 투자자와 엔지니어를 위한 AI 산업·주식 시장·매크로 요약 브리핑"
+  },
+  "header": {
+    "languageLabel": "언어",
+    "lastUpdated": "마지막 업데이트",
+    "refresh": "새로고침",
+    "themeToggle": "테마 전환",
+    "skipToContent": "본문으로 건너뛰기"
+  },
+  "nav": {
+    "all": "전체",
+    "filterLabel": "카테고리 필터"
+  },
+  "card": {
+    "showDetail": "자세히 보기",
+    "hideDetail": "자세히 닫기",
+    "source": "출처",
+    "openSource": "원문 열기",
+    "publishedAt": "게시일",
+    "changeLabel": "전일 대비",
+    "priceLabel": "주가",
+    "marketCap": "시가총액",
+    "ticker": "티커",
+    "tags": "태그",
+    "noData": "데이터가 없습니다",
+    "highlights": "핵심 포인트"
+  },
+  "status": {
+    "loading": "불러오는 중…",
+    "error": "데이터를 불러오지 못했습니다",
+    "retry": "다시 시도",
+    "empty": "표시할 항목이 없습니다",
+    "offlineNotice": "오프라인 상태여서 저장된 데이터를 표시합니다"
+  },
+  "sentiment": {
+    "positive": "긍정적",
+    "negative": "부정적",
+    "neutral": "중립"
+  },
+  "impact": {
+    "high": "중요도: 높음",
+    "medium": "중요도: 보통",
+    "low": "중요도: 낮음"
+  },
+  "support": {
+    "heading": "이 사이트 응원하기",
+    "description": "서버 및 데이터 비용에 도움이 됩니다.",
+    "coffeeLabel": "Buy Me a Coffee",
+    "affiliateHeading": "관련 도서 · 도구",
+    "affiliateNote": "※ 아래 링크에는 제휴 링크가 포함될 수 있습니다.",
+    "placeholder": "광고 · 제휴 영역"
+  },
+  "footer": {
+    "disclaimer": "본 사이트의 정보는 정보 제공만을 목적으로 하며 투자 권유나 자문이 아닙니다. 투자 판단은 본인 책임으로 하시기 바랍니다.",
+    "dataSource": "데이터 출처",
+    "builtWith": "설정 기반 / 정적 사이트",
+    "sourceCode": "소스 코드",
+    "copyright": "AI × 마켓 대시보드"
+  }
+}

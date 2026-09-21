@@ -1,0 +1,110 @@
+[project]
+name = "ai-market-dashboard"
+version = "0.1.0"
+description = "AI news, watchlist equities and macro in one config-driven static dashboard"
+readme = "README.md"
+requires-python = ">=3.11"
+
+# 既定プロバイダ（MockProvider）は Python 標準ライブラリのみで動作するため、
+# 実行時依存はゼロ。これ自体が最も強力なサプライチェーン対策である。
+#
+# 外部 API プロバイダ（YahooFinanceProvider 等）を有効化する場合のみ、
+# 下記コメントを外して `uv lock` を実行すること。
+dependencies = [
+  # "httpx>=0.27,<1.0",
+]
+
+[project.optional-dependencies]
+# 開発・CI 用ツール。`uv sync --frozen --extra dev` で導入する。
+dev = [
+  "ruff>=0.6,<1.0",
+]
+
+[dependency-groups]
+dev = [
+  "ruff>=0.6,<1.0",
+]
+
+# =============================================================================
+# サプライチェーン対策設定（uv）
+# =============================================================================
+# 各設定の意図:
+#
+#   no-build = true  ＋  [tool.uv.pip] only-binary = [":all:"]
+#     すべての依存をビルド済み Wheel からのみ導入する。sdist（ソース配布）は
+#     インストール時に setup.py / build backend を実行するため任意コード実行の
+#     経路になりうる。Wheel に限定することでこの経路を塞ぐ。
+#     - no-build は `uv sync` / `uv lock` に効く（uv のプロジェクト API）。
+#     - [tool.uv.pip] only-binary は `uv pip install` に効く（pip 互換 API）。
+#     両方を指定して、どちらの入口から入れてもソースビルドが起きないようにする。
+#
+#   exclude-newer
+#     この日時より後に公開されたパッケージを解決対象から除外する。
+#     公開直後の悪意あるバージョン（typosquatting / アカウント乗っ取りによる
+#     不正リリース）が混入するリスクを、発見・報告される猶予期間だけ回避する。
+#     運用では「現在日時 - 3日」を目安に定期更新すること。
+#     ※ uv は固定日時のみ受け付けるため、相対指定（"3 days"）は
+#       .github/workflows/update.yml 側で UV_EXCLUDE_NEWER に動的計算して渡している。
+#
+#   index-strategy = "first-index"
+#     最初に見つかったインデックスのパッケージのみを使用する。複数インデックスを
+#     横断探索すると、社内名と同名のパッケージを公開 PyPI に置く
+#     「dependency confusion」攻撃を許してしまうため。
+#
+#   require-hashes は uv.lock がハッシュを保持するため別途指定不要。
+#   `uv sync --frozen` がロックファイルのハッシュと照合して導入する。
+# =============================================================================
+[tool.uv]
+no-build = true
+exclude-newer = "2026-09-18T00:00:00Z"
+index-strategy = "first-index"
+
+# 解決結果を環境に依存させないための固定。
+# CI（Linux）とローカル（Windows/macOS）で同じロックファイルを共有できる。
+environments = [
+  "sys_platform == 'linux'",
+  "sys_platform == 'darwin'",
+  "sys_platform == 'win32'",
+]
+
+# `uv pip install` 経由（pip 互換 API）で入れた場合にも
+# ビルド済み Wheel 以外を拒否する。
+[tool.uv.pip]
+only-binary = [":all:"]
+require-hashes = false  # uv.lock がハッシュを保持するため sync 経路では不要
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = [
+  "E",    # pycodestyle
+  "F",    # pyflakes
+  "I",    # isort
+  "N",    # pep8-naming
+  "UP",   # pyupgrade
+  "B",    # flake8-bugbear
+  "S",    # flake8-bandit（セキュリティ）
+  "D",    # pydocstyle（すべての関数に docstring を強制）
+  "ANN",  # flake8-annotations（型注釈を強制）
+  "PL",   # pylint
+  "RUF",  # ruff 固有
+]
+ignore = [
+  "D203",   # D211 と競合
+  "D213",   # D212 と競合
+  "D415",   # 日本語の句点「。」を終端記号として認識しないため（誤検知）
+  "ANN401", # Any の使用を許容（JSON 由来の動的データを扱うため）
+  "S311",   # MockProvider で random を使う（暗号用途ではない）
+  "RUF001", # 日本語（全角括弧・句読点）を含む文字列を許容
+  "RUF002", # 同上（docstring）
+  "RUF003", # 同上（コメント）
+  "PLC0415",# 遅延 import を許容（任意依存を既定経路から切り離すため）
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.format]
+quote-style = "double"

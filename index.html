@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<!--
+  index.html — AI × マーケット ダッシュボード
+
+  【このファイルの責務】
+    静的な「骨格」だけを持つ。表示される文字列・カード・タブはすべて
+    js/ 配下のモジュールが locales/ と config/ と data/ から動的に生成する。
+    → 文言を変えたい場合は locales/*.json を、
+      カテゴリを増やしたい場合は config/categories.json を編集すること。
+      このファイルの編集が必要になるのは、レイアウト構造そのものを変える時だけ。
+
+  【要素 ID の役割】（js/app.js の cacheElements() と 1:1 対応）
+    #app-title / #app-subtitle   … サイト名・サブタイトル
+    #language-switcher           … 言語切替ボタン群（動的生成）
+    #category-tabs               … カテゴリ絞り込みタブ（動的生成）
+    #dashboard                   … カード本体（動的生成）
+    #status-area                 … 読み込み中・エラー表示
+    #header-slots / #aside-slots / #footer-slots … アフィリエイト枠
+    #donation-area               … 投げ銭ボタン
+-->
+<html lang="ja" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="AIニュース・注目銘柄の株価/IR・マクロニュースを一目で把握できるダッシュボード" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+    <!--
+      Content Security Policy（サプライチェーン対策の一環）
+      許可する外部オリジンを明示的に列挙し、意図しないスクリプト読み込みを遮断する。
+
+      ・script-src: 自オリジンと Tailwind CDN のみ。
+        - 'unsafe-eval'   … Tailwind Play CDN の JIT コンパイラが必要とする。
+        - 'unsafe-inline' … 下の tailwind.config を設定するインラインスクリプトに必要。
+        ⚠️ この 2 つは CSP の防御力を確実に下げる。README.md の
+           「Tailwind をローカルビルドに切り替える」手順を実施すれば、
+           両方とも削除でき、script-src を 'self' のみにできる（推奨構成）。
+      ・connect-src: 'self' のみ（データは同一オリジンの data/*.json から取得）。
+        外部 API を直接叩く実装に変更する場合は、そのオリジンをここに追加すること。
+      ・img-src: アフィリエイトバナーを想定し https: を許可。
+      ※ ASP タグを config/monetization.json の html に貼る場合、その配信元を
+        script-src / frame-src に追加する必要がある。
+    -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="
+        default-src 'self';
+        script-src 'self' https://cdn.tailwindcss.com 'unsafe-eval' 'unsafe-inline';
+        style-src 'self' 'unsafe-inline';
+        img-src 'self' https: data:;
+        font-src 'self' data:;
+        connect-src 'self';
+        frame-src https:;
+        base-uri 'none';
+        form-action 'none';
+        object-src 'none';
+      "
+    />
+
+    <title>AI × マーケット ダッシュボード</title>
+
+    <!--
+      Tailwind CSS（Play CDN）
+      ⚠️ 本番運用でサプライチェーンを厳格に固めたい場合は、CDN 読み込みをやめて
+         `npm ci` でビルドしたローカルの CSS に差し替えること（README.md 参照）。
+         その場合この script タグを <link rel="stylesheet" href="assets/tailwind.css"> に置換する。
+    -->
+    <!--
+      ※ crossorigin 属性は付けないこと。Tailwind Play CDN は
+         Access-Control-Allow-Origin を返さないため、crossorigin を付けると
+         CORS エラーでスクリプト自体が読み込まれず、スタイルが一切適用されない。
+    -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      /**
+       * Tailwind の設定。ダークテーマ固定＋カード用の薄い影を定義する。
+       * @type {object}
+       */
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: [
+                'system-ui',
+                '-apple-system',
+                'Segoe UI',
+                'Hiragino Sans',
+                'Noto Sans JP',
+                'Apple SD Gothic Neo',
+                'Noto Sans KR',
+                'sans-serif',
+              ],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      :root {
+        color-scheme: dark;
+        padding-top: env(safe-area-inset-top, 0px);
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+      }
+      body {
+        margin: 0;
+      }
+      /* <details> のデフォルトマーカーを全ブラウザで抑止する */
+      summary::-webkit-details-marker {
+        display: none;
+      }
+      summary {
+        list-style: none;
+      }
+      /* JS 無効時でもアコーディオンは <details> のネイティブ挙動で開閉できる */
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="bg-slate-950 text-slate-200 antialiased">
+    <!-- キーボード利用者向けのスキップリンク -->
+    <a
+      id="skip-link"
+      href="#dashboard"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-50 focus:rounded-md focus:bg-slate-100 focus:px-3 focus:py-2 focus:text-sm focus:font-semibold focus:text-slate-900"
+      >本文へスキップ</a
+    >
+
+    <!-- ===================== ヘッダー ===================== -->
+    <header class="sticky top-0 z-40 border-b border-slate-800/80 bg-slate-950/85 backdrop-blur" style="top: env(safe-area-inset-top, 0px)">
+      <div class="mx-auto flex max-w-7xl flex-wrap items-center gap-x-4 gap-y-2 px-4 py-3 sm:px-6">
+        <div class="min-w-0 flex-1">
+          <h1 id="app-title" class="truncate text-base font-bold tracking-tight text-slate-50 sm:text-lg">
+            AI × マーケット ダッシュボード
+          </h1>
+          <p id="app-subtitle" class="truncate text-xs text-slate-400">読み込み中…</p>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <!-- 最終更新時刻 -->
+          <div class="hidden items-baseline gap-1.5 text-xs text-slate-500 sm:flex">
+            <span id="last-updated-label">最終更新:</span>
+            <time id="last-updated" class="tabular-nums text-slate-400"></time>
+          </div>
+
+          <!-- 再読み込みボタン -->
+          <button
+            id="refresh-button"
+            type="button"
+            class="rounded-md p-1.5 text-slate-400 transition hover:bg-slate-800 hover:text-slate-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-400"
+            aria-label="再読み込み"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" class="h-4 w-4" aria-hidden="true">
+              <path d="M3 12a9 9 0 0115.5-6.2M21 12a9 9 0 01-15.5 6.2" />
+              <path d="M18 3v4h-4M6 21v-4h4" />
+            </svg>
+          </button>
+
+          <!-- 言語切り替え（js/render.js の renderLanguageSwitcher が中身を生成） -->
+          <div class="flex items-center gap-1.5">
+            <span id="language-label" class="sr-only">言語</span>
+            <div
+              id="language-switcher"
+              class="flex items-center gap-0.5 rounded-lg border border-slate-800 bg-slate-900/60 p-0.5"
+              role="group"
+              aria-labelledby="language-label"
+            ></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- カテゴリ絞り込みタブ（動的生成 / 横スクロール可） -->
+      <nav class="mx-auto max-w-7xl px-4 pb-3 sm:px-6">
+        <div
+          id="category-tabs"
+          class="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          role="tablist"
+          aria-label="カテゴリ絞り込み"
+        ></div>
+      </nav>
+    </header>
+
+    <!-- ヘッダー下アフィリエイト枠（config/monetization.json の placement: "header"） -->
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
+      <div id="header-slots" class="mt-3 empty:hidden"></div>
+    </div>
+
+    <!-- ===================== メイン ===================== -->
+    <div class="mx-auto max-w-7xl gap-6 px-4 py-5 sm:px-6 lg:flex lg:items-start">
+      <main class="min-w-0 flex-1 space-y-6">
+        <!-- ステータス表示（読み込み中 / エラー） -->
+        <div id="status-area" hidden></div>
+
+        <!-- データに関する注意書き（data/dashboard.json の notice） -->
+        <p
+          id="data-notice"
+          class="rounded-lg border border-slate-800/80 bg-slate-900/40 px-3 py-2 text-xs text-slate-500"
+          hidden
+        ></p>
+
+        <!-- カード本体（js/render.js の renderDashboard が生成） -->
+        <div id="dashboard" class="space-y-8"></div>
+      </main>
+
+      <!-- ===================== サイドバー ===================== -->
+      <aside class="mt-8 w-full space-y-4 lg:mt-0 lg:w-72 lg:shrink-0">
+        <!-- 投げ銭（Buy Me a Coffee 等） -->
+        <section class="rounded-xl border border-slate-800 bg-slate-900/60 p-4">
+          <h2 id="support-heading" class="text-sm font-semibold text-slate-100">このサイトを応援する</h2>
+          <p id="support-description" class="mt-1 text-xs leading-relaxed text-slate-400"></p>
+          <div id="donation-area" class="mt-3"></div>
+        </section>
+
+        <!-- サイドバー アフィリエイト枠（placement: "aside"） -->
+        <div id="aside-slots" class="space-y-3 empty:hidden"></div>
+      </aside>
+    </div>
+
+    <!-- ===================== フッター ===================== -->
+    <footer class="mt-8 border-t border-slate-800/80 bg-slate-950">
+      <div class="mx-auto max-w-7xl space-y-4 px-4 py-6 sm:px-6">
+        <!-- フッター アフィリエイト枠（placement: "footer"） -->
+        <div id="footer-slots" class="empty:hidden"></div>
+
+        <!-- データ出典 -->
+        <div id="data-sources"></div>
+
+        <!-- 免責事項 -->
+        <p id="disclaimer" class="text-xs leading-relaxed text-slate-500"></p>
+
+        <p id="copyright" class="text-xs text-slate-600"></p>
+      </div>
+    </footer>
+
+    <!--
+      アプリ本体。ES Modules のため自動的に defer 相当で実行される。
+      モジュールの依存関係: app.js → { config.js, i18n.js, render.js }
+                            render.js → { dom.js, icons.js, i18n.js }
+                            i18n.js  → { config.js }
+    -->
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>
