@@ -395,7 +395,7 @@
     },
     {
       "id": "eq-crm",
-      "categoryId": "equity-japan",
+      "categoryId": "equity-saas",
       "order": 10,
       "sentiment": "neutral",
       "impact": "medium",
@@ -495,7 +495,7 @@
     },
     {
       "id": "eq-4478",
-      "categoryId": "equity-saas",
+      "categoryId": "equity-japan",
       "order": 20,
       "sentiment": "positive",
       "impact": "medium",
