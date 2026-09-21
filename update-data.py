@@ -75,6 +75,15 @@ REQUIRED_LOCALES: tuple[str, ...] = ("ja", "en", "ko")
 #: 日本標準時（GitHub Actions は UTC で動くため明示的に指定する）
 JST = dt.timezone(dt.timedelta(hours=9), "JST")
 
+#: 前日比を求めるために必要な最少観測件数
+MIN_OBSERVATIONS = 2
+
+#: SEC のティッカー一覧におけるティッカー列の位置
+SEC_TICKER_COLUMN = 2
+
+#: SEC から各企業について表示する提出書類の上限
+MAX_SEC_FILINGS = 3
+
 logger = logging.getLogger("update-data")
 
 
@@ -249,7 +258,7 @@ class JsonHttpClient:
             RuntimeError: HTTP または JSON 取得に失敗した場合。
         """
         target = f"{url}?{urlencode(query)}" if query else url
-        request = Request(
+        request = Request(  # noqa: S310 - 固定の HTTPS API エンドポイントのみを渡す
             target,
             headers={"Accept": "application/json", "User-Agent": self._user_agent},
         )
@@ -299,7 +308,7 @@ class AlphaVantageProvider:
                 if symbol == "USD/JPY":
                     response = self._get("FX_DAILY", from_symbol="USD", to_symbol="JPY")
                     observations = list(response["Time Series FX (Daily)"].values())
-                    if len(observations) < 2:
+                    if len(observations) < MIN_OBSERVATIONS:
                         raise RuntimeError(
                             "Alpha Vantage returned fewer than two USD/JPY observations"
                         )
@@ -364,7 +373,7 @@ def fetch_fred_updates() -> dict[str, QuoteUpdate]:
     observations = [
         item for item in response.get("observations", []) if item.get("value") not in (None, ".")
     ]
-    if len(observations) < 2:
+    if len(observations) < MIN_OBSERVATIONS:
         raise RuntimeError("FRED returned fewer than two usable DGS10 observations")
     latest, previous = observations[:2]
     observed_at = dt.datetime.combine(
@@ -395,9 +404,9 @@ def refresh_sec_filings(items: list[dict[str, Any]]) -> int:
         "data", []
     )
     ticker_to_cik = {
-        str(row[2]).upper(): int(row[0])
+        str(row[SEC_TICKER_COLUMN]).upper(): int(row[0])
         for row in ticker_rows
-        if isinstance(row, list) and len(row) >= 3 and str(row[0]).isdigit()
+        if isinstance(row, list) and len(row) > SEC_TICKER_COLUMN and str(row[0]).isdigit()
     }
     supported_forms = {"10-K", "10-Q", "8-K", "20-F", "6-K"}
     updated = 0
@@ -429,7 +438,7 @@ def refresh_sec_filings(items: list[dict[str, Any]]) -> int:
                         "title": {locale: title for locale in REQUIRED_LOCALES},
                     }
                 )
-                if len(documents) == 3:
+                if len(documents) == MAX_SEC_FILINGS:
                     break
             if documents:
                 item["irDocuments"] = documents
@@ -636,7 +645,10 @@ def build_payload(existing: dict[str, Any], provider: Provider) -> tuple[dict[st
                 "Market data is refreshed daily. Items that fail to update retain their "
                 "last verified value."
             ),
-            "ko": "시장 데이터는 매일 갱신됩니다. 가져오기에 실패한 항목은 마지막 정상 값을 유지합니다.",
+            "ko": (
+                "시장 데이터는 매일 갱신됩니다. 가져오기에 실패한 항목은 마지막 정상 값을 "
+                "유지합니다."
+            ),
         }
     payload["items"] = items
     return payload, updated
