@@ -24,7 +24,8 @@ ai-market-dashboard/
 ├── config/                     # 「何を・どう表示するか」の設定（構造）
 │   ├── site.json               #   サイト全体設定（言語一覧・各ファイルのパス）
 │   ├── categories.json         #   カテゴリ定義（タブ・セクションの元）
-│   └── monetization.json       #   アフィリエイト枠・投げ銭ボタンの設定
+│   ├── monetization.json       #   アフィリエイト枠・投げ銭ボタンの設定
+│   └── equity-universe.json    #   テーマ別の候補銘柄母集団と選定数
 │
 ├── locales/                    # 「UI の固定文字列」の辞書（文言）
 │   ├── ja.json
@@ -98,12 +99,13 @@ ai-market-dashboard/
 ### 2.3 データ更新の流れ（CI）
 
 ```
-GitHub Actions (毎日 22:00 UTC = 翌 07:00 JST)
+GitHub Actions (平日 00:30 UTC = 09:30 JST)
    │
    ├─ uv sync --frozen           … ロック固定・Wheel のみ・3日タイムラグ保護
    ├─ ruff check                 … Lint
    ├─ update-data.py --check     … 既存データの検証
-   ├─ update-data.py             … Provider が最新値を取得 → data/dashboard.json 更新
+    ├─ update-data.py             … 候補全社の最新値を取得 → 前日比上位5社を selected に設定
+    │     └─ 選定対象外の候補も次回選定用に保持
    │     └─ 検証に失敗したら書き込まない（壊れたデータを公開しない）
    ├─ git commit & push          … 差分があるときだけ
    └─ GitHub Pages へデプロイ

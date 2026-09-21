@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "selectionCount": 5,
+  "categories": {
+    "equity-saas": [
+      { "id": "eq-crm", "ticker": "CRM", "exchange": "NYSE", "currency": "USD", "title": { "ja": "Salesforce", "en": "Salesforce", "ko": "Salesforce" }, "seedPrice": 237.92 },
+      { "id": "eq-now", "ticker": "NOW", "exchange": "NYSE", "currency": "USD", "title": { "ja": "ServiceNow", "en": "ServiceNow", "ko": "ServiceNow" }, "seedPrice": 135.47 },
+      { "id": "eq-pltr", "ticker": "PLTR", "exchange": "NASDAQ", "currency": "USD", "title": { "ja": "Palantir", "en": "Palantir", "ko": "Palantir" }, "seedPrice": 177.64 },
+      { "id": "eq-snow", "ticker": "SNOW", "exchange": "NYSE", "currency": "USD", "title": { "ja": "Snowflake", "en": "Snowflake", "ko": "Snowflake" }, "seedPrice": 210.00 },
+      { "id": "eq-ddog", "ticker": "DDOG", "exchange": "NASDAQ", "currency": "USD", "title": { "ja": "Datadog", "en": "Datadog", "ko": "Datadog" }, "seedPrice": 125.00 }
+    ],
+    "equity-semiconductor": [
+      { "id": "eq-nvda", "ticker": "NVDA", "exchange": "NASDAQ", "currency": "USD", "title": { "ja": "NVIDIA", "en": "NVIDIA", "ko": "NVIDIA" }, "seedPrice": 222.27 },
+      { "id": "eq-tsmc", "ticker": "TSM", "exchange": "NYSE", "currency": "USD", "title": { "ja": "TSMC", "en": "TSMC", "ko": "TSMC" }, "seedPrice": 434.67 },
+      { "id": "eq-amd", "ticker": "AMD", "exchange": "NASDAQ", "currency": "USD", "title": { "ja": "AMD", "en": "AMD", "ko": "AMD" }, "seedPrice": 559.82 },
+      { "id": "eq-avgo", "ticker": "AVGO", "exchange": "NASDAQ", "currency": "USD", "title": { "ja": "Broadcom", "en": "Broadcom", "ko": "Broadcom" }, "seedPrice": 350.00 },
+      { "id": "eq-mu", "ticker": "MU", "exchange": "NASDAQ", "currency": "USD", "title": { "ja": "Micron Technology", "en": "Micron Technology", "ko": "Micron Technology" }, "seedPrice": 150.00 }
+    ],
+    "equity-robotics": [
+      { "id": "eq-sym", "ticker": "SYM", "exchange": "NASDAQ", "currency": "USD", "title": { "ja": "Symbotic", "en": "Symbotic", "ko": "Symbotic" }, "seedPrice": 41.89 },
+      { "id": "eq-ter", "ticker": "TER", "exchange": "NASDAQ", "currency": "USD", "title": { "ja": "Teradyne", "en": "Teradyne", "ko": "Teradyne" }, "seedPrice": 371.47 },
+      { "id": "eq-rok", "ticker": "ROK", "exchange": "NYSE", "currency": "USD", "title": { "ja": "Rockwell Automation", "en": "Rockwell Automation", "ko": "Rockwell Automation" }, "seedPrice": 415.62 },
+      { "id": "eq-isrg", "ticker": "ISRG", "exchange": "NASDAQ", "currency": "USD", "title": { "ja": "Intuitive Surgical", "en": "Intuitive Surgical", "ko": "Intuitive Surgical" }, "seedPrice": 500.00 },
+      { "id": "eq-path", "ticker": "PATH", "exchange": "NYSE", "currency": "USD", "title": { "ja": "UiPath", "en": "UiPath", "ko": "UiPath" }, "seedPrice": 15.00 }
+    ],
+    "equity-turnaround": [
+      { "id": "eq-intc", "ticker": "INTC", "exchange": "NASDAQ", "currency": "USD", "title": { "ja": "Intel", "en": "Intel", "ko": "Intel" }, "seedPrice": 108.60 },
+      { "id": "eq-pypl", "ticker": "PYPL", "exchange": "NASDAQ", "currency": "USD", "title": { "ja": "PayPal", "en": "PayPal", "ko": "PayPal" }, "seedPrice": 52.41 },
+      { "id": "eq-wbd", "ticker": "WBD", "exchange": "NASDAQ", "currency": "USD", "title": { "ja": "Warner Bros. Discovery", "en": "Warner Bros. Discovery", "ko": "Warner Bros. Discovery" }, "seedPrice": 27.80 },
+      { "id": "eq-dis", "ticker": "DIS", "exchange": "NYSE", "currency": "USD", "title": { "ja": "Walt Disney", "en": "Walt Disney", "ko": "Walt Disney" }, "seedPrice": 110.00 },
+      { "id": "eq-ba", "ticker": "BA", "exchange": "NYSE", "currency": "USD", "title": { "ja": "Boeing", "en": "Boeing", "ko": "Boeing" }, "seedPrice": 190.00 }
+    ],
+    "equity-quantum": [
+      { "id": "eq-ionq", "ticker": "IONQ", "exchange": "NYSE", "currency": "USD", "title": { "ja": "IonQ", "en": "IonQ", "ko": "IonQ" }, "seedPrice": 39.13 },
+      { "id": "eq-rgti", "ticker": "RGTI", "exchange": "NASDAQ", "currency": "USD", "title": { "ja": "Rigetti Computing", "en": "Rigetti Computing", "ko": "Rigetti Computing" }, "seedPrice": 15.76 },
+      { "id": "eq-qbts", "ticker": "QBTS", "exchange": "NYSE", "currency": "USD", "title": { "ja": "D-Wave Quantum", "en": "D-Wave Quantum", "ko": "D-Wave Quantum" }, "seedPrice": 17.11 },
+      { "id": "eq-qubt", "ticker": "QUBT", "exchange": "NASDAQ", "currency": "USD", "title": { "ja": "Quantum Computing", "en": "Quantum Computing", "ko": "Quantum Computing" }, "seedPrice": 10.00 },
+      { "id": "eq-arqq", "ticker": "ARQQ", "exchange": "NASDAQ", "currency": "USD", "title": { "ja": "Arqit Quantum", "en": "Arqit Quantum", "ko": "Arqit Quantum" }, "seedPrice": 8.00 }
+    ]
+  }
+}
