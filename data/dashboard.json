@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-21T15:23:04+09:00",
+  "generatedAt": "2026-09-21T16:00:03+09:00",
   "generator": "update-data.py (mock provider)",
   "notice": {
     "ja": "初期データはサンプルです。update-data.py で実データに置き換えられます。",
@@ -213,12 +213,12 @@
         "ticker": "NVDA",
         "exchange": "NASDAQ",
         "currency": "USD",
-        "price": 171.908,
-        "previousClose": 176.4973,
-        "change": -4.5893,
-        "changePercent": -2.6,
+        "price": 172.7653,
+        "previousClose": 171.908,
+        "change": 0.8573,
+        "changePercent": 0.5,
         "marketCap": "4.45T",
-        "asOf": "2026-09-21T15:23:04.399171+09:00"
+        "asOf": "2026-09-21T16:00:03.746220+09:00"
       },
       "summary": {
         "ja": [
@@ -295,12 +295,12 @@
         "ticker": "TSM",
         "exchange": "NYSE",
         "currency": "USD",
-        "price": 264.0358,
-        "previousClose": 256.9972,
-        "change": 7.0386,
-        "changePercent": 2.74,
+        "price": 268.5823,
+        "previousClose": 264.0358,
+        "change": 4.5465,
+        "changePercent": 1.72,
         "marketCap": "1.39T",
-        "asOf": "2026-09-21T15:23:04.399171+09:00"
+        "asOf": "2026-09-21T16:00:03.746220+09:00"
       },
       "summary": {
         "ja": [
@@ -377,12 +377,12 @@
         "ticker": "CRM",
         "exchange": "NYSE",
         "currency": "USD",
-        "price": 249.0131,
-        "previousClose": 251.2161,
-        "change": -2.203,
-        "changePercent": -0.88,
+        "price": 252.7262,
+        "previousClose": 249.0131,
+        "change": 3.7131,
+        "changePercent": 1.49,
         "marketCap": "231B",
-        "asOf": "2026-09-21T15:23:04.399171+09:00"
+        "asOf": "2026-09-21T16:00:03.746220+09:00"
       },
       "summary": {
         "ja": [
@@ -459,12 +459,12 @@
         "ticker": "4478.T",
         "exchange": "TSE",
         "currency": "JPY",
-        "price": 2800.91,
-        "previousClose": 2741.8026,
-        "change": 59.1074,
-        "changePercent": 2.16,
+        "price": 2757.6377,
+        "previousClose": 2800.91,
+        "change": -43.2723,
+        "changePercent": -1.54,
         "marketCap": "1,720億円",
-        "asOf": "2026-09-21T15:23:04.399171+09:00"
+        "asOf": "2026-09-21T16:00:03.746220+09:00"
       },
       "summary": {
         "ja": [
@@ -541,12 +541,12 @@
         "ticker": "6506.T",
         "exchange": "TSE",
         "currency": "JPY",
-        "price": 4407.0483,
-        "previousClose": 4367.3829,
-        "change": 39.6654,
-        "changePercent": 0.91,
+        "price": 4439.0168,
+        "previousClose": 4407.0483,
+        "change": 31.9685,
+        "changePercent": 0.73,
         "marketCap": "1.14兆円",
-        "asOf": "2026-09-21T15:23:04.399171+09:00"
+        "asOf": "2026-09-21T16:00:03.746220+09:00"
       },
       "summary": {
         "ja": [
@@ -623,12 +623,12 @@
         "ticker": "INTC",
         "exchange": "NASDAQ",
         "currency": "USD",
-        "price": 37.2138,
-        "previousClose": 37.1854,
-        "change": 0.0284,
-        "changePercent": 0.08,
+        "price": 37.2623,
+        "previousClose": 37.2138,
+        "change": 0.0485,
+        "changePercent": 0.13,
         "marketCap": "168B",
-        "asOf": "2026-09-21T15:23:04.399171+09:00"
+        "asOf": "2026-09-21T16:00:03.746220+09:00"
       },
       "summary": {
         "ja": [
@@ -704,12 +704,12 @@
       },
       "metric": {
         "symbol": "USD/JPY",
-        "value": 147.0223,
-        "previousClose": 149.317,
-        "change": -2.2947,
-        "changePercent": -1.54,
+        "value": 144.0681,
+        "previousClose": 147.0223,
+        "change": -2.9542,
+        "changePercent": -2.01,
         "unit": "JPY",
-        "asOf": "2026-09-21T15:23:04.399171+09:00"
+        "asOf": "2026-09-21T16:00:03.746220+09:00"
       },
       "summary": {
         "ja": [
@@ -836,12 +836,12 @@
       },
       "metric": {
         "symbol": "US10Y",
-        "value": 3.9898,
-        "previousClose": 3.9146,
-        "change": 0.0752,
-        "changePercent": 1.92,
+        "value": 3.9245,
+        "previousClose": 3.9898,
+        "change": -0.0653,
+        "changePercent": -1.64,
         "unit": "%",
-        "asOf": "2026-09-21T15:23:04.399171+09:00"
+        "asOf": "2026-09-21T16:00:03.746220+09:00"
       },
       "summary": {
         "ja": [
