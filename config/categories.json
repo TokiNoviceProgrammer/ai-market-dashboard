@@ -5,8 +5,27 @@
   "defaultCategoryId": "all",
   "categories": [
     {
-      "id": "ai-trends",
+      "id": "macro",
       "order": 10,
+      "enabled": true,
+      "icon": "globe",
+      "accent": "slate",
+      "cardType": "macro",
+      "label": {
+        "ja": "マクロ / 国際情勢",
+        "en": "Macro / Geopolitics",
+        "ko": "매크로 / 국제 정세"
+      },
+      "description": {
+        "ja": "為替・金利・政治発言・国際情勢",
+        "en": "FX, rates, political remarks and geopolitics",
+        "ko": "환율·금리·정치 발언·국제 정세"
+      },
+      "fields": ["metric", "summary", "highlights", "detail", "tags", "publishedAt", "source"]
+    },
+    {
+      "id": "ai-trends",
+      "order": 20,
       "enabled": true,
       "icon": "sparkles",
       "accent": "violet",
@@ -25,7 +44,7 @@
     },
     {
       "id": "equity-saas",
-      "order": 20,
+      "order": 30,
       "enabled": true,
       "icon": "cloud",
       "accent": "sky",
@@ -44,7 +63,7 @@
     },
     {
       "id": "equity-semiconductor",
-      "order": 30,
+      "order": 40,
       "enabled": true,
       "icon": "cpu",
       "accent": "amber",
@@ -63,7 +82,7 @@
     },
     {
       "id": "equity-robotics",
-      "order": 40,
+      "order": 50,
       "enabled": true,
       "icon": "robot",
       "accent": "emerald",
@@ -82,7 +101,7 @@
     },
     {
       "id": "equity-turnaround",
-      "order": 50,
+      "order": 60,
       "enabled": true,
       "icon": "trending-up",
       "accent": "rose",
@@ -100,23 +119,23 @@
       "fields": ["quote", "summary", "highlights", "detail", "irDocuments", "tags", "source"]
     },
     {
-      "id": "macro",
-      "order": 60,
+      "id": "equity-japan",
+      "order": 70,
       "enabled": true,
-      "icon": "globe",
-      "accent": "slate",
-      "cardType": "macro",
+      "icon": "building-2",
+      "accent": "sky",
+      "cardType": "equity",
       "label": {
-        "ja": "マクロ / 国際情勢",
-        "en": "Macro / Geopolitics",
-        "ko": "매크로 / 국제 정세"
+        "ja": "日本株（取得設定待ち）",
+        "en": "Japan Equities (data setup pending)",
+        "ko": "일본 주식 (데이터 설정 대기)"
       },
       "description": {
-        "ja": "為替・金利・政治発言・国際情勢",
-        "en": "FX, rates, political remarks and geopolitics",
-        "ko": "환율·금리·정치 발언·국제 정세"
+        "ja": "J-Quants APIキーの設定後、無料プランの12週間遅延株価を表示します。現在の値は更新対象外です。",
+        "en": "After a J-Quants API key is configured, this category will show prices delayed by 12 weeks on the free plan. Current values are not refreshed.",
+        "ko": "J-Quants API 키 설정 후 무료 플랜의 12주 지연 주가를 표시합니다. 현재 값은 갱신 대상이 아닙니다."
       },
-      "fields": ["metric", "summary", "highlights", "detail", "tags", "publishedAt", "source"]
+      "fields": ["quote", "summary", "highlights", "detail", "irDocuments", "tags", "source"]
     }
   ],
   "cardTypes": {
