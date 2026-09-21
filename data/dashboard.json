@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-21T18:02:23+09:00",
+  "generatedAt": "2026-09-21T18:11:35+09:00",
   "generator": "update-data.py (Alpha Vantage, FRED, SEC EDGAR)",
   "notice": {
     "ja": "市場データは日次更新です。取得に失敗した項目は前回の正常値を表示します。",
@@ -218,7 +218,7 @@
         "change": 2.93,
         "changePercent": 1.34,
         "marketCap": "4.45T",
-        "asOf": "2026-09-21T18:02:13.562526+09:00"
+        "asOf": "2026-09-21T18:11:12.101525+09:00"
       },
       "summary": {
         "ja": [
@@ -318,7 +318,7 @@
         "change": 4.41,
         "changePercent": 1.02,
         "marketCap": "1.39T",
-        "asOf": "2026-09-21T18:02:14.758766+09:00"
+        "asOf": "2026-09-21T18:11:13.156744+09:00"
       },
       "summary": {
         "ja": [
@@ -418,7 +418,7 @@
         "change": -4.93,
         "changePercent": -2.03,
         "marketCap": "231B",
-        "asOf": "2026-09-21T18:02:15.878604+09:00"
+        "asOf": "2026-09-21T18:11:14.211484+09:00"
       },
       "summary": {
         "ja": [
@@ -682,7 +682,7 @@
         "change": -0.2,
         "changePercent": -0.18,
         "marketCap": "168B",
-        "asOf": "2026-09-21T18:02:19.319243+09:00"
+        "asOf": "2026-09-21T18:11:17.317308+09:00"
       },
       "summary": {
         "ja": [
@@ -758,81 +758,781 @@
       }
     },
     {
-      "id": "eq-now", "categoryId": "equity-saas", "order": 20, "sentiment": "neutral", "impact": "medium",
-      "tags": ["SaaS", "US"], "title": {"ja": "ServiceNow", "en": "ServiceNow", "ko": "ServiceNow"},
-      "quote": {"ticker": "NOW", "exchange": "NYSE", "currency": "USD", "price": 0, "previousClose": 0, "change": 0, "changePercent": 0, "asOf": ""},
-      "summary": {"ja": ["米国SaaS候補銘柄。日次価格を自動更新します。"], "en": ["US SaaS candidate; daily price is updated automatically."], "ko": ["미국 SaaS 후보 종목이며 일일 가격을 자동 갱신합니다."]},
-      "source": {"name": "Alpha Vantage", "url": "https://www.alphavantage.co/documentation/"}
+      "id": "eq-now",
+      "categoryId": "equity-saas",
+      "order": 20,
+      "sentiment": "neutral",
+      "impact": "medium",
+      "tags": [
+        "SaaS",
+        "US"
+      ],
+      "title": {
+        "ja": "ServiceNow",
+        "en": "ServiceNow",
+        "ko": "ServiceNow"
+      },
+      "quote": {
+        "ticker": "NOW",
+        "exchange": "NYSE",
+        "currency": "USD",
+        "price": 135.47,
+        "previousClose": 138.47,
+        "change": -3.0,
+        "changePercent": -2.17,
+        "asOf": "2026-09-21T18:11:18.370249+09:00"
+      },
+      "summary": {
+        "ja": [
+          "米国SaaS候補銘柄。日次価格を自動更新します。"
+        ],
+        "en": [
+          "US SaaS candidate; daily price is updated automatically."
+        ],
+        "ko": [
+          "미국 SaaS 후보 종목이며 일일 가격을 자동 갱신합니다."
+        ]
+      },
+      "source": {
+        "name": "Alpha Vantage",
+        "url": "https://www.alphavantage.co/documentation/"
+      },
+      "irDocuments": [
+        {
+          "date": "2026-07-23",
+          "url": "https://www.sec.gov/Archives/edgar/data/1373715/000137371526000076/now-20260630.htm",
+          "title": {
+            "ja": "SEC 10-Q filing (2026-07-23)",
+            "en": "SEC 10-Q filing (2026-07-23)",
+            "ko": "SEC 10-Q filing (2026-07-23)"
+          }
+        },
+        {
+          "date": "2026-07-22",
+          "url": "https://www.sec.gov/Archives/edgar/data/1373715/000137371526000072/now-20260722.htm",
+          "title": {
+            "ja": "SEC 8-K filing (2026-07-22)",
+            "en": "SEC 8-K filing (2026-07-22)",
+            "ko": "SEC 8-K filing (2026-07-22)"
+          }
+        },
+        {
+          "date": "2026-05-22",
+          "url": "https://www.sec.gov/Archives/edgar/data/1373715/000137371526000065/now-20260521.htm",
+          "title": {
+            "ja": "SEC 8-K filing (2026-05-22)",
+            "en": "SEC 8-K filing (2026-05-22)",
+            "ko": "SEC 8-K filing (2026-05-22)"
+          }
+        }
+      ]
     },
     {
-      "id": "eq-pltr", "categoryId": "equity-saas", "order": 30, "sentiment": "neutral", "impact": "medium",
-      "tags": ["AI", "SaaS", "US"], "title": {"ja": "Palantir", "en": "Palantir", "ko": "Palantir"},
-      "quote": {"ticker": "PLTR", "exchange": "NASDAQ", "currency": "USD", "price": 0, "previousClose": 0, "change": 0, "changePercent": 0, "asOf": ""},
-      "summary": {"ja": ["米国SaaS候補銘柄。日次価格を自動更新します。"], "en": ["US SaaS candidate; daily price is updated automatically."], "ko": ["미국 SaaS 후보 종목이며 일일 가격을 자동 갱신합니다."]},
-      "source": {"name": "Alpha Vantage", "url": "https://www.alphavantage.co/documentation/"}
+      "id": "eq-pltr",
+      "categoryId": "equity-saas",
+      "order": 30,
+      "sentiment": "neutral",
+      "impact": "medium",
+      "tags": [
+        "AI",
+        "SaaS",
+        "US"
+      ],
+      "title": {
+        "ja": "Palantir",
+        "en": "Palantir",
+        "ko": "Palantir"
+      },
+      "quote": {
+        "ticker": "PLTR",
+        "exchange": "NASDAQ",
+        "currency": "USD",
+        "price": 177.64,
+        "previousClose": 176.24,
+        "change": 1.4,
+        "changePercent": 0.79,
+        "asOf": "2026-09-21T18:11:19.416414+09:00"
+      },
+      "summary": {
+        "ja": [
+          "米国SaaS候補銘柄。日次価格を自動更新します。"
+        ],
+        "en": [
+          "US SaaS candidate; daily price is updated automatically."
+        ],
+        "ko": [
+          "미국 SaaS 후보 종목이며 일일 가격을 자동 갱신합니다."
+        ]
+      },
+      "source": {
+        "name": "Alpha Vantage",
+        "url": "https://www.alphavantage.co/documentation/"
+      },
+      "irDocuments": [
+        {
+          "date": "2026-08-04",
+          "url": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000041/pltr-20260630.htm",
+          "title": {
+            "ja": "SEC 10-Q filing (2026-08-04)",
+            "en": "SEC 10-Q filing (2026-08-04)",
+            "ko": "SEC 10-Q filing (2026-08-04)"
+          }
+        },
+        {
+          "date": "2026-08-03",
+          "url": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000039/pltr-20260803.htm",
+          "title": {
+            "ja": "SEC 8-K filing (2026-08-03)",
+            "en": "SEC 8-K filing (2026-08-03)",
+            "ko": "SEC 8-K filing (2026-08-03)"
+          }
+        },
+        {
+          "date": "2026-06-09",
+          "url": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000033/pltr-20260603.htm",
+          "title": {
+            "ja": "SEC 8-K filing (2026-06-09)",
+            "en": "SEC 8-K filing (2026-06-09)",
+            "ko": "SEC 8-K filing (2026-06-09)"
+          }
+        }
+      ]
     },
     {
-      "id": "eq-amd", "categoryId": "equity-semiconductor", "order": 30, "sentiment": "neutral", "impact": "medium",
-      "tags": ["Semiconductor", "AI", "US"], "title": {"ja": "AMD", "en": "AMD", "ko": "AMD"},
-      "quote": {"ticker": "AMD", "exchange": "NASDAQ", "currency": "USD", "price": 0, "previousClose": 0, "change": 0, "changePercent": 0, "asOf": ""},
-      "summary": {"ja": ["米国半導体候補銘柄。日次価格を自動更新します。"], "en": ["US semiconductor candidate; daily price is updated automatically."], "ko": ["미국 반도체 후보 종목이며 일일 가격을 자동 갱신합니다."]},
-      "source": {"name": "Alpha Vantage", "url": "https://www.alphavantage.co/documentation/"}
+      "id": "eq-amd",
+      "categoryId": "equity-semiconductor",
+      "order": 30,
+      "sentiment": "neutral",
+      "impact": "medium",
+      "tags": [
+        "Semiconductor",
+        "AI",
+        "US"
+      ],
+      "title": {
+        "ja": "AMD",
+        "en": "AMD",
+        "ko": "AMD"
+      },
+      "quote": {
+        "ticker": "AMD",
+        "exchange": "NASDAQ",
+        "currency": "USD",
+        "price": 559.82,
+        "previousClose": 545.09,
+        "change": 14.73,
+        "changePercent": 2.7,
+        "asOf": "2026-09-21T18:11:20.477976+09:00"
+      },
+      "summary": {
+        "ja": [
+          "米国半導体候補銘柄。日次価格を自動更新します。"
+        ],
+        "en": [
+          "US semiconductor candidate; daily price is updated automatically."
+        ],
+        "ko": [
+          "미국 반도체 후보 종목이며 일일 가격을 자동 갱신합니다."
+        ]
+      },
+      "source": {
+        "name": "Alpha Vantage",
+        "url": "https://www.alphavantage.co/documentation/"
+      },
+      "irDocuments": [
+        {
+          "date": "2026-08-19",
+          "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000163/amd-20260817.htm",
+          "title": {
+            "ja": "SEC 8-K filing (2026-08-19)",
+            "en": "SEC 8-K filing (2026-08-19)",
+            "ko": "SEC 8-K filing (2026-08-19)"
+          }
+        },
+        {
+          "date": "2026-08-17",
+          "url": "https://www.sec.gov/Archives/edgar/data/2488/000119312526354029/d142696d8k.htm",
+          "title": {
+            "ja": "SEC 8-K filing (2026-08-17)",
+            "en": "SEC 8-K filing (2026-08-17)",
+            "ko": "SEC 8-K filing (2026-08-17)"
+          }
+        },
+        {
+          "date": "2026-08-05",
+          "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000123/amd-20260627.htm",
+          "title": {
+            "ja": "SEC 10-Q filing (2026-08-05)",
+            "en": "SEC 10-Q filing (2026-08-05)",
+            "ko": "SEC 10-Q filing (2026-08-05)"
+          }
+        }
+      ]
     },
     {
-      "id": "eq-sym", "categoryId": "equity-robotics", "order": 10, "sentiment": "neutral", "impact": "medium",
-      "tags": ["Robotics", "AI", "US"], "title": {"ja": "Symbotic", "en": "Symbotic", "ko": "Symbotic"},
-      "quote": {"ticker": "SYM", "exchange": "NASDAQ", "currency": "USD", "price": 0, "previousClose": 0, "change": 0, "changePercent": 0, "asOf": ""},
-      "summary": {"ja": ["ロボット候補銘柄。日次価格を自動更新します。"], "en": ["Robotics candidate; daily price is updated automatically."], "ko": ["로보틱스 후보 종목이며 일일 가격을 자동 갱신합니다."]},
-      "source": {"name": "Alpha Vantage", "url": "https://www.alphavantage.co/documentation/"}
+      "id": "eq-sym",
+      "categoryId": "equity-robotics",
+      "order": 10,
+      "sentiment": "neutral",
+      "impact": "medium",
+      "tags": [
+        "Robotics",
+        "AI",
+        "US"
+      ],
+      "title": {
+        "ja": "Symbotic",
+        "en": "Symbotic",
+        "ko": "Symbotic"
+      },
+      "quote": {
+        "ticker": "SYM",
+        "exchange": "NASDAQ",
+        "currency": "USD",
+        "price": 41.89,
+        "previousClose": 44.61,
+        "change": -2.72,
+        "changePercent": -6.1,
+        "asOf": "2026-09-21T18:11:21.521032+09:00"
+      },
+      "summary": {
+        "ja": [
+          "ロボット候補銘柄。日次価格を自動更新します。"
+        ],
+        "en": [
+          "Robotics candidate; daily price is updated automatically."
+        ],
+        "ko": [
+          "로보틱스 후보 종목이며 일일 가격을 자동 갱신합니다."
+        ]
+      },
+      "source": {
+        "name": "Alpha Vantage",
+        "url": "https://www.alphavantage.co/documentation/"
+      },
+      "irDocuments": [
+        {
+          "date": "2026-08-05",
+          "url": "https://www.sec.gov/Archives/edgar/data/1837240/000183724026000043/sym-20260627.htm",
+          "title": {
+            "ja": "SEC 10-Q filing (2026-08-05)",
+            "en": "SEC 10-Q filing (2026-08-05)",
+            "ko": "SEC 10-Q filing (2026-08-05)"
+          }
+        },
+        {
+          "date": "2026-08-05",
+          "url": "https://www.sec.gov/Archives/edgar/data/1837240/000183724026000042/sym-20260803.htm",
+          "title": {
+            "ja": "SEC 8-K filing (2026-08-05)",
+            "en": "SEC 8-K filing (2026-08-05)",
+            "ko": "SEC 8-K filing (2026-08-05)"
+          }
+        },
+        {
+          "date": "2026-05-06",
+          "url": "https://www.sec.gov/Archives/edgar/data/1837240/000183724026000024/sym-20260328.htm",
+          "title": {
+            "ja": "SEC 10-Q filing (2026-05-06)",
+            "en": "SEC 10-Q filing (2026-05-06)",
+            "ko": "SEC 10-Q filing (2026-05-06)"
+          }
+        }
+      ]
     },
     {
-      "id": "eq-ter", "categoryId": "equity-robotics", "order": 20, "sentiment": "neutral", "impact": "medium",
-      "tags": ["Robotics", "Semiconductor", "US"], "title": {"ja": "Teradyne", "en": "Teradyne", "ko": "Teradyne"},
-      "quote": {"ticker": "TER", "exchange": "NASDAQ", "currency": "USD", "price": 0, "previousClose": 0, "change": 0, "changePercent": 0, "asOf": ""},
-      "summary": {"ja": ["ロボット候補銘柄。日次価格を自動更新します。"], "en": ["Robotics candidate; daily price is updated automatically."], "ko": ["로보틱스 후보 종목이며 일일 가격을 자동 갱신합니다."]},
-      "source": {"name": "Alpha Vantage", "url": "https://www.alphavantage.co/documentation/"}
+      "id": "eq-ter",
+      "categoryId": "equity-robotics",
+      "order": 20,
+      "sentiment": "neutral",
+      "impact": "medium",
+      "tags": [
+        "Robotics",
+        "Semiconductor",
+        "US"
+      ],
+      "title": {
+        "ja": "Teradyne",
+        "en": "Teradyne",
+        "ko": "Teradyne"
+      },
+      "quote": {
+        "ticker": "TER",
+        "exchange": "NASDAQ",
+        "currency": "USD",
+        "price": 371.47,
+        "previousClose": 353.13,
+        "change": 18.34,
+        "changePercent": 5.19,
+        "asOf": "2026-09-21T18:11:22.579734+09:00"
+      },
+      "summary": {
+        "ja": [
+          "ロボット候補銘柄。日次価格を自動更新します。"
+        ],
+        "en": [
+          "Robotics candidate; daily price is updated automatically."
+        ],
+        "ko": [
+          "로보틱스 후보 종목이며 일일 가격을 자동 갱신합니다."
+        ]
+      },
+      "source": {
+        "name": "Alpha Vantage",
+        "url": "https://www.alphavantage.co/documentation/"
+      },
+      "irDocuments": [
+        {
+          "date": "2026-08-10",
+          "url": "https://www.sec.gov/Archives/edgar/data/97210/000119312526342367/ter-20260807.htm",
+          "title": {
+            "ja": "SEC 8-K filing (2026-08-10)",
+            "en": "SEC 8-K filing (2026-08-10)",
+            "ko": "SEC 8-K filing (2026-08-10)"
+          }
+        },
+        {
+          "date": "2026-07-31",
+          "url": "https://www.sec.gov/Archives/edgar/data/97210/000119312526327715/ter-20260628.htm",
+          "title": {
+            "ja": "SEC 10-Q filing (2026-07-31)",
+            "en": "SEC 10-Q filing (2026-07-31)",
+            "ko": "SEC 10-Q filing (2026-07-31)"
+          }
+        },
+        {
+          "date": "2026-07-29",
+          "url": "https://www.sec.gov/Archives/edgar/data/97210/000119312526321933/ter-20260728.htm",
+          "title": {
+            "ja": "SEC 8-K filing (2026-07-29)",
+            "en": "SEC 8-K filing (2026-07-29)",
+            "ko": "SEC 8-K filing (2026-07-29)"
+          }
+        }
+      ]
     },
     {
-      "id": "eq-rok", "categoryId": "equity-robotics", "order": 30, "sentiment": "neutral", "impact": "medium",
-      "tags": ["Robotics", "Industrial", "US"], "title": {"ja": "Rockwell Automation", "en": "Rockwell Automation", "ko": "Rockwell Automation"},
-      "quote": {"ticker": "ROK", "exchange": "NYSE", "currency": "USD", "price": 0, "previousClose": 0, "change": 0, "changePercent": 0, "asOf": ""},
-      "summary": {"ja": ["ロボット候補銘柄。日次価格を自動更新します。"], "en": ["Robotics candidate; daily price is updated automatically."], "ko": ["로보틱스 후보 종목이며 일일 가격을 자동 갱신합니다."]},
-      "source": {"name": "Alpha Vantage", "url": "https://www.alphavantage.co/documentation/"}
+      "id": "eq-rok",
+      "categoryId": "equity-robotics",
+      "order": 30,
+      "sentiment": "neutral",
+      "impact": "medium",
+      "tags": [
+        "Robotics",
+        "Industrial",
+        "US"
+      ],
+      "title": {
+        "ja": "Rockwell Automation",
+        "en": "Rockwell Automation",
+        "ko": "Rockwell Automation"
+      },
+      "quote": {
+        "ticker": "ROK",
+        "exchange": "NYSE",
+        "currency": "USD",
+        "price": 415.62,
+        "previousClose": 410.05,
+        "change": 5.57,
+        "changePercent": 1.36,
+        "asOf": "2026-09-21T18:11:23.629293+09:00"
+      },
+      "summary": {
+        "ja": [
+          "ロボット候補銘柄。日次価格を自動更新します。"
+        ],
+        "en": [
+          "Robotics candidate; daily price is updated automatically."
+        ],
+        "ko": [
+          "로보틱스 후보 종목이며 일일 가격을 자동 갱신합니다."
+        ]
+      },
+      "source": {
+        "name": "Alpha Vantage",
+        "url": "https://www.alphavantage.co/documentation/"
+      },
+      "irDocuments": [
+        {
+          "date": "2026-08-04",
+          "url": "https://www.sec.gov/Archives/edgar/data/1024478/000102447826000030/rok-20260630.htm",
+          "title": {
+            "ja": "SEC 10-Q filing (2026-08-04)",
+            "en": "SEC 10-Q filing (2026-08-04)",
+            "ko": "SEC 10-Q filing (2026-08-04)"
+          }
+        },
+        {
+          "date": "2026-08-04",
+          "url": "https://www.sec.gov/Archives/edgar/data/1024478/000102447826000028/rok-20260804.htm",
+          "title": {
+            "ja": "SEC 8-K filing (2026-08-04)",
+            "en": "SEC 8-K filing (2026-08-04)",
+            "ko": "SEC 8-K filing (2026-08-04)"
+          }
+        },
+        {
+          "date": "2026-05-05",
+          "url": "https://www.sec.gov/Archives/edgar/data/1024478/000102447826000022/rok-20260331.htm",
+          "title": {
+            "ja": "SEC 10-Q filing (2026-05-05)",
+            "en": "SEC 10-Q filing (2026-05-05)",
+            "ko": "SEC 10-Q filing (2026-05-05)"
+          }
+        }
+      ]
     },
     {
-      "id": "eq-pypl", "categoryId": "equity-turnaround", "order": 20, "sentiment": "neutral", "impact": "medium",
-      "tags": ["Turnaround", "Fintech", "US"], "title": {"ja": "PayPal", "en": "PayPal", "ko": "PayPal"},
-      "quote": {"ticker": "PYPL", "exchange": "NASDAQ", "currency": "USD", "price": 0, "previousClose": 0, "change": 0, "changePercent": 0, "asOf": ""},
-      "summary": {"ja": ["反転候補銘柄。日次価格を自動更新します。"], "en": ["Turnaround candidate; daily price is updated automatically."], "ko": ["턴어라운드 후보 종목이며 일일 가격을 자동 갱신합니다."]},
-      "source": {"name": "Alpha Vantage", "url": "https://www.alphavantage.co/documentation/"}
+      "id": "eq-pypl",
+      "categoryId": "equity-turnaround",
+      "order": 20,
+      "sentiment": "neutral",
+      "impact": "medium",
+      "tags": [
+        "Turnaround",
+        "Fintech",
+        "US"
+      ],
+      "title": {
+        "ja": "PayPal",
+        "en": "PayPal",
+        "ko": "PayPal"
+      },
+      "quote": {
+        "ticker": "PYPL",
+        "exchange": "NASDAQ",
+        "currency": "USD",
+        "price": 52.41,
+        "previousClose": 52.94,
+        "change": -0.53,
+        "changePercent": -1.0,
+        "asOf": "2026-09-21T18:11:24.677153+09:00"
+      },
+      "summary": {
+        "ja": [
+          "反転候補銘柄。日次価格を自動更新します。"
+        ],
+        "en": [
+          "Turnaround candidate; daily price is updated automatically."
+        ],
+        "ko": [
+          "턴어라운드 후보 종목이며 일일 가격을 자동 갱신합니다."
+        ]
+      },
+      "source": {
+        "name": "Alpha Vantage",
+        "url": "https://www.alphavantage.co/documentation/"
+      },
+      "irDocuments": [
+        {
+          "date": "2026-07-28",
+          "url": "https://www.sec.gov/Archives/edgar/data/1633917/000163391726000082/pypl-20260630.htm",
+          "title": {
+            "ja": "SEC 10-Q filing (2026-07-28)",
+            "en": "SEC 10-Q filing (2026-07-28)",
+            "ko": "SEC 10-Q filing (2026-07-28)"
+          }
+        },
+        {
+          "date": "2026-07-28",
+          "url": "https://www.sec.gov/Archives/edgar/data/1633917/000163391726000080/pypl-20260728.htm",
+          "title": {
+            "ja": "SEC 8-K filing (2026-07-28)",
+            "en": "SEC 8-K filing (2026-07-28)",
+            "ko": "SEC 8-K filing (2026-07-28)"
+          }
+        },
+        {
+          "date": "2026-05-21",
+          "url": "https://www.sec.gov/Archives/edgar/data/1633917/000163391726000076/pypl-20260519.htm",
+          "title": {
+            "ja": "SEC 8-K filing (2026-05-21)",
+            "en": "SEC 8-K filing (2026-05-21)",
+            "ko": "SEC 8-K filing (2026-05-21)"
+          }
+        }
+      ]
     },
     {
-      "id": "eq-wbd", "categoryId": "equity-turnaround", "order": 30, "sentiment": "neutral", "impact": "medium",
-      "tags": ["Turnaround", "Media", "US"], "title": {"ja": "Warner Bros. Discovery", "en": "Warner Bros. Discovery", "ko": "Warner Bros. Discovery"},
-      "quote": {"ticker": "WBD", "exchange": "NASDAQ", "currency": "USD", "price": 0, "previousClose": 0, "change": 0, "changePercent": 0, "asOf": ""},
-      "summary": {"ja": ["反転候補銘柄。日次価格を自動更新します。"], "en": ["Turnaround candidate; daily price is updated automatically."], "ko": ["턴어라운드 후보 종목이며 일일 가격을 자동 갱신합니다."]},
-      "source": {"name": "Alpha Vantage", "url": "https://www.alphavantage.co/documentation/"}
+      "id": "eq-wbd",
+      "categoryId": "equity-turnaround",
+      "order": 30,
+      "sentiment": "neutral",
+      "impact": "medium",
+      "tags": [
+        "Turnaround",
+        "Media",
+        "US"
+      ],
+      "title": {
+        "ja": "Warner Bros. Discovery",
+        "en": "Warner Bros. Discovery",
+        "ko": "Warner Bros. Discovery"
+      },
+      "quote": {
+        "ticker": "WBD",
+        "exchange": "NASDAQ",
+        "currency": "USD",
+        "price": 27.8,
+        "previousClose": 28.24,
+        "change": -0.44,
+        "changePercent": -1.56,
+        "asOf": "2026-09-21T18:11:25.740286+09:00"
+      },
+      "summary": {
+        "ja": [
+          "反転候補銘柄。日次価格を自動更新します。"
+        ],
+        "en": [
+          "Turnaround candidate; daily price is updated automatically."
+        ],
+        "ko": [
+          "턴어라운드 후보 종목이며 일일 가격을 자동 갱신합니다."
+        ]
+      },
+      "source": {
+        "name": "Alpha Vantage",
+        "url": "https://www.alphavantage.co/documentation/"
+      },
+      "irDocuments": [
+        {
+          "date": "2026-08-06",
+          "url": "https://www.sec.gov/Archives/edgar/data/1437107/000143710726000075/wbd-20260630.htm",
+          "title": {
+            "ja": "SEC 10-Q filing (2026-08-06)",
+            "en": "SEC 10-Q filing (2026-08-06)",
+            "ko": "SEC 10-Q filing (2026-08-06)"
+          }
+        },
+        {
+          "date": "2026-08-06",
+          "url": "https://www.sec.gov/Archives/edgar/data/1437107/000143710726000072/disca-20260806.htm",
+          "title": {
+            "ja": "SEC 8-K filing (2026-08-06)",
+            "en": "SEC 8-K filing (2026-08-06)",
+            "ko": "SEC 8-K filing (2026-08-06)"
+          }
+        },
+        {
+          "date": "2026-06-12",
+          "url": "https://www.sec.gov/Archives/edgar/data/1437107/000119312526268519/d123211d8k.htm",
+          "title": {
+            "ja": "SEC 8-K filing (2026-06-12)",
+            "en": "SEC 8-K filing (2026-06-12)",
+            "ko": "SEC 8-K filing (2026-06-12)"
+          }
+        }
+      ]
     },
     {
-      "id": "eq-ionq", "categoryId": "equity-quantum", "order": 10, "sentiment": "neutral", "impact": "high",
-      "tags": ["Quantum", "US"], "title": {"ja": "IonQ", "en": "IonQ", "ko": "IonQ"},
-      "quote": {"ticker": "IONQ", "exchange": "NYSE", "currency": "USD", "price": 0, "previousClose": 0, "change": 0, "changePercent": 0, "asOf": ""},
-      "summary": {"ja": ["量子コンピューター候補銘柄。日次価格を自動更新します。"], "en": ["Quantum-computing candidate; daily price is updated automatically."], "ko": ["양자 컴퓨팅 후보 종목이며 일일 가격을 자동 갱신합니다."]},
-      "source": {"name": "Alpha Vantage", "url": "https://www.alphavantage.co/documentation/"}
+      "id": "eq-ionq",
+      "categoryId": "equity-quantum",
+      "order": 10,
+      "sentiment": "neutral",
+      "impact": "high",
+      "tags": [
+        "Quantum",
+        "US"
+      ],
+      "title": {
+        "ja": "IonQ",
+        "en": "IonQ",
+        "ko": "IonQ"
+      },
+      "quote": {
+        "ticker": "IONQ",
+        "exchange": "NYSE",
+        "currency": "USD",
+        "price": 39.13,
+        "previousClose": 40.34,
+        "change": -1.21,
+        "changePercent": -3.0,
+        "asOf": "2026-09-21T18:11:26.785256+09:00"
+      },
+      "summary": {
+        "ja": [
+          "量子コンピューター候補銘柄。日次価格を自動更新します。"
+        ],
+        "en": [
+          "Quantum-computing candidate; daily price is updated automatically."
+        ],
+        "ko": [
+          "양자 컴퓨팅 후보 종목이며 일일 가격을 자동 갱신합니다."
+        ]
+      },
+      "source": {
+        "name": "Alpha Vantage",
+        "url": "https://www.alphavantage.co/documentation/"
+      },
+      "irDocuments": [
+        {
+          "date": "2026-09-08",
+          "url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526384388/ionq-20260908.htm",
+          "title": {
+            "ja": "SEC 8-K filing (2026-09-08)",
+            "en": "SEC 8-K filing (2026-09-08)",
+            "ko": "SEC 8-K filing (2026-09-08)"
+          }
+        },
+        {
+          "date": "2026-08-28",
+          "url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526374694/ionq-20260824.htm",
+          "title": {
+            "ja": "SEC 8-K filing (2026-08-28)",
+            "en": "SEC 8-K filing (2026-08-28)",
+            "ko": "SEC 8-K filing (2026-08-28)"
+          }
+        },
+        {
+          "date": "2026-08-10",
+          "url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526341001/ionq-20260630.htm",
+          "title": {
+            "ja": "SEC 10-Q filing (2026-08-10)",
+            "en": "SEC 10-Q filing (2026-08-10)",
+            "ko": "SEC 10-Q filing (2026-08-10)"
+          }
+        }
+      ]
     },
     {
-      "id": "eq-rgti", "categoryId": "equity-quantum", "order": 20, "sentiment": "neutral", "impact": "high",
-      "tags": ["Quantum", "US"], "title": {"ja": "Rigetti Computing", "en": "Rigetti Computing", "ko": "Rigetti Computing"},
-      "quote": {"ticker": "RGTI", "exchange": "NASDAQ", "currency": "USD", "price": 0, "previousClose": 0, "change": 0, "changePercent": 0, "asOf": ""},
-      "summary": {"ja": ["量子コンピューター候補銘柄。日次価格を自動更新します。"], "en": ["Quantum-computing candidate; daily price is updated automatically."], "ko": ["양자 컴퓨팅 후보 종목이며 일일 가격을 자동 갱신합니다."]},
-      "source": {"name": "Alpha Vantage", "url": "https://www.alphavantage.co/documentation/"}
+      "id": "eq-rgti",
+      "categoryId": "equity-quantum",
+      "order": 20,
+      "sentiment": "neutral",
+      "impact": "high",
+      "tags": [
+        "Quantum",
+        "US"
+      ],
+      "title": {
+        "ja": "Rigetti Computing",
+        "en": "Rigetti Computing",
+        "ko": "Rigetti Computing"
+      },
+      "quote": {
+        "ticker": "RGTI",
+        "exchange": "NASDAQ",
+        "currency": "USD",
+        "price": 15.76,
+        "previousClose": 15.99,
+        "change": -0.23,
+        "changePercent": -1.44,
+        "asOf": "2026-09-21T18:11:27.831087+09:00"
+      },
+      "summary": {
+        "ja": [
+          "量子コンピューター候補銘柄。日次価格を自動更新します。"
+        ],
+        "en": [
+          "Quantum-computing candidate; daily price is updated automatically."
+        ],
+        "ko": [
+          "양자 컴퓨팅 후보 종목이며 일일 가격을 자동 갱신합니다."
+        ]
+      },
+      "source": {
+        "name": "Alpha Vantage",
+        "url": "https://www.alphavantage.co/documentation/"
+      },
+      "irDocuments": [
+        {
+          "date": "2026-09-08",
+          "url": "https://www.sec.gov/Archives/edgar/data/1838359/000110465926105662/tm2624940d1_8k.htm",
+          "title": {
+            "ja": "SEC 8-K filing (2026-09-08)",
+            "en": "SEC 8-K filing (2026-09-08)",
+            "ko": "SEC 8-K filing (2026-09-08)"
+          }
+        },
+        {
+          "date": "2026-08-20",
+          "url": "https://www.sec.gov/Archives/edgar/data/1838359/000110465926098999/tm2623611d2_8k.htm",
+          "title": {
+            "ja": "SEC 8-K filing (2026-08-20)",
+            "en": "SEC 8-K filing (2026-08-20)",
+            "ko": "SEC 8-K filing (2026-08-20)"
+          }
+        },
+        {
+          "date": "2026-08-20",
+          "url": "https://www.sec.gov/Archives/edgar/data/1838359/000110465926098877/tm2623611d1_8k.htm",
+          "title": {
+            "ja": "SEC 8-K filing (2026-08-20)",
+            "en": "SEC 8-K filing (2026-08-20)",
+            "ko": "SEC 8-K filing (2026-08-20)"
+          }
+        }
+      ]
     },
     {
-      "id": "eq-qbts", "categoryId": "equity-quantum", "order": 30, "sentiment": "neutral", "impact": "high",
-      "tags": ["Quantum", "US"], "title": {"ja": "D-Wave Quantum", "en": "D-Wave Quantum", "ko": "D-Wave Quantum"},
-      "quote": {"ticker": "QBTS", "exchange": "NYSE", "currency": "USD", "price": 0, "previousClose": 0, "change": 0, "changePercent": 0, "asOf": ""},
-      "summary": {"ja": ["量子コンピューター候補銘柄。日次価格を自動更新します。"], "en": ["Quantum-computing candidate; daily price is updated automatically."], "ko": ["양자 컴퓨팅 후보 종목이며 일일 가격을 자동 갱신합니다."]},
-      "source": {"name": "Alpha Vantage", "url": "https://www.alphavantage.co/documentation/"}
+      "id": "eq-qbts",
+      "categoryId": "equity-quantum",
+      "order": 30,
+      "sentiment": "neutral",
+      "impact": "high",
+      "tags": [
+        "Quantum",
+        "US"
+      ],
+      "title": {
+        "ja": "D-Wave Quantum",
+        "en": "D-Wave Quantum",
+        "ko": "D-Wave Quantum"
+      },
+      "quote": {
+        "ticker": "QBTS",
+        "exchange": "NYSE",
+        "currency": "USD",
+        "price": 17.11,
+        "previousClose": 17.69,
+        "change": -0.58,
+        "changePercent": -3.28,
+        "asOf": "2026-09-21T18:11:28.867713+09:00"
+      },
+      "summary": {
+        "ja": [
+          "量子コンピューター候補銘柄。日次価格を自動更新します。"
+        ],
+        "en": [
+          "Quantum-computing candidate; daily price is updated automatically."
+        ],
+        "ko": [
+          "양자 컴퓨팅 후보 종목이며 일일 가격을 자동 갱신합니다."
+        ]
+      },
+      "source": {
+        "name": "Alpha Vantage",
+        "url": "https://www.alphavantage.co/documentation/"
+      },
+      "irDocuments": [
+        {
+          "date": "2026-09-17",
+          "url": "https://www.sec.gov/Archives/edgar/data/1907982/000190798226000150/qbts-20260916.htm",
+          "title": {
+            "ja": "SEC 8-K filing (2026-09-17)",
+            "en": "SEC 8-K filing (2026-09-17)",
+            "ko": "SEC 8-K filing (2026-09-17)"
+          }
+        },
+        {
+          "date": "2026-09-15",
+          "url": "https://www.sec.gov/Archives/edgar/data/1907982/000190798226000148/qbts-20260915.htm",
+          "title": {
+            "ja": "SEC 8-K filing (2026-09-15)",
+            "en": "SEC 8-K filing (2026-09-15)",
+            "ko": "SEC 8-K filing (2026-09-15)"
+          }
+        },
+        {
+          "date": "2026-09-10",
+          "url": "https://www.sec.gov/Archives/edgar/data/1907982/000190798226000146/qbts-20260910.htm",
+          "title": {
+            "ja": "SEC 8-K filing (2026-09-10)",
+            "en": "SEC 8-K filing (2026-09-10)",
+            "ko": "SEC 8-K filing (2026-09-10)"
+          }
+        }
+      ]
     },
     {
       "id": "macro-usdjpy",
@@ -858,7 +1558,7 @@
         "change": 0.9,
         "changePercent": 0.58,
         "unit": "JPY",
-        "asOf": "2026-09-21T18:02:20.482798+09:00"
+        "asOf": "2026-09-21T18:11:29.897965+09:00"
       },
       "summary": {
         "ja": [
