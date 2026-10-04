@@ -70,7 +70,9 @@ npx --yes serve .                     # Node が入っていれば
 
 ## 3. データを更新する
 
-`data/dashboard.json` を更新するのは `update-data.py` です。
+`data/dashboard.json` を更新するのは `update-data.py` です。テーマ銘柄は
+`config/equity-universe.json` の候補母集団から、各カテゴリの前日比上位5社を選定します。
+候補全体はデータに保持し、画面には `selected` な銘柄だけを表示します。
 
 ```bash
 # 依存を導入（初回のみ。ロックファイルを凍結したまま導入する）

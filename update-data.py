@@ -8,8 +8,8 @@
 1. **プロバイダ分離**: 実際のデータ取得は ``Provider`` プロトコルを満たす
    クラスに閉じ込めてあります。既定は ``MockProvider``（ネットワーク不要）で、
    API キーを用意して ``YahooFinanceProvider`` などを差し込めば実データに切り替わります。
-2. **既存データの保全**: 取得に失敗した項目は既存の ``data/dashboard.json`` の
-   値をそのまま引き継ぎます。1 銘柄の取得失敗でサイト全体が壊れないようにするためです。
+2. **候補選定と既存データの保全**: テーマ別候補をすべて更新し、前日比上位5社に
+    ``selected`` を付けて表示対象にします。取得に失敗した項目は既存値を引き継ぎます。
 3. **多言語の一貫性**: すべてのテキストフィールドは ``{"ja": ..., "en": ..., "ko": ...}``
    の形を保ちます。``validate_payload`` が言語欠落を検出して警告します。
 
@@ -63,11 +63,14 @@ DATA_PATH = ROOT / "data" / "dashboard.json"
 #: カテゴリ設定ファイル
 CATEGORIES_PATH = ROOT / "config" / "categories.json"
 
+#: テーマ別の候補銘柄設定ファイル
+EQUITY_UNIVERSE_PATH = ROOT / "config" / "equity-universe.json"
+
 #: サイト設定ファイル
 SITE_PATH = ROOT / "config" / "site.json"
 
 #: 出力データのスキーマバージョン。構造を変えたら必ず上げること。
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2
 
 #: すべての多言語フィールドが備えるべき言語コード
 REQUIRED_LOCALES: tuple[str, ...] = ("ja", "en", "ko")
@@ -509,6 +512,32 @@ def load_existing_data() -> dict[str, Any]:
         return {"schemaVersion": SCHEMA_VERSION, "items": []}
 
 
+def load_equity_universe() -> dict[str, Any]:
+    """テーマ別の候補銘柄設定を読み込む。
+
+    Returns:
+        候補銘柄設定。
+
+    Raises:
+        ValueError: 設定の構造または候補数が不正な場合。
+    """
+    universe = read_json(EQUITY_UNIVERSE_PATH)
+    categories = universe.get("categories")
+    selection_count = universe.get("selectionCount")
+    if not isinstance(categories, dict) or not isinstance(selection_count, int):
+        raise ValueError("equity-universe.json must define categories and selectionCount")
+    if selection_count <= 0:
+        raise ValueError("equity-universe.json selectionCount must be positive")
+
+    for category_id, candidates in categories.items():
+        if not isinstance(candidates, list) or len(candidates) < selection_count:
+            raise ValueError(f"{category_id}: at least {selection_count} candidates are required")
+        for candidate in candidates:
+            if not all(candidate.get(field) for field in ("id", "ticker", "title")):
+                raise ValueError(f"{category_id}: each candidate needs id, ticker, and title")
+    return universe
+
+
 # --------------------------------------------------------------------------- #
 # 変換・検証
 # --------------------------------------------------------------------------- #
@@ -532,6 +561,113 @@ def collect_symbols(items: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
         if symbol:
             symbols[str(symbol)] = quote
     return symbols
+
+
+def build_candidate_items(
+    existing_items: list[dict[str, Any]], universe: dict[str, Any]
+) -> list[dict[str, Any]]:
+    """候補設定と既存カードを結合して候補カードを作る。
+
+    既存カードに詳細説明やIR資料があればそれを引き継ぎ、新規候補は
+    候補設定の最小限のメタデータからカードを作る。
+
+    Args:
+        existing_items: 前回出力された全カード。
+        universe: テーマ別候補設定。
+
+    Returns:
+        選定前の候補カード一覧。
+    """
+    existing_by_ticker = {
+        str((item.get("quote") or {}).get("ticker")): item
+        for item in existing_items
+        if (item.get("quote") or {}).get("ticker")
+    }
+    candidates: list[dict[str, Any]] = []
+
+    for category_id, category_candidates in universe["categories"].items():
+        for order, candidate in enumerate(category_candidates, start=1):
+            ticker = str(candidate["ticker"])
+            previous = existing_by_ticker.get(ticker)
+            if previous is not None:
+                item = json.loads(json.dumps(previous))
+                item["categoryId"] = category_id
+                item["id"] = candidate["id"]
+            else:
+                seed_price = float(candidate["seedPrice"])
+                item = {
+                    "id": candidate["id"],
+                    "categoryId": category_id,
+                    "order": order * 10,
+                    "sentiment": "neutral",
+                    "impact": "medium",
+                    "tags": [category_id.removeprefix("equity-")],
+                    "title": candidate["title"],
+                    "quote": {
+                        "ticker": ticker,
+                        "exchange": candidate["exchange"],
+                        "currency": candidate["currency"],
+                        "price": seed_price,
+                        "previousClose": seed_price,
+                        "change": 0.0,
+                        "changePercent": 0.0,
+                        "asOf": "",
+                    },
+                    "summary": {
+                        locale: [
+                            f"{candidate['title'][locale]} の候補銘柄。前日比上位を表示します。"
+                            if locale == "ja"
+                            else (
+                                f"{candidate['title'][locale]} is a theme candidate ranked by "
+                                "daily change."
+                            )
+                        ]
+                        for locale in REQUIRED_LOCALES
+                    },
+                    "source": {
+                        "name": "Alpha Vantage",
+                        "url": "https://www.alphavantage.co/documentation/",
+                    },
+                }
+            item["candidate"] = True
+            candidates.append(item)
+    return candidates
+
+
+def select_top_candidates(
+    candidates: list[dict[str, Any]], universe: dict[str, Any]
+) -> list[dict[str, Any]]:
+    """カテゴリごとに前日比率上位の候補へ selected フラグを付ける。
+
+    Args:
+        candidates: 選定前の候補カード一覧。
+        universe: テーマ別候補設定。
+
+    Returns:
+        選定済み候補カード一覧。全候補を保持し、表示対象だけ selected=true にする。
+    """
+    selection_count = universe["selectionCount"]
+    selected_items: list[dict[str, Any]] = []
+
+    for category_id in universe["categories"]:
+        category_candidates = [item for item in candidates if item.get("categoryId") == category_id]
+        ranked = sorted(
+            category_candidates,
+            key=lambda item: float((item.get("quote") or {}).get("changePercent", 0.0)),
+            reverse=True,
+        )
+        selected_ids = {item["id"] for item in ranked[:selection_count]}
+        for item in category_candidates:
+            item["selected"] = item["id"] in selected_ids
+        for rank, item in enumerate(ranked[:selection_count], start=1):
+            item["order"] = rank * 10
+            selected_items.append(item)
+        logger.info(
+            "%s: selected %s",
+            category_id,
+            ", ".join(item["id"] for item in ranked[:selection_count]),
+        )
+    return selected_items
 
 
 def apply_quotes(items: list[dict[str, Any]], quotes: dict[str, QuoteUpdate]) -> int:
@@ -614,17 +750,26 @@ def validate_payload(payload: dict[str, Any], *, category_ids: set[str]) -> list
     return problems
 
 
-def build_payload(existing: dict[str, Any], provider: Provider) -> tuple[dict[str, Any], int]:
+def build_payload(
+    existing: dict[str, Any], provider: Provider, universe: dict[str, Any]
+) -> tuple[dict[str, Any], int]:
     """プロバイダから最新値を取得し、出力ペイロードを組み立てる。
 
     Args:
         existing: 既存のダッシュボードデータ。
         provider: 使用するデータ取得プロバイダ。
+        universe: テーマ別候補設定。
 
     Returns:
         ``(新しいペイロード, 更新された項目数)`` のタプル。
     """
-    items: list[dict[str, Any]] = json.loads(json.dumps(existing.get("items", [])))
+    existing_items: list[dict[str, Any]] = json.loads(json.dumps(existing.get("items", [])))
+    selectable_categories = set(universe["categories"])
+    fixed_items = [
+        item for item in existing_items if item.get("categoryId") not in selectable_categories
+    ]
+    candidate_items = build_candidate_items(existing_items, universe)
+    items = fixed_items + candidate_items
     symbols = collect_symbols(items)
 
     logger.info("Fetching %d symbols via provider '%s'", len(symbols), provider.name)
@@ -634,7 +779,10 @@ def build_payload(existing: dict[str, Any], provider: Provider) -> tuple[dict[st
     if isinstance(provider, AlphaVantageProvider):
         fred_updates = fetch_fred_updates()
         updated += apply_quotes(items, fred_updates)
-        refresh_sec_filings(items)
+        selected_items = select_top_candidates(candidate_items, universe)
+        refresh_sec_filings(selected_items)
+    else:
+        select_top_candidates(candidate_items, universe)
 
     payload = dict(existing)
     payload["schemaVersion"] = SCHEMA_VERSION
@@ -656,7 +804,7 @@ def build_payload(existing: dict[str, Any], provider: Provider) -> tuple[dict[st
                 "유지합니다."
             ),
         }
-    payload["items"] = items
+    payload["items"] = fixed_items + candidate_items
     return payload, updated
 
 
@@ -750,6 +898,12 @@ def main(argv: list[str] | None = None) -> int:  # noqa: PLR0911 - 終了コー�
         logger.error("Failed to read categories config: %s", exc)
         return 2
 
+    try:
+        universe = load_equity_universe()
+    except (FileNotFoundError, json.JSONDecodeError, KeyError, ValueError) as exc:
+        logger.error("Failed to read equity universe: %s", exc)
+        return 2
+
     existing = load_existing_data()
 
     # --check: 取得せず検証のみ
@@ -764,9 +918,12 @@ def main(argv: list[str] | None = None) -> int:  # noqa: PLR0911 - 終了コー�
         return 0
 
     try:
+        candidate_items = build_candidate_items(existing.get("items", []), universe)
+        base_quotes = collect_symbols(existing.get("items", []))
+        base_quotes.update(collect_symbols(candidate_items))
         provider = build_provider(
             args.provider,
-            collect_symbols(existing.get("items", [])),
+            base_quotes,
             args.seed,
         )
     except ValueError as exc:
@@ -774,7 +931,7 @@ def main(argv: list[str] | None = None) -> int:  # noqa: PLR0911 - 終了コー�
         return 2
 
     try:
-        payload, updated = build_payload(existing, provider)
+        payload, updated = build_payload(existing, provider, universe)
     except Exception as exc:  # 失敗理由をログに残して終了する
         logger.error("Failed to build payload: %s", exc, exc_info=args.verbose)
         return 2

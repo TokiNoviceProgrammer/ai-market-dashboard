@@ -239,6 +239,7 @@ export async function loadAll(options = {}) {
  * @property {string[]} [tags] - タグ（言語非依存の固有名詞のみを想定）。
  * @property {string} [publishedAt] - 公開日時（ISO 8601）。
  * @property {{ name: string, url: string }} [source] - 出典。
+ * @property {boolean} [selected] - 候補選定で現在表示対象かどうか。
  * @property {'positive' | 'negative' | 'neutral'} [sentiment] - センチメント。
  * @property {'high' | 'medium' | 'low'} [impact] - 重要度。
  */

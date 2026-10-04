@@ -497,7 +497,9 @@ export function renderDashboard(container, { categoryConfig, items, activeCatego
   const sections = [];
 
   for (const category of visibleCategories) {
-    const categoryItems = items.filter((item) => item.categoryId === category.id);
+    const categoryItems = items.filter(
+      (item) => item.categoryId === category.id && item.selected !== false,
+    );
     if (categoryItems.length === 0) {
       continue;
     }
