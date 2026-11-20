@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-19T16:41:37+09:00",
+  "generatedAt": "2026-11-20T16:33:13+09:00",
   "generator": "update-data.py (Alpha Vantage, FRED, SEC EDGAR)",
   "notice": {
     "ja": "市場データは日次更新です。取得に失敗した項目は前回の正常値を表示します。",
@@ -213,12 +213,12 @@
         "ticker": "NVDA",
         "exchange": "NASDAQ",
         "currency": "USD",
-        "price": 150.96,
-        "previousClose": 155.46,
-        "change": -4.5,
-        "changePercent": -2.89,
+        "price": 145.98,
+        "previousClose": 150.96,
+        "change": -4.98,
+        "changePercent": -3.3,
         "marketCap": "4.45T",
-        "asOf": "2026-11-19T16:41:12.367450+09:00"
+        "asOf": "2026-11-20T16:32:48.941355+09:00"
       },
       "summary": {
         "ja": [
@@ -313,12 +313,12 @@
         "ticker": "TSM",
         "exchange": "NYSE",
         "currency": "USD",
-        "price": 362.62,
-        "previousClose": 359.69,
-        "change": 2.93,
-        "changePercent": 0.81,
+        "price": 352.09,
+        "previousClose": 362.62,
+        "change": -10.53,
+        "changePercent": -2.9,
         "marketCap": "1.39T",
-        "asOf": "2026-11-19T16:41:13.557721+09:00"
+        "asOf": "2026-11-20T16:32:50.117407+09:00"
       },
       "summary": {
         "ja": [
@@ -413,12 +413,12 @@
         "ticker": "CRM",
         "exchange": "NYSE",
         "currency": "USD",
-        "price": 190.4,
-        "previousClose": 194.52,
-        "change": -4.12,
-        "changePercent": -2.12,
+        "price": 183.31,
+        "previousClose": 190.4,
+        "change": -7.09,
+        "changePercent": -3.72,
         "marketCap": "231B",
-        "asOf": "2026-11-19T16:41:14.744512+09:00"
+        "asOf": "2026-11-20T16:32:51.248802+09:00"
       },
       "summary": {
         "ja": [
@@ -677,12 +677,12 @@
         "ticker": "INTC",
         "exchange": "NASDAQ",
         "currency": "USD",
-        "price": 54.67,
-        "previousClose": 55.17,
-        "change": -0.5,
-        "changePercent": -0.91,
+        "price": 55.72,
+        "previousClose": 54.67,
+        "change": 1.05,
+        "changePercent": 1.92,
         "marketCap": "168B",
-        "asOf": "2026-11-19T16:41:18.125915+09:00"
+        "asOf": "2026-11-20T16:32:54.512836+09:00"
       },
       "summary": {
         "ja": [
@@ -776,11 +776,11 @@
         "ticker": "NOW",
         "exchange": "NYSE",
         "currency": "USD",
-        "price": 90.59,
-        "previousClose": 92.9,
-        "change": -2.31,
-        "changePercent": -2.49,
-        "asOf": "2026-11-19T16:41:19.315562+09:00"
+        "price": 88.87,
+        "previousClose": 90.59,
+        "change": -1.72,
+        "changePercent": -1.9,
+        "asOf": "2026-11-20T16:32:55.632051+09:00"
       },
       "summary": {
         "ja": [
@@ -847,11 +847,11 @@
         "ticker": "PLTR",
         "exchange": "NASDAQ",
         "currency": "USD",
-        "price": 156.67,
-        "previousClose": 156.56,
-        "change": 0.11,
-        "changePercent": 0.07,
-        "asOf": "2026-11-19T16:41:20.488755+09:00"
+        "price": 153.68,
+        "previousClose": 156.67,
+        "change": -2.99,
+        "changePercent": -1.91,
+        "asOf": "2026-11-20T16:32:56.744520+09:00"
       },
       "summary": {
         "ja": [
@@ -918,11 +918,11 @@
         "ticker": "AMD",
         "exchange": "NASDAQ",
         "currency": "USD",
-        "price": 530.14,
-        "previousClose": 503.41,
-        "change": 26.73,
-        "changePercent": 5.31,
-        "asOf": "2026-11-19T16:41:21.676023+09:00"
+        "price": 489.19,
+        "previousClose": 530.14,
+        "change": -40.95,
+        "changePercent": -7.72,
+        "asOf": "2026-11-20T16:32:57.837554+09:00"
       },
       "summary": {
         "ja": [
@@ -989,11 +989,11 @@
         "ticker": "SYM",
         "exchange": "NASDAQ",
         "currency": "USD",
-        "price": 33.79,
-        "previousClose": 33.06,
-        "change": 0.73,
-        "changePercent": 2.21,
-        "asOf": "2026-11-19T16:41:22.854066+09:00"
+        "price": 33.16,
+        "previousClose": 33.79,
+        "change": -0.63,
+        "changePercent": -1.86,
+        "asOf": "2026-11-20T16:32:58.951053+09:00"
       },
       "summary": {
         "ja": [
@@ -1060,11 +1060,11 @@
         "ticker": "TER",
         "exchange": "NASDAQ",
         "currency": "USD",
-        "price": 235.21,
-        "previousClose": 234.18,
-        "change": 1.03,
-        "changePercent": 0.44,
-        "asOf": "2026-11-19T16:41:24.036592+09:00"
+        "price": 227.43,
+        "previousClose": 235.21,
+        "change": -7.78,
+        "changePercent": -3.31,
+        "asOf": "2026-11-20T16:33:00.070947+09:00"
       },
       "summary": {
         "ja": [
@@ -1131,11 +1131,11 @@
         "ticker": "ROK",
         "exchange": "NYSE",
         "currency": "USD",
-        "price": 395.86,
-        "previousClose": 391.26,
-        "change": 4.6,
-        "changePercent": 1.18,
-        "asOf": "2026-11-19T16:41:25.265517+09:00"
+        "price": 383.1,
+        "previousClose": 395.86,
+        "change": -12.76,
+        "changePercent": -3.22,
+        "asOf": "2026-11-20T16:33:01.186772+09:00"
       },
       "summary": {
         "ja": [
@@ -1202,11 +1202,11 @@
         "ticker": "PYPL",
         "exchange": "NASDAQ",
         "currency": "USD",
-        "price": 57.89,
-        "previousClose": 58.11,
-        "change": -0.22,
-        "changePercent": -0.38,
-        "asOf": "2026-11-19T16:41:26.448971+09:00"
+        "price": 56.37,
+        "previousClose": 57.89,
+        "change": -1.52,
+        "changePercent": -2.63,
+        "asOf": "2026-11-20T16:33:02.304678+09:00"
       },
       "summary": {
         "ja": [
@@ -1277,7 +1277,7 @@
         "previousClose": 30.95,
         "change": 0.0,
         "changePercent": 0.0,
-        "asOf": "2026-11-19T16:41:27.641439+09:00"
+        "asOf": "2026-11-20T16:33:03.429010+09:00"
       },
       "summary": {
         "ja": [
@@ -1343,11 +1343,11 @@
         "ticker": "IONQ",
         "exchange": "NYSE",
         "currency": "USD",
-        "price": 24.84,
-        "previousClose": 26.45,
-        "change": -1.61,
-        "changePercent": -6.09,
-        "asOf": "2026-11-18T16:46:09.651602+09:00"
+        "price": 22.71,
+        "previousClose": 23.48,
+        "change": -0.77,
+        "changePercent": -3.28,
+        "asOf": "2026-11-20T16:33:04.538343+09:00"
       },
       "summary": {
         "ja": [
@@ -1413,11 +1413,11 @@
         "ticker": "RGTI",
         "exchange": "NASDAQ",
         "currency": "USD",
-        "price": 8.46,
-        "previousClose": 9.06,
-        "change": -0.6,
-        "changePercent": -6.62,
-        "asOf": "2026-11-18T16:46:10.722930+09:00"
+        "price": 8.06,
+        "previousClose": 8.33,
+        "change": -0.27,
+        "changePercent": -3.24,
+        "asOf": "2026-11-20T16:33:05.644237+09:00"
       },
       "summary": {
         "ja": [
@@ -1483,11 +1483,11 @@
         "ticker": "QBTS",
         "exchange": "NYSE",
         "currency": "USD",
-        "price": 8.08,
-        "previousClose": 8.67,
-        "change": -0.59,
-        "changePercent": -6.81,
-        "asOf": "2026-11-18T16:46:11.780865+09:00"
+        "price": 7.31,
+        "previousClose": 7.69,
+        "change": -0.38,
+        "changePercent": -4.94,
+        "asOf": "2026-11-20T16:33:06.750900+09:00"
       },
       "summary": {
         "ja": [
@@ -1553,12 +1553,12 @@
       },
       "metric": {
         "symbol": "USD/JPY",
-        "value": 159.35,
-        "previousClose": 159.41,
-        "change": -0.06,
-        "changePercent": -0.04,
+        "value": 159.67,
+        "previousClose": 159.33,
+        "change": 0.34,
+        "changePercent": 0.21,
         "unit": "JPY",
-        "asOf": "2026-11-18T16:46:12.810003+09:00"
+        "asOf": "2026-11-20T16:33:07.847830+09:00"
       },
       "summary": {
         "ja": [
@@ -1685,12 +1685,12 @@
       },
       "metric": {
         "symbol": "US10Y",
-        "value": 5.1,
-        "previousClose": 5.12,
-        "change": -0.02,
-        "changePercent": -0.39,
+        "value": 5.07,
+        "previousClose": 5.1,
+        "change": -0.03,
+        "changePercent": -0.59,
         "unit": "%",
-        "asOf": "2026-11-17T09:00:00+09:00"
+        "asOf": "2026-11-18T09:00:00+09:00"
       },
       "summary": {
         "ja": [
