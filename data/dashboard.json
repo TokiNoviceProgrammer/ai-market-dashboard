@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-26T17:40:23+09:00",
+  "generatedAt": "2026-11-27T17:51:46+09:00",
   "generator": "update-data.py (Alpha Vantage, FRED, SEC EDGAR)",
   "notice": {
     "ja": "市場データは日次更新です。取得に失敗した項目は前回の正常値を表示します。",
@@ -218,7 +218,7 @@
         "change": -6.08,
         "changePercent": -3.91,
         "marketCap": "4.45T",
-        "asOf": "2026-11-26T17:40:00.277117+09:00"
+        "asOf": "2026-11-27T17:51:21.003361+09:00"
       },
       "summary": {
         "ja": [
@@ -318,7 +318,7 @@
         "change": -6.86,
         "changePercent": -1.96,
         "marketCap": "1.39T",
-        "asOf": "2026-11-26T17:40:01.356579+09:00"
+        "asOf": "2026-11-27T17:51:22.139998+09:00"
       },
       "summary": {
         "ja": [
@@ -418,7 +418,7 @@
         "change": 3.95,
         "changePercent": 2.04,
         "marketCap": "231B",
-        "asOf": "2026-11-26T17:40:02.432904+09:00"
+        "asOf": "2026-11-27T17:51:23.328987+09:00"
       },
       "summary": {
         "ja": [
@@ -682,7 +682,7 @@
         "change": -0.33,
         "changePercent": -0.6,
         "marketCap": "168B",
-        "asOf": "2026-11-26T17:40:05.586623+09:00"
+        "asOf": "2026-11-27T17:51:26.665458+09:00"
       },
       "summary": {
         "ja": [
@@ -780,7 +780,7 @@
         "previousClose": 91.74,
         "change": 0.42,
         "changePercent": 0.46,
-        "asOf": "2026-11-26T17:40:06.650935+09:00"
+        "asOf": "2026-11-27T17:51:27.857952+09:00"
       },
       "summary": {
         "ja": [
@@ -851,7 +851,7 @@
         "previousClose": 161.18,
         "change": 2.41,
         "changePercent": 1.5,
-        "asOf": "2026-11-26T17:40:07.709982+09:00"
+        "asOf": "2026-11-27T17:51:29.039243+09:00"
       },
       "summary": {
         "ja": [
@@ -922,7 +922,7 @@
         "previousClose": 413.27,
         "change": -7.24,
         "changePercent": -1.75,
-        "asOf": "2026-11-26T17:40:08.778640+09:00"
+        "asOf": "2026-11-27T17:51:30.243668+09:00"
       },
       "summary": {
         "ja": [
@@ -993,7 +993,7 @@
         "previousClose": 37.39,
         "change": 0.63,
         "changePercent": 1.68,
-        "asOf": "2026-11-26T17:40:09.831215+09:00"
+        "asOf": "2026-11-27T17:51:31.364679+09:00"
       },
       "summary": {
         "ja": [
@@ -1064,7 +1064,7 @@
         "previousClose": 213.22,
         "change": -1.07,
         "changePercent": -0.5,
-        "asOf": "2026-11-26T17:40:10.902118+09:00"
+        "asOf": "2026-11-27T17:51:32.491473+09:00"
       },
       "summary": {
         "ja": [
@@ -1135,7 +1135,7 @@
         "previousClose": 381.83,
         "change": 3.08,
         "changePercent": 0.81,
-        "asOf": "2026-11-26T17:40:11.973372+09:00"
+        "asOf": "2026-11-27T17:51:33.624055+09:00"
       },
       "summary": {
         "ja": [
@@ -1206,7 +1206,7 @@
         "previousClose": 56.17,
         "change": 1.64,
         "changePercent": 2.92,
-        "asOf": "2026-11-26T17:40:13.039653+09:00"
+        "asOf": "2026-11-27T17:51:34.751910+09:00"
       },
       "summary": {
         "ja": [
@@ -1277,7 +1277,7 @@
         "previousClose": 30.95,
         "change": 0.0,
         "changePercent": 0.0,
-        "asOf": "2026-11-26T17:40:14.103660+09:00"
+        "asOf": "2026-11-27T17:51:35.922233+09:00"
       },
       "summary": {
         "ja": [
@@ -1347,7 +1347,7 @@
         "previousClose": 22.4,
         "change": 1.14,
         "changePercent": 5.09,
-        "asOf": "2026-11-26T17:40:15.161388+09:00"
+        "asOf": "2026-11-27T17:51:37.042934+09:00"
       },
       "summary": {
         "ja": [
@@ -1417,7 +1417,7 @@
         "previousClose": 7.59,
         "change": 0.26,
         "changePercent": 3.43,
-        "asOf": "2026-11-26T17:40:16.220101+09:00"
+        "asOf": "2026-11-27T17:51:38.171870+09:00"
       },
       "summary": {
         "ja": [
@@ -1487,7 +1487,7 @@
         "previousClose": 6.74,
         "change": 0.26,
         "changePercent": 3.86,
-        "asOf": "2026-11-26T17:40:17.271716+09:00"
+        "asOf": "2026-11-27T17:51:39.318646+09:00"
       },
       "summary": {
         "ja": [
@@ -1553,12 +1553,12 @@
       },
       "metric": {
         "symbol": "USD/JPY",
-        "value": 159.17,
-        "previousClose": 159.25,
-        "change": -0.08,
-        "changePercent": -0.05,
+        "value": 159.25,
+        "previousClose": 159.17,
+        "change": 0.08,
+        "changePercent": 0.05,
         "unit": "JPY",
-        "asOf": "2026-11-26T17:40:18.315311+09:00"
+        "asOf": "2026-11-27T17:51:40.428971+09:00"
       },
       "summary": {
         "ja": [
